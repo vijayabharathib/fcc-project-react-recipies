@@ -1,44 +1,43 @@
 import React, { Component } from 'react';
 import './App.css';
-import Recipie from './Recipie';
+import RecipieList from './Recipie';
 
 class RecipieBox extends Component {
   constructor(){
     super();
-    this.state = {
-      msg: "I am back here"
-    }
+    this.state={recipies: []};
+    //this.addRecipie.bind(this);
   }
-
-  update(e) {
-    this.setState({msg: e.target.value});
+  addRecipie(e) {
+    let newRecipies=this.state.recipies;
+    newRecipies.push({key: Date.now(), name: this.recipie_input.value});
+    this.setState({recipies: newRecipies});
+    this.recipie_input.value="";
+    e.preventDefault();
   }
-
+  deleteItem(i){
+    let newRecipies=this.state.recipies;
+    newRecipies=this.state.recipies.filter(function(recipie){
+      return recipie.key!==i;
+    });
+    this.setState({recipies: newRecipies});
+  }
   render() {
+
     return (
       <div>
-        <Recipie name="Chappatti" recipie="one;two" />
-        <Speaker update={this.update.bind(this)} />
+        <form onSubmit={this.addRecipie.bind(this)}>
+          <input
+            type="text"
+            className="c-recipie__control__textbox"
+            ref={(input) => this.recipie_input=input}
+            />
+          <button className="c-recipie__control__submit">Add Recipie</button>
+        </form>
+        <RecipieList recipies={this.state.recipies} onDelete={this.deleteItem.bind(this)} />
       </div>
     );
   }
 }
 
-RecipieBox.propTypes = {
-  name: React.PropTypes.string.isRequired,
-  title: React.PropTypes.string
-}
-
-RecipieBox.defaultProps ={
-  name: "Guest",
-  title: "Sweet"
-}
-
-class Speaker extends Component {
-  render() {
-    return (
-      <input type="text" onChange={this.props.update} />
-    )
-  }
-}
 export default RecipieBox;
