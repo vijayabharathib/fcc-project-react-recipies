@@ -1,30 +1,24 @@
 import React, { Component } from 'react';
 import IngredientList from './Ingredients';
-class RecipieList extends Component{
+class Recipie extends Component{
   constructor(){
     super();
-    this.state={ ingredients: [{key: 1, name: "flour"},{key: 2, name: "salt"}]};
+    this.state={ ingredients:[
+      {key: 1, name: "flour"},
+      {key: 2, name: "water"}
+    ] };
   }
 
   render(){
-    let deleteItem=this.props.onDelete
-    let recipies=this.props.recipies.map(function(recipie){
-      return (
-        <li className="c-recipie" key={recipie.key}>
-          <h4 className="c-recipie__name">{recipie.name}</h4>
-          <IngredientList ingredients={this.state.ingredients} />
-          <button className="c-recipie__delete" onClick={deleteItem.bind(null,recipie.key)}>x</button>
-          <button className="c-recipie__edit">Edit</button>
-        </li>
-      )
-    })
-
     return(
-      <ul>
-        {recipies}
-      </ul>
+      <li className="c-recipie">
+        <h4 className="c-recipie__name">{this.props.name}</h4>
+        <IngredientList ingredients={this.state.ingredients} />
+        <button className="c-recipie__delete" onClick={this.props.delete}>x</button>
+        <button className="c-recipie__edit">Edit</button>
+      </li>
     )
   }
 }
 
-export default RecipieList;
+export default Recipie;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import RecipieList from './Recipie';
+import RecipieList from './RecipieList';
 
 class RecipieBox extends Component {
   constructor(){

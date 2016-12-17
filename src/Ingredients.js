@@ -11,7 +11,7 @@ class IngredientList extends Component{
       return (
         <li className="c-ingredient" key={ingredient.key}>
           <span className="c-ingredient__name">{ingredient.name}</span>
-          <button className="c-ingredient__delete" onClick={deleteItem.bind(null,ingredient.key)}>x</button>
+          <button className="c-ingredient__delete">x</button>
           <button className="c-ingredient__edit">Edit</button>
         </li>
       )
