@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import Recipie from './Recipie';
 class RecipieList extends Component{
-  constructor(){
-    super();
-  }
-
   render(){
     let deleteItem=this.props.onDelete
     let recipies=this.props.recipies.map(function(recipie){

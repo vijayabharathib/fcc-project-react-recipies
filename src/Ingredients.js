@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
 class IngredientList extends Component{
-  constructor(){
-    super();
-  }
 
   render(){
     let deleteItem=this.props.onDelete;
