@@ -6,4 +6,6 @@ install:
 script:
   - npm test
 after_success:
+  - git config --global user.name "vijayabharathi"
+  - git config --global user.email "vijayabharathib@users.noreply.github.com"
   - npm run deploy
