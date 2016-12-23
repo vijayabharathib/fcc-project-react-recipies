@@ -10,14 +10,13 @@ const test=addAssertions(tape,{jsxEquals});
 const renderer=createRenderer();
 test("Render Ingredients",(assert) => {
   var del=function(){};
-  assert.plan(2);
-  const ingredients=[{key:1,name: "flour"},{key:2,name:"water"},{key:3,name:"salt"}];
+  assert.plan(1);
+  const ingredients=[{key:1,name: "flour"},{key:2,name:"water"}];
   renderer.render(<IngredientList ingredients={ingredients} onDelete={del} />);
   const message="Ingredient should list";
   const expected=2;
   const result=renderer.getRenderOutput()
   const actual=result.props.children.length;
-  assert.equal(actual,expected,"Expect 2 children, should fail");
-  assert.equal(actual,3,"Expect 3 children,should pass");
+  assert.equal(actual,expected,"Expect 2 children");
   assert.end();
 });
