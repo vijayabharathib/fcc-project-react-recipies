@@ -5,4 +5,7 @@ install:
   - npm install babel-cli babel-preset-es2015 babel-preset-react extend-tape gh-pages react-addons-test-utils react-scripts tape tape-jsx-equals faucet react react-dom
 script:
   - npm test
-  - npm run test
+git:
+  - depth: 3
+after_success:
+  - npm run deploy
