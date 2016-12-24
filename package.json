@@ -28,8 +28,7 @@
     "test_original": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "npm run build&&gh-pages -d build",
-    "coverage": "nyc npm test",
-    "report": "npm run coverage && nyc report --reporter=lcov",
-    "coveralls": "npm run report && cat ./coverage/lcov.info | coveralls"
+    "report": "nyc npm test && nyc report --reporter=lcov",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   }
 }
