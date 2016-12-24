@@ -6,7 +6,6 @@ class RecipieBox extends Component {
   constructor(){
     super();
     this.state={recipies: []};
-    //this.addRecipie.bind(this);
   }
   addRecipie(e) {
     let newRecipies=this.state.recipies;
