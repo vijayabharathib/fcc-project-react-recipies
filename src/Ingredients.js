@@ -13,7 +13,6 @@ class IngredientList extends Component{
         </li>
       )
     })
-
     return(
       <ul>
         {ingredients}
