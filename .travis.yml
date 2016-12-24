@@ -2,10 +2,11 @@ language: node_js
 node_js:
   - "node"
 install:
-  - npm install babel-cli babel-preset-es2015 babel-preset-react extend-tape gh-pages react-addons-test-utils react-scripts tape tape-jsx-equals faucet react react-dom
+  - npm install babel-cli babel-preset-es2015 babel-preset-react extend-tape gh-pages react-addons-test-utils react-scripts tape tape-jsx-equals faucet react react-dom nyc coveralls
 script:
-  - npm run coveralls
+  - npm run test
 after_success:
+  - npm run coveralls
   - coveralls
   - git config --global user.name "vijayabharathi"
   - git config --global user.email "vijayabharathib@users.noreply.github.com"
