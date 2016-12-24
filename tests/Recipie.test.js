@@ -27,14 +27,20 @@ test("Render Recipie",(assert) => {
 
 test("Recipie ingredient toggle",(assert) => {
   var del=function(){};
-  assert.plan(1);
+  assert.plan(2);
   const component=TestUtils.renderIntoDocument(<Recipie key="x" name="omlet"  delete={del} />);
-  const message="Recipie toggle should add ingredients";
-  const expected=2;
-  const actual=component.props;
-  //const result=component.props;
-  //result.props.children[0].props.onClick();
-  //const actual=result.props;
+  let message="Recipie should hide ingredients by default";
+  let expected=false;
+  let actual=component.state.displayIngredient;
   assert.equal(actual,expected,message);
+  //TOGGLE recipie and check state change
+
+  let recipieTitle=TestUtils.findRenderedDOMComponentWithTag(component,"h4");
+  TestUtils.Simulate.click(recipieTitle);
+  actual=component.state.displayIngredient;
+  expected=true; //component.state.displayIngredient should be true
+  message="Recipie should show ingredients when recipie title is clicked";
+  assert.equal(actual,expected,message);
+
   assert.end();
 });
