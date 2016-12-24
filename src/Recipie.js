@@ -13,7 +13,6 @@ class Recipie extends Component{
   }
 
   toggleIngredient(){
-    console.log('toggle');
     this.setState({displayIngredient: !this.state.displayIngredient});
   }
 
