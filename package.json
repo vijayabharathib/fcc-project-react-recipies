@@ -23,12 +23,12 @@
     "react-dom": "^15.4.1"
   },
   "watch": {
-    "report": "{src,tests}/**/*.js"
+    "test": "{src,tests}/**/*.js"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "babel-node node_modules/.bin/tape tests/*.test.js | faucet",
+    "test": "babel-node node_modules/.bin/tape tests/*.test.js | faucet || true",
     "test_original": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "npm run build&&gh-pages -d build",
