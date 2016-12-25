@@ -17,7 +17,9 @@ class Recipie extends Component{
   }
 
   addIngredient(){
-
+    let newIngredients=this.state.ingredients;
+    newIngredients.push({key: Date.now(),name:"New Ingredient"});
+    this.setState({ingredients: newIngredients});
   }
 
   deleteIngredient(deleteKey){
@@ -30,7 +32,7 @@ class Recipie extends Component{
   render(){
     let ingList=null;
     if(this.state.displayIngredient){
-      ingList=<IngredientList ingredients={this.state.ingredients} onDelete={this.deleteIngredient.bind(this)} />;
+      ingList=<IngredientList ingredients={this.state.ingredients} onDelete={this.deleteIngredient.bind(this)} addIngredient={this.addIngredient.bind(this)} />;
     }
     return(
       <li className="c-recipie">

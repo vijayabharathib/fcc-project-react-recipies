@@ -14,9 +14,13 @@ class IngredientList extends Component{
       )
     })
     return(
-      <ul>
-        {ingredients}
-      </ul>
+      <div>
+        <h5>Ingredients</h5>
+        <button className="c-ingredient__add" onClick={this.props.addIngredient}>+</button>
+        <ul>
+          {ingredients}
+        </ul>
+      </div>
     )
   }
 }

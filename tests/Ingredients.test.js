@@ -16,7 +16,7 @@ test("Render Ingredients",(assert) => {
   const message="Ingredient should list";
   const expected=2;
   const result=renderer.getRenderOutput()
-  const actual=result.props.children.length;
-  assert.equal(actual,expected,"Expect 2 children");
+  const actual=result.props.children[2].props.children.length;
+  assert.equal(actual,expected,"Ingredient list should have 2 list items");
   assert.end();
 });

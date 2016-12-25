@@ -26,7 +26,7 @@ test("Render Recipie",(assert) => {
   assert.end();
 });
 
-test("Recipie ingredient toggle",(assert) => {
+test("Recipie should toggle ingredient when title is clicked",(assert) => {
   var del=function(){};
   assert.plan(2);
   const component=TestUtils.renderIntoDocument(<Recipie key="x" name="omlet"  delete={del} />);
@@ -47,23 +47,59 @@ test("Recipie ingredient toggle",(assert) => {
 });
 
 
-test("Recipie ingredient render",(assert) => {
+test("Recipie should render all ingredients from state",(assert) => {
   var del=function(){};
-  assert.plan(2);
+  assert.plan(1);
   const component=TestUtils.renderIntoDocument(<Recipie key="x" name="omlet"  delete={del} />);
-  let message="Recipie should render ingredients from state";
-  let expected=1;
+  component.setState({ingredients: [{key: 1, name: "salt"},{key:2,name:"water"}]});
+  component.setState({displayIngredient: true});
+  const lists=TestUtils.scryRenderedDOMComponentsWithClass(component, "c-ingredient");
+  const message="Recipie should render two ingredients from state";
+  const expected=2;
+  const actual=lists.length;
+  assert.equal(actual,expected,message);
+});
+
+
+test("Recipie - ingredient should be removed from recipie state on delete",(assert) => {
+  var del=function(){};
+  assert.plan(1);
+  const component=TestUtils.renderIntoDocument(<Recipie key="x" name="omlet"  delete={del} />);
   component.setState({ingredients: [{key: 1, name: "salt"}]});
   component.setState({displayIngredient: true});
-  let lists=TestUtils.scryRenderedDOMComponentsWithClass(component, "c-ingredient");
-  let actual=lists.length;
-  assert.equal(actual,expected,message);
-
   let deleteButton=TestUtils.findRenderedDOMComponentWithClass(component,"c-ingredient__delete");
   TestUtils.Simulate.click(deleteButton);
-  actual=TestUtils.scryRenderedDOMComponentsWithClass(component, "c-ingredient").length;
-  message="Recipie state should update on ingredient is delete button click";
-  expected=0;
+  const actual=component.state.ingredients.length;
+  const message="Recipie state should delete ingredient on delete button click";
+  const expected=0;
+  assert.equal(actual,expected,message);
+  assert.end();
+});
+
+test("Recipie - ingredient should be added",(assert) => {
+  var del=function(){};
+  assert.plan(1);
+  const component=TestUtils.renderIntoDocument(<Recipie key="x" name="omlet"  delete={del} />);
+  const initialIngredientCount=component.state.ingredients.length
+  component.addIngredient();
+  const message="Recipie state should add ingredient through addIngredient func";
+  const expected=initialIngredientCount+1;
+  const actual=component.state.ingredients.length;
+  assert.equal(actual,expected,message);
+  assert.end();
+});
+
+test("Recipie - ingredient title add button",(assert) => {
+  var del=function(){};
+  assert.plan(1);
+  const component=TestUtils.renderIntoDocument(<Recipie key="x" name="omlet"  delete={del} />);
+  component.setState({displayIngredient: true});
+  const initialIngredientCount=component.state.ingredients.length
+  const addButton=TestUtils.findRenderedDOMComponentWithClass(component,"c-ingredient__add");
+  TestUtils.Simulate.click(addButton);
+  const message="Ingredient add button should introduce new ingredient";
+  const expected=initialIngredientCount+1;
+  const actual=component.state.ingredients.length;
   assert.equal(actual,expected,message);
   assert.end();
 });

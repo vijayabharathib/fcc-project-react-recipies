@@ -37,7 +37,7 @@ test("RecipieBox form should have an input text field",(assert) => {
   assert.end();
 });
 
-test("Add Recipie on form submit",(assert) => {
+test("RecipieBox should add Recipie on form submit",(assert) => {
   assert.plan(2);
   const component=TestUtils.renderIntoDocument(<RecipieBox />);
   //check initial state
@@ -53,10 +53,32 @@ test("Add Recipie on form submit",(assert) => {
   TestUtils.Simulate.change(textBox);
   TestUtils.Simulate.submit(form);
 
-  //check state after recipie addition 
+  //check state after recipie addition
   message="One recipie should be added on form submit";
   actual=component.state.recipies.length;
   expected =1 //one recipie should be in state
   assert.equal(actual,expected,message);
+  assert.end();
+});
+
+
+test("RecipieBox - delete button should remove recipie",(assert) => {
+  assert.plan(2);
+  const component=TestUtils.renderIntoDocument(<RecipieBox />);
+  component.setState({recipies:[{key: 1,name: "dosa"}]});
+  //check initial state
+  let actual=component.state.recipies.length;
+  let expected=1;
+  let message="One recipie should be in box after addition";
+  assert.equal(actual,expected,message);
+
+  const deleteRecipie=TestUtils.findRenderedDOMComponentWithClass(component,"c-recipie__delete");
+  TestUtils.Simulate.click(deleteRecipie);
+  //check state after recipie addition
+  message="One recipie should be deleted on click button press";
+  actual=component.state.recipies.length;
+  expected =0 //one recipie deleted
+  assert.equal(actual,expected,message);
+
   assert.end();
 });
