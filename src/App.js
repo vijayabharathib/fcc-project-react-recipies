@@ -22,7 +22,6 @@ class RecipieBox extends Component {
     this.setState({recipies: newRecipies});
   }
   render() {
-
     return (
       <div>
         <form onSubmit={this.addRecipie.bind(this)}>
