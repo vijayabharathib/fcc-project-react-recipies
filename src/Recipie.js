@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import IngredientList from './Ingredients';
+import IngredientList from './IngredientList';
 class Recipie extends Component{
   constructor(){
     super();
@@ -37,9 +37,9 @@ class Recipie extends Component{
     return(
       <li className="c-recipie">
         <h4 className="c-recipie__name" onClick={this.toggleIngredient.bind(this)}>{this.props.name}</h4>
-        {ingList}
         <button className="c-recipie__delete" onClick={this.props.delete}>x</button>
         <button className="c-recipie__edit">Edit</button>
+        {ingList}
       </li>
     )
   }

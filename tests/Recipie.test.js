@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import jsdom from 'jsdom';
 import Recipie from '../src/Recipie';
-import Ingredient from '../src/Ingredients';
+import Ingredient from '../src/IngredientList';
 import tape from 'tape';
 import addAssertions from 'extend-tape';
 import jsxEquals from 'tape-jsx-equals';

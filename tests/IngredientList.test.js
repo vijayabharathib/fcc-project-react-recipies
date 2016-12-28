@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import IngredientList from '../src/Ingredients';
+import IngredientList from '../src/IngredientList';
 import tape from 'tape';
 import addAssertions from 'extend-tape';
 import jsxEquals from 'tape-jsx-equals';
