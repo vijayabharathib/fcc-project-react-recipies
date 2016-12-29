@@ -1,5 +1,5 @@
 import React from 'react';
-import connect from 'react';
+import connect from 'react-redux';
 import addRecipie from '../actions/ActionCreators';
 
 

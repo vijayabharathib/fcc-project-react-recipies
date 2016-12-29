@@ -4,7 +4,6 @@ import AddRecipie from './AddRecipie';
 const RecipieBox = () => {
   <div>
     <AddRecipie />
-    <RecipieList />
   </div>
 }
 
