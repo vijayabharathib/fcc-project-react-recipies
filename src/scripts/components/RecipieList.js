@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Recipie from './Recipie';
 import {connect} from 'react-redux';
 import {deleteRecipie} from '../actions/ActionCreators';
@@ -7,7 +7,7 @@ let RecipieList =({recipies,onDelete})=> {
     let deleteItem=onDelete;
     let recipieList=recipies.map(function(recipie){
       return (
-        <Recipie key={recipie.id} name={recipie.name} delete={deleteItem.bind(null,recipie.key)}/>
+        <Recipie key={recipie.id} {...recipie} onDelete={()=>deleteItem(recipie.id)}/>
       )
     });
 
@@ -17,6 +17,19 @@ let RecipieList =({recipies,onDelete})=> {
       </ul>
     )
 
+}
+
+RecipieList.propTypes = {
+  recipies: PropTypes.arrayOf(
+    PropTypes.shape(
+      {
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        collapsed: PropTypes.bool.isRequired
+      }
+    ).isRequired
+  ).isRequired,
+  onDelete: PropTypes.func.isRequired
 }
 
 const mapStateToProps= (state) => {

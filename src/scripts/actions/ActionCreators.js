@@ -6,3 +6,10 @@ export const addRecipie=(name) => {
     id: nextRecipie++
   }
 }
+
+export const deleteRecipie=(id) => {
+  return {
+    type: 'DELETE_RECIPIE',
+    id
+  }
+}
