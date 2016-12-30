@@ -1,6 +1,6 @@
 import React from 'react';
-import connect from 'react-redux';
-import addRecipie from '../actions/ActionCreators';
+import {connect} from 'react-redux';
+import {addRecipie} from '../actions/ActionCreators';
 
 
 let AddRecipie = ({dispatch}) => {
@@ -14,7 +14,7 @@ let AddRecipie = ({dispatch}) => {
     input.value='';
   }
   return (
-    <form onSubmit={addItem.bind(this)}>
+    <form onSubmit={addItem}>
     <input
       type="text"
       className="c-recipie__control__textbox"

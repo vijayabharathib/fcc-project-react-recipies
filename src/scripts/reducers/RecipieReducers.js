@@ -6,7 +6,6 @@ const recipie = (state = {}, action) => {
         name: action.name,
         collapsed: true
       }
-      break;
     default:
       return state;
   }
@@ -20,7 +19,6 @@ const recipies = (state=[],action) =>{
         ...state,
         recipie(undefined,action)
       ];
-      break;
     default:
       return state;
   }

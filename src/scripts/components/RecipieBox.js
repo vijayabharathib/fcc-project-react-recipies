@@ -1,10 +1,13 @@
 import React from 'react';
-import RecipieList from './RecipieList';
 import AddRecipie from './AddRecipie';
+import RecipieList from './RecipieList';
 const RecipieBox = () => {
-  <div>
-    <AddRecipie />
-  </div>
+  return(
+    <div>
+      <AddRecipie />
+      <RecipieList />
+    </div>
+  )
 }
 
 export default RecipieBox;
