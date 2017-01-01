@@ -26,12 +26,12 @@
     "redux": "^3.6.0"
   },
   "watch": {
-    "watch-test": "{src,test}/**/*.js"
+    "test": "{src,test}/**/*.js"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "watch-test": "babel-node node_modules/.bin/tape test/**/*.test.js | faucet || true",
+    "watch-test": "npm test || true",
     "test": "babel-node node_modules/.bin/tape test/**/*.test.js | faucet",
     "test_original": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

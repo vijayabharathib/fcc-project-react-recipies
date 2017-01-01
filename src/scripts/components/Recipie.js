@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import IngredientList from './IngredientList';
+import React from 'react';
 
 let Recipie = ({onDelete,name,collapsed}) => {
     return(
