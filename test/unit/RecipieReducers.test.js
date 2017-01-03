@@ -2,7 +2,7 @@ import test from 'tape';
 import recipies from '../../src/scripts/reducers/RecipieReducers';
 import {addRecipie,deleteRecipie} from '../../src/scripts/actions/ActionCreators';
 
-test("reducers should add name to state",(assert)=>{
+test("UT - reducers - should add name to state",(assert)=>{
   assert.plan(1);
   const expected="test object";
   const action1=addRecipie("test object");
@@ -13,7 +13,7 @@ test("reducers should add name to state",(assert)=>{
   assert.end();
 });
 
-test("reducers should return same state for unrecognized action",(assert)=>{
+test("UT - reducers - should return same state for unrecognized action",(assert)=>{
   assert.plan(1);
   const expected=recipies([],addRecipie("test object"));
   const actual=recipies(expected,{type:'UNKNOWN_ACTION'});
@@ -22,7 +22,7 @@ test("reducers should return same state for unrecognized action",(assert)=>{
   assert.end();
 });
 
-test("reducers should remove recipie from state based on id",(assert)=>{
+test("UT - reducers - should remove recipie from state based on id",(assert)=>{
   assert.plan(1);
   const expected="test object";
   const action1=addRecipie("test object");

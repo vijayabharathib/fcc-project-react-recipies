@@ -13,3 +13,10 @@ export const deleteRecipie=(id) => {
     id
   }
 }
+
+export const editRecipie=(id)=>{
+  return {
+    type: 'EDIT_RECIPIE',
+    id
+  }
+}

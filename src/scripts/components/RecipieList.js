@@ -4,10 +4,15 @@ import {connect} from 'react-redux';
 import {deleteRecipie} from '../actions/ActionCreators';
 
 let RecipieList =({recipies,onDelete})=> {
-    let deleteItem=onDelete;
     let recipieList=recipies.map(function(recipie){
+      let onDeleteClick=()=>onDelete(recipie.id);
+      let recipieObject={
+        name: recipie.name,
+        onDeleteClick
+      };
       return (
-        <Recipie key={recipie.id} {...recipie} onDelete={()=>deleteItem(recipie.id)}/>
+        <Recipie key={recipie.id} recipie={recipieObject} />
+          //onDelete={()=>onDelete(recipie.id)}/>
       )
     });
 
