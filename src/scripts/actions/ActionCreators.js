@@ -20,3 +20,11 @@ export const editRecipie=(id)=>{
     id
   }
 }
+
+export const updateRecipie=(id,name)=>{
+  return {
+    type: 'UPDATE_RECIPIE',
+    id,
+    name
+  }
+}

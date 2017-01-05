@@ -18,13 +18,20 @@ const _deleteItem=(state,action) => {
 
 const _editItem=(state,action)=>{
   let newState=Object.assign(state);
-  for(let i=0;i<newState.length;i++){
+  let newRecipie;
+  for(var i=0;i<newState.length;i++){
     if(newState[i].id===action.id){
-      newState[i]["editable"]=true;
+      newRecipie=Object.assign({},newState[i],{
+        editable: !newState[i].editable
+      });
       break;
     }
   }
-  return newState;
+  return [
+    ...newState.slice(0,i),
+    newRecipie,
+    ...newState.slice(i+1)
+  ];
 }
 const recipies = (state=[],action) => {
   switch (action.type) {

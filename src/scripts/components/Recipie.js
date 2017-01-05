@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
 
 let Recipie = ({recipie}) => {
     function recipieHeader(name,editable){
-      console.log("in header");
-      let header=<h4 className="c-recipie__name">{name}</h4>;
+      let header;
       if(editable){
-        console.log("inside");
-        header=<input type="text" value="{name}"></input>;
+        header=<input type="text" defaultValue={name}></input>;
+      }else{
+        header=<h4 className="c-recipie__name">{name}</h4>;
       }
-      console.log("returning header...")
       return header;
     }
     return(
@@ -20,4 +20,18 @@ let Recipie = ({recipie}) => {
     )
 }
 
+Recipie.propTypes = {
+  recipie: PropTypes.shape(
+      {
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        collapsed: PropTypes.bool.isRequired,
+        editable: PropTypes.bool.isRequired,
+        onEditClick: PropTypes.func.isRequired,
+        onDeleteClick: PropTypes.func.isRequired
+      }
+  ).isRequired
+}
+
+//Recipie=connect()(Recipie);
 export default Recipie;

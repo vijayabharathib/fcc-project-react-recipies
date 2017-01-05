@@ -1,6 +1,10 @@
 import test from 'tape';
 import recipies from '../../src/scripts/reducers/RecipieReducers';
-import {addRecipie, deleteRecipie, editRecipie} from '../../src/scripts/actions/ActionCreators';
+import {
+  addRecipie,
+  deleteRecipie,
+  editRecipie,
+  updateRecipie} from '../../src/scripts/actions/ActionCreators';
 test ("UT - action creators - addRecipie should auto increment ID",(assert)=>{
     assert.plan(2);
     let prevID=addRecipie("recipie1").id; // 0 is first id
@@ -55,5 +59,20 @@ test ("UT - action creators - editRecipie should return action with ID",(assert)
     const actual = editRecipie(expected).id;
     let message="editRecipie should return action with ID";
     assert.equal(actual,expected,message);
+    assert.end();
+});
+
+test ("UT - action creators - updateRecipie should return action with ID and value",(assert)=>{
+    assert.plan(1);
+    let id=777;
+    let name="new text";
+    let expected={
+      id,
+      name,
+      type: 'UPDATE_RECIPIE'
+    }
+    const actual = updateRecipie(id,name);
+    let message="updateRecipie should return action with ID, UPDATE_RECIPIE type and new value";
+    assert.deepEqual(actual,expected,message);
     assert.end();
 });

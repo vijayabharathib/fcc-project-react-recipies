@@ -7,11 +7,10 @@ let RecipieList =({recipies,transmit})=> {
     let recipieList=recipies.map(function(recipie){
       let onDeleteClick = () =>transmit.onDelete(recipie.id);
       let onEditClick = () => transmit.onEdit(recipie.id);
-      let recipieObject={
-        name: recipie.name,
+      let recipieObject=Object.assign({},recipie,{
         onDeleteClick,
         onEditClick
-      };
+      });
       return (
         <Recipie key={recipie.id} recipie={recipieObject} />
       )
@@ -31,7 +30,8 @@ RecipieList.propTypes = {
       {
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
-        collapsed: PropTypes.bool.isRequired
+        collapsed: PropTypes.bool.isRequired,
+        editable: PropTypes.bool.isRequired
       }
     ).isRequired
   ).isRequired,

@@ -19,7 +19,9 @@ global.window=document.defaultView;
 test("IT - RecipieBox - should add Recipie on form submit",(assert) => {
   assert.plan(3);
   let store = createStore(recipies);
-  const component=TestUtils.renderIntoDocument(<Provider store={store}><RecipieBox /></Provider>);
+  const component=TestUtils.renderIntoDocument(
+    <Provider store={store}><RecipieBox /></Provider>
+  );
   //check initial state
   let actual=component.props.store.getState().length;
   let expected=0;
@@ -90,7 +92,7 @@ test("IT - RecipieBox - edit button should render editable recipie",(assert) => 
   let message="Recipie should be flagged as editable through dispatch EDIT_RECIPIE action";
   assert.equal(actual,expected,message);
 
-  let textBoxCount=TestUtils.scryRenderedDOMComponentsWithTag("input").length;
+  let textBoxCount=TestUtils.scryRenderedDOMComponentsWithTag(component,"input").length;
   const editRecipies=TestUtils.scryRenderedDOMComponentsWithClass(component,"c-recipie__edit");
   TestUtils.Simulate.click(editRecipies[0]);
   //check state after recipie addition
@@ -101,7 +103,7 @@ test("IT - RecipieBox - edit button should render editable recipie",(assert) => 
 
   //one more text box should be there
   expected=textBoxCount+1;
-  actual=TestUtils.scryRenderedDOMComponentsWithTag("input");
+  actual=TestUtils.scryRenderedDOMComponentsWithTag(component,"input").length;
   message="Recipie edit button click should add recipie as input box";
   assert.equal(actual,expected,message);
   assert.end();
