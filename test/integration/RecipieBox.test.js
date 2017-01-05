@@ -74,3 +74,35 @@ test("IT - RecipieBox - delete button should remove recipie",(assert) => {
   // TODO:10 +test Test delete button removes the correct recipie
   assert.end();
 });
+
+
+test("IT - RecipieBox - edit button should render editable recipie",(assert) => {
+  assert.plan(3);
+  let store = createStore(recipies);
+  const component=TestUtils.renderIntoDocument(<Provider store={store}><RecipieBox /></Provider>);
+  component.props.store.dispatch({type: 'ADD_RECIPIE',id: 888,name: 'recipie2'});
+  component.props.store.dispatch({type: 'ADD_RECIPIE',id: 889,name: 'recipie3'});
+
+  //check initial state
+  component.props.store.dispatch({type: 'EDIT_RECIPIE',id: 889});
+  let actual=component.props.store.getState()[1].editable;
+  let expected=true; //1 after one is deleted
+  let message="Recipie should be flagged as editable through dispatch EDIT_RECIPIE action";
+  assert.equal(actual,expected,message);
+
+  let textBoxCount=TestUtils.scryRenderedDOMComponentsWithTag("input").length;
+  const editRecipies=TestUtils.scryRenderedDOMComponentsWithClass(component,"c-recipie__edit");
+  TestUtils.Simulate.click(editRecipies[0]);
+  //check state after recipie addition
+  message="Recipie should be editable on edit button click";
+  actual=component.props.store.getState()[0].editable
+  expected =true; //last recipie deleted
+  assert.equal(actual,expected,message);
+
+  //one more text box should be there
+  expected=textBoxCount+1;
+  actual=TestUtils.scryRenderedDOMComponentsWithTag("input");
+  message="Recipie edit button click should add recipie as input box";
+  assert.equal(actual,expected,message);
+  assert.end();
+});

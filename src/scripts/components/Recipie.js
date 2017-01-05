@@ -1,11 +1,21 @@
 import React from 'react';
 
 let Recipie = ({recipie}) => {
+    function recipieHeader(name,editable){
+      console.log("in header");
+      let header=<h4 className="c-recipie__name">{name}</h4>;
+      if(editable){
+        console.log("inside");
+        header=<input type="text" value="{name}"></input>;
+      }
+      console.log("returning header...")
+      return header;
+    }
     return(
       <li className="c-recipie">
-        <h4 className="c-recipie__name">{recipie.name}</h4>
+        {recipieHeader(recipie.name,recipie.editable)}
         <button className="c-recipie__delete" onClick={recipie.onDeleteClick}>x</button>
-        <button className="c-recipie__edit">Edit</button>
+        <button className="c-recipie__edit" onClick={recipie.onEditClick}>Edit</button>
       </li>
     )
 }

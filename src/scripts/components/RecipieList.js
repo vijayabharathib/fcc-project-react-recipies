@@ -1,18 +1,19 @@
 import React, {PropTypes} from 'react';
 import Recipie from './Recipie';
 import {connect} from 'react-redux';
-import {deleteRecipie} from '../actions/ActionCreators';
+import {deleteRecipie, editRecipie} from '../actions/ActionCreators';
 
-let RecipieList =({recipies,onDelete})=> {
+let RecipieList =({recipies,transmit})=> {
     let recipieList=recipies.map(function(recipie){
-      let onDeleteClick=()=>onDelete(recipie.id);
+      let onDeleteClick = () =>transmit.onDelete(recipie.id);
+      let onEditClick = () => transmit.onEdit(recipie.id);
       let recipieObject={
         name: recipie.name,
-        onDeleteClick
+        onDeleteClick,
+        onEditClick
       };
       return (
         <Recipie key={recipie.id} recipie={recipieObject} />
-          //onDelete={()=>onDelete(recipie.id)}/>
       )
     });
 
@@ -34,7 +35,10 @@ RecipieList.propTypes = {
       }
     ).isRequired
   ).isRequired,
-  onDelete: PropTypes.func.isRequired
+  transmit: PropTypes.shape({
+    onDelete: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired
+  }).isRequired
 }
 
 const mapStateToProps= (state) => {
@@ -45,8 +49,13 @@ const mapStateToProps= (state) => {
 
 const mapDispatchToProps= (dispatch) => {
   return {
-    onDelete: (id) => {
-      dispatch(deleteRecipie(id));
+    transmit: {
+      onDelete: (id) => {
+        dispatch(deleteRecipie(id));
+      },
+      onEdit: (id) => {
+        dispatch(editRecipie(id));
+      }
     }
   }
 }

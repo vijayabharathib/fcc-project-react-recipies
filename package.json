@@ -17,7 +17,8 @@
     "react-scripts": "0.8.4",
     "redux-devtools": "^3.3.1",
     "tape": "^4.6.3",
-    "tape-jsx-equals": "^1.0.0"
+    "tape-jsx-equals": "^1.0.0",
+    "@kadira/storybook": "^2.21.0"
   },
   "dependencies": {
     "react": "^15.4.1",
@@ -38,6 +39,8 @@
     "deploy": "npm run build&&gh-pages -d build",
     "report": "nyc npm test && nyc report --reporter=lcov",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "watch": "npm-watch"
+    "watch": "npm-watch",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   }
 }

@@ -3,10 +3,15 @@
 # dependencies
 node_modules
 
+#workflow
+.storybook
+.imdone
+
 # testing
 coverage
 .nyc_output
 .coveralls.yml
+src/stories
 
 # production
 build
