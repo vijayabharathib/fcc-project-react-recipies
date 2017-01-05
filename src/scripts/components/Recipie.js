@@ -5,7 +5,11 @@ let Recipie = ({recipie}) => {
     function recipieHeader(name,editable){
       let header;
       if(editable){
-        header=<input type="text" defaultValue={name}></input>;
+        header=
+          <form className="c-recipie__update--form">
+            <input className="c-recipie__name--editable" type="text" defaultValue={name}>
+            </input>
+          </form>;
       }else{
         header=<h4 className="c-recipie__name">{name}</h4>;
       }

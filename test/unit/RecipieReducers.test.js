@@ -1,6 +1,11 @@
 import test from 'tape';
 import recipies from '../../src/scripts/reducers/RecipieReducers';
-import {addRecipie,deleteRecipie,editRecipie} from '../../src/scripts/actions/ActionCreators';
+import {
+  addRecipie,
+  deleteRecipie,
+  editRecipie,
+  updateRecipie
+} from '../../src/scripts/actions/ActionCreators';
 
 test("UT - reducers - should add name to state",(assert)=>{
   assert.plan(1);
@@ -58,5 +63,21 @@ test("UT - reducers - should return editable state for recipie based on id",(ass
   const message="Edit_RECIPIE should return editable recipie in the state based on ID";
   assert.equal(newState[1].editable,true,message);
   // TODO: editable state should be returned and used in the above assertion +test
+  assert.end();
+});
+
+test("UT - reducers - should return updated recipie in state based on id",(assert)=>{
+  assert.plan(1);
+  let state=[{
+    id: 1,
+    name: "old name",
+    collapsed: true,
+    editable: false
+  }];
+
+  const updateAction=updateRecipie(state[0].id,"new name");
+  const newState=recipies(state,updateAction);
+  const message="UPDATE_RECIPIE should return updated recipie name in the state based on ID";
+  assert.equal(newState[0].name,"new name",message);
   assert.end();
 });
