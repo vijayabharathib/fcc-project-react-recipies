@@ -57,8 +57,8 @@ const recipies = (state=[],action) => {
   switch (action.type) {
     case 'ADD_RECIPIE':
       return [
-        ...state,
-        _recipie(undefined,action)
+        _recipie(undefined,action),
+        ...state
       ];
     case 'DELETE_RECIPIE':
       return _deleteItem(state,action);

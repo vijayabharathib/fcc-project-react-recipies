@@ -93,16 +93,20 @@ test("IT - RecipieBox - edit button should render editable recipie",(assert) => 
 
   //check initial state
   component.props.store.dispatch({type: 'EDIT_RECIPIE',id: 889});
-  let actual=component.props.store.getState()[1].editable;
+  let recipie=component.props.store.getState().filter((r)=>r.id===889)[0];
+  let actual=recipie.editable;
   let expected=true; //1 after one is deleted
   let message="Recipie should be flagged as editable through dispatch EDIT_RECIPIE action";
   assert.equal(actual,expected,message);
 
   let textBoxCount=scryByTag(component,"input").length;
   const editRecipies=scryByClass(component,"c-recipie__edit");
-  TestUtils.Simulate.click(editRecipies[0]);
+  //editRecipies[0] is already in editable mode 
+  TestUtils.Simulate.click(editRecipies[1]);
   //check state after recipie addition
   message="Recipie should be editable on edit button click";
+
+  //first recipie rendered is actually the last in store
   actual=component.props.store.getState()[0].editable
   expected =true; //last recipie deleted
   assert.equal(actual,expected,message);
@@ -124,7 +128,8 @@ test("IT - RecipieBox - update button should render new recipie",(assert) => {
 
   //check initial state
   component.props.store.dispatch({type: 'UPDATE_RECIPIE',id: 900,name: "new name"});
-  let actual=component.props.store.getState()[1].name;
+  //last recipie added is the first one in store
+  let actual=component.props.store.getState()[0].name;
   let expected="new name"; //1 after one is deleted
   let message="Recipie should have new name through dispatch UPDATE_RECIPIE action";
   assert.equal(actual,expected,message);
@@ -143,11 +148,5 @@ test("IT - RecipieBox - update button should render new recipie",(assert) => {
   actual=component.props.store.getState()[0].name
   expected ="shiny name"; //recipie has new name
   assert.equal(actual,expected,message);
-  /*
-  //one more text box should be there
-  expected=textBoxCount+1;
-  actual=scryByTag(component,"input").length;
-  message="Recipie edit button click should add recipie as input box";
-  assert.equal(actual,expected,message);
-  assert.end();*/
+
 });
