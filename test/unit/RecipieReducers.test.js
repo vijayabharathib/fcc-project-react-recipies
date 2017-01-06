@@ -40,11 +40,11 @@ test("UT - reducers - should return same state for unrecognized action",(assert)
 
 test("UT - reducers - should remove recipie from state based on id",(assert)=>{
   assert.plan(1);
-  const expected="test object";
   const action1=addRecipie("test object");
   const previousState=recipies([],action1);
   const action2=addRecipie("test object2");
   const nextState=recipies(previousState,action2);
+  
   const deleteAction=deleteRecipie(action2.id);
   const newState=recipies(nextState,deleteAction);
   const message="DELETE_RECIPIE should remove entry by ID";
@@ -72,12 +72,17 @@ test("UT - reducers - should return updated recipie in state based on id",(asser
     id: 1,
     name: "old name",
     collapsed: true,
-    editable: false
+    editable: true
   }];
-
+  let expected=[{
+    id: 1,
+    name: "new name",
+    collapsed: true,
+    editable: false //editable should be false after update
+  }]
   const updateAction=updateRecipie(state[0].id,"new name");
   const newState=recipies(state,updateAction);
   const message="UPDATE_RECIPIE should return updated recipie name in the state based on ID";
-  assert.equal(newState[0].name,"new name",message);
+  assert.deepEqual(newState,expected,message);
   assert.end();
 });

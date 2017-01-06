@@ -40,7 +40,8 @@ const _updateItem=(state,action)=>{
   for(var i=0;i<newState.length;i++){
     if(newState[i].id===action.id){
       newRecipie=Object.assign({},newState[i],{
-        name: action.name
+        name: action.name,
+        editable: false
       });
       break;
     }
