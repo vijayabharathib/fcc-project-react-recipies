@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {addRecipie} from '../actions/ActionCreators';
-
+//import '../../styles/css/AddRecipie.css';
 
 let AddRecipie = ({dispatch}) => {
   let input ;
@@ -14,14 +14,16 @@ let AddRecipie = ({dispatch}) => {
     input.value='';
   }
   return (
-    <form onSubmit={addItem}>
-    <input
-      type="text"
-      className="c-recipie__control__textbox"
-      ref={(node) => {input=node}}
-    />
-    <button type="submit" className="c-recipie__control__submit">Add Recipie</button>
-    </form>
+    <div className="o-recipie__control" >
+      <form onSubmit={addItem}>
+      <input
+        type="text"
+        className="c-recipie__control__textbox"
+        ref={(node) => {input=node}}
+      />
+      <button type="submit" className="c-recipie__control__submit">Add Recipie</button>
+      </form>
+    </div>
   )
 }
 

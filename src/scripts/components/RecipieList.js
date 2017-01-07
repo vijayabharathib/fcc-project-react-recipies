@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import Recipie from './Recipie';
 import {connect} from 'react-redux';
 import {deleteRecipie, editRecipie} from '../actions/ActionCreators';
+import '../../styles/css/RecipieList.css';
 
 let RecipieList =({recipies,transmit})=> {
     let recipieList=recipies.map(function(recipie){
@@ -17,7 +18,7 @@ let RecipieList =({recipies,transmit})=> {
     });
 
     return(
-      <ul>
+      <ul className="o-recipie__list">
         {recipieList}
       </ul>
     )

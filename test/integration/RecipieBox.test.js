@@ -10,12 +10,15 @@ import {
   scryRenderedDOMComponentsWithClass as scryByClass
 } from 'react-addons-test-utils';
 import jsdom from 'jsdom';
+//require('ignore-styles').register('.css');
 
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import recipies from '../../src/scripts/reducers/RecipieReducers';
 import Recipie from '../../src/scripts/components/Recipie';
 import RecipieBox from '../../src/scripts/components/RecipieBox';
+//import register from 'ignore-styles';
+//register(['.css', '.scss']);
 
 //there is no docucment/browser/window
 //so, warm it up with jsdom empty document
