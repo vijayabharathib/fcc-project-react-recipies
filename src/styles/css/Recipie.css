@@ -1,0 +1,45 @@
+.c-recipie {
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: slategrey;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5px; }
+  .c-recipie .c-recipie__name {
+    font-size: 1.5em;
+    padding: 5px;
+    margin: 0;
+    display: inline-block;
+    color: white;
+    flex: 99; }
+  .c-recipie .c-recipie__name--editable {
+    font-size: 1.5em;
+    border-radius: 5px 0 0 5px;
+    border: 0;
+    width: 70%;
+    padding-left: 10px; }
+  .c-recipie .c-recipie__update {
+    font-size: 1.5em;
+    border-radius: 0 5px 5px 0;
+    border: 0; }
+  .c-recipie .c-recipie__delete {
+    font-size: 1.1em;
+    border-radius: 50%;
+    border: 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: rgba(0, 0, 0, 0.7);
+    margin-left: 10px; }
+    .c-recipie .c-recipie__delete:hover {
+      color: white;
+      cursor: pointer; }
+  .c-recipie .c-recipie__edit {
+    border-radius: 10px;
+    font-size: 1.1em;
+    border: 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: rgba(0, 0, 0, 0.7);
+    margin-left: 10px; }
+    .c-recipie .c-recipie__edit:hover {
+      color: white;
+      cursor: pointer; }

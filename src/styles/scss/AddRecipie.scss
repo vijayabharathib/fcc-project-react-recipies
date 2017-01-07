@@ -1,0 +1,19 @@
+.c-recipie__control__textbox {
+  padding-left: 10px;
+  border-radius: 5px 0 0 5px;
+  border: 0;
+  width: 70%;
+  font-size: 1.5em;
+}
+
+.c-recipie__control__submit {
+  width: 30%;
+  border-radius: 0 5px 5px 0;
+  font-size: 1.5em;
+  background-color: slategrey;
+  border: 0;
+  &:hover{
+    cursor: pointer;
+    color: white;
+  }
+}

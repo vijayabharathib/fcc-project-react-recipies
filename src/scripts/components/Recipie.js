@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {updateRecipie} from '../actions/ActionCreators';
+import '../../styles/css/Recipie.css';
 
 let Recipie = ({recipie,dispatch}) => {
 
@@ -54,4 +55,5 @@ Recipie.propTypes = {
 }
 
 Recipie=connect()(Recipie);
+
 export default Recipie;

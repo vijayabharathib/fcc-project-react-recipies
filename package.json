@@ -30,13 +30,13 @@
     "redux": "^3.6.0"
   },
   "watch": {
-    "test": "{src,test}/**/*.js",
+    "local-test": "{src,test}/**/*.js",
     "style": {
       "patterns": [
         "src"
       ],
       "extensions": "scss",
-      "quiet": false
+      "quiet": true
     }
   },
   "scripts": {
@@ -45,7 +45,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "watch-test": "npm test || true",
-    "test": "babel-node node_modules/.bin/tape --require ignore-styles test/**/*.test.js | faucet",
+    "local-test": "babel-node node_modules/.bin/tape --require ignore-styles test/**/*.test.js | faucet",
+    "test": "npm run coveralls",
     "test_original": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "npm run build&&gh-pages -d build",

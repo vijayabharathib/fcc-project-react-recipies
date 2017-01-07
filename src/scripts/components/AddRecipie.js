@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {addRecipie} from '../actions/ActionCreators';
-//import '../../styles/css/AddRecipie.css';
+import '../../styles/css/AddRecipie.css';
 
 let AddRecipie = ({dispatch}) => {
   let input ;
