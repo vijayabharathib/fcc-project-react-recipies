@@ -51,7 +51,7 @@
     "eject": "react-scripts eject",
     "deploy": "npm run build&&gh-pages -d build",
     "report": "nyc npm test && nyc report --reporter=lcov",
-    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "coveralls": "nyc npm run local-test && nyc report --reporter=text-lcov | coveralls",
     "watch": "npm-watch",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"
