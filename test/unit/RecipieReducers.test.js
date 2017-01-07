@@ -15,7 +15,6 @@ test("UT - reducers - should add name to state",(assert)=>{
   const actual=recipie1[0].name;
   const message="ADD_RECIPIE should add a new entry with provided name";
   assert.deepEqual(actual,expected,message);
-  assert.end();
 });
 
 test("UT - reducers - should return editable as false by default",(assert)=>{
@@ -26,7 +25,6 @@ test("UT - reducers - should return editable as false by default",(assert)=>{
   const expected=false;
   const message="ADD_RECIPIE should add a new entry with editable as false";
   assert.deepEqual(actual,expected,message);
-  assert.end();
 });
 
 test("UT - reducers - should return same state for unrecognized action",(assert)=>{
@@ -44,7 +42,7 @@ test("UT - reducers - should remove recipie from state based on id",(assert)=>{
   const previousState=recipies([],action1);
   const action2=addRecipie("test object2");
   const nextState=recipies(previousState,action2);
-  
+
   const deleteAction=deleteRecipie(action2.id);
   const newState=recipies(nextState,deleteAction);
   const message="DELETE_RECIPIE should remove entry by ID";

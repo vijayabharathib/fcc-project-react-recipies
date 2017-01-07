@@ -5,65 +5,65 @@ import {
   deleteRecipie,
   editRecipie,
   updateRecipie} from '../../src/scripts/actions/ActionCreators';
-test ("UT - action creators - addRecipie should auto increment ID",(assert)=>{
-    assert.plan(2);
+test ("UT - action creators - addRecipie should auto increment ID",(t)=>{
+    t.plan(2);
     let prevID=addRecipie("recipie1").id; // 0 is first id
     let nextID=addRecipie("recipie2").id; //1 is next id
     let message="Add recipie should start with ID 0 and increment by 1";
-    assert.equal(nextID,prevID+1,message);
+    t.equal(nextID,prevID+1,message);
     prevID=nextID;
     nextID=addRecipie("recipie3").id //should be 2;
     message="addRecipie should increment id from 1 to 2";
-    assert.equal(nextID,prevID+1,message);
-    assert.end();
+    t.equal(nextID,prevID+1,message);
+    t.end();
 });
 
-test ("UT - action creators - addRecipie should return ADD_RECIPIE",(assert)=>{
-    assert.plan(1);
+test ("UT - action creators - addRecipie should return ADD_RECIPIE",(t)=>{
+    t.plan(1);
     let expected='ADD_RECIPIE';
     const actual = addRecipie("test recipie").type;
     let message="addRecipie should return ADD_RECIPIE type";
-    assert.equal(actual,expected,message);
-    assert.end();
+    t.equal(actual,expected,message);
+    t.end();
 });
-test ("UT - action creators - deleteRecipie should remove recipie by ID",(assert)=>{
-    assert.plan(1);
+test ("UT - action creators - deleteRecipie should remove recipie by ID",(t)=>{
+    t.plan(1);
     const expected=0;
     const actual=deleteRecipie(expected);
     const message="deleteRecipie should return action with id";
-    assert.equal(actual.id,expected,message);
-    assert.end();
+    t.equal(actual.id,expected,message);
+    t.end();
 });
 
-test ("UT - action creators - deleteRecipie should return DELETE_RECIPIE",(assert)=>{
-    assert.plan(1);
+test ("UT - action creators - deleteRecipie should return DELETE_RECIPIE",(t)=>{
+    t.plan(1);
     let expected='DELETE_RECIPIE';
     const actual = deleteRecipie("test recipie").type;
     let message="deleteRecipie should return DELETE_RECIPIE type";
-    assert.equal(actual,expected,message);
-    assert.end();
+    t.equal(actual,expected,message);
+    t.end();
 });
 
-test ("UT - action creators - editRecipie should return EDIT_RECIPIE",(assert)=>{
-    assert.plan(1);
+test ("UT - action creators - editRecipie should return EDIT_RECIPIE",(t)=>{
+    t.plan(1);
     let expected='EDIT_RECIPIE';
     const actual = editRecipie(1000).type;
     let message="editRecipie should return EDIT_RECIPIE type";
-    assert.equal(actual,expected,message);
-    assert.end();
+    t.equal(actual,expected,message);
+    t.end();
 });
 
-test ("UT - action creators - editRecipie should return action with ID",(assert)=>{
-    assert.plan(1);
+test ("UT - action creators - editRecipie should return action with ID",(t)=>{
+    t.plan(1);
     let expected=1000;
     const actual = editRecipie(expected).id;
     let message="editRecipie should return action with ID";
-    assert.equal(actual,expected,message);
-    assert.end();
+    t.equal(actual,expected,message);
+    t.end();
 });
 
-test ("UT - action creators - updateRecipie should return action with ID and value",(assert)=>{
-    assert.plan(1);
+test ("UT - action creators - updateRecipie should return action with ID and value",(t)=>{
+    t.plan(1);
     let id=777;
     let name="new text";
     let expected={
@@ -73,6 +73,5 @@ test ("UT - action creators - updateRecipie should return action with ID and val
     }
     const actual = updateRecipie(id,name);
     let message="updateRecipie should return action with ID, UPDATE_RECIPIE type and new value";
-    assert.deepEqual(actual,expected,message);
-    assert.end();
+    t.deepEqual(actual,expected,message);
 });

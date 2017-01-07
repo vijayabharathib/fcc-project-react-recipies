@@ -18,7 +18,9 @@
     "redux-devtools": "^3.3.1",
     "tape": "^4.6.3",
     "tape-jsx-equals": "^1.0.0",
-    "@kadira/storybook": "^2.21.0"
+    "@kadira/storybook": "^2.21.0",
+    "concurrently": "^3.1.0",
+    "node-sass": "^4.1.1"
   },
   "dependencies": {
     "react": "^15.4.1",
@@ -27,9 +29,16 @@
     "redux": "^3.6.0"
   },
   "watch": {
-    "test": "{src,test}/**/*.js"
+    "test": "{src,test}/**/*.js",
+    "style": {
+      "patterns": ["src"],
+      "extensions": "scss",
+      "quiet": false
+      }
   },
   "scripts": {
+    "style": "node-sass -r src/styles/scss -o src/styles/css",
+    "work": "concurrently --kill-others --raw \"npm start\" \"npm run -s watch\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "watch-test": "npm test || true",

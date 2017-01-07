@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import recipies from './scripts/reducers/RecipieReducers';
 import RecipieBox from './scripts/components/RecipieBox';
-import './index.css';
+import './styles/css/index.css';
 
 let store = createStore(recipies,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 ReactDOM.render(
