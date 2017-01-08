@@ -14,16 +14,17 @@ let Recipie = ({recipie,dispatch}) => {
       dispatch(updateRecipie(recipie.id,input.value));
     }
 
-    let recipieHeader=(name,editable)=>{
+    let recipieHeader=(recipie)=>{
       let header;
-      if(editable){
-        header=
+      if(recipie.editable){
+        header=<li className="c-recipie">
           <form className="c-recipie__update--form" onSubmit={updateItem}>
             <input
               className="c-recipie__name--editable"
               type="text"
-              defaultValue={name}
-              ref={(node) => {input=node}}>
+              defaultValue={recipie.name}
+              ref={(node) => {input=node}}
+              autoFocus="autofocus">
             </input>
             <label>
             <button className="c-recipie__update" type="submit">Update</button>
@@ -34,30 +35,30 @@ let Recipie = ({recipie,dispatch}) => {
               <use xlinkHref="#circle-check" ></use>
             </svg>
             </label>
-          </form>;
+          </form></li>;
       }else{
-        header=<h4 className="c-recipie__name">{name}</h4>;
+        header=<li className="c-recipie">
+          <h4 className="c-recipie__name">{recipie.name}</h4>
+          <svg
+                  className="c-recipie__delete"
+                  onClick={recipie.onDeleteClick}
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 8 8">
+                  <use xlinkHref="#trash"></use>
+          </svg>
+          <svg
+            className="c-recipie__edit"
+            onClick={recipie.onEditClick}
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 8 8">
+            <use xlinkHref="#pencil"></use>
+          </svg>
+        </li>;
       }
       return header;
     }
     return(
-      <li className="c-recipie">
-        {recipieHeader(recipie.name,recipie.editable)}
-        <svg
-          className="c-recipie__delete"
-          onClick={recipie.onDeleteClick}
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 8 8">
-          <use xlinkHref="#trash"></use>
-        </svg>
-        <svg
-          className="c-recipie__edit"
-          onClick={recipie.onEditClick}
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 8 8">
-          <use xlinkHref="#pencil"></use>
-        </svg>
-      </li>
+        recipieHeader(recipie)
     )
 }
 

@@ -104,8 +104,9 @@ test("IT - RecipieBox - edit button should render editable recipie",(t) => {
 
   let textBoxCount=scryByTag(component,"input").length;
   const editRecipies=scryByClass(component,"c-recipie__edit");
-  //editRecipies[0] is already in editable mode
-  TestUtils.Simulate.click(editRecipies[1]);
+  //first recipie is already in editable mode
+  //so only second recipie will have edit button (first one will have update)
+  TestUtils.Simulate.click(editRecipies[0]);
   //check state after recipie addition
   message="Recipie should be editable on edit button click";
 

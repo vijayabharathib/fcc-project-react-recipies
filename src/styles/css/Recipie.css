@@ -30,14 +30,13 @@
     border: 0;
     display: none; }
   .c-recipie .c-recipie__update--check {
-    height: 20px;
-    width: 20px;
-    fill: rgba(0, 0, 0, 0.8);
-    margin: 5px 0 0 -35px; }
+    height: 32px;
+    width: 32px;
+    fill: #3A4973;
+    margin-left: -35px;
+    margin-bottom: -8px; }
     .c-recipie .c-recipie__update--check:hover {
-      fill: green;
-      fill: rgba(0, 200, 0, 0.7);
-      transform: scale(1.2);
+      fill: #3A8544;
       cursor: pointer; }
   .c-recipie .c-recipie__delete {
     font-size: 1.1em;

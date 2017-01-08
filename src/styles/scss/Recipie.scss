@@ -39,14 +39,13 @@
   }
 
   .c-recipie__update--check {
-    height: 20px;
-    width: 20px;
-    fill: transparentize($color-black,.2);
-    margin: 5px 0 0 -35px;
+    height: 32px;
+    width: 32px;
+    fill: $color-secondary-1-4;
+    margin-left:-35px;
+    margin-bottom: -8px;
     &:hover{
-      fill: green;
-      fill: rgba(0,200,0,.7);
-      transform: scale(1.2);
+      fill: $color-secondary-2-4;
       cursor: pointer;
     }
   }
