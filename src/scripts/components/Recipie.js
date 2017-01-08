@@ -25,7 +25,15 @@ let Recipie = ({recipie,dispatch}) => {
               defaultValue={name}
               ref={(node) => {input=node}}>
             </input>
+            <label>
             <button className="c-recipie__update" type="submit">Update</button>
+            <svg
+              className="c-recipie__update--check"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 8 8">
+              <use xlinkHref="#circle-check" ></use>
+            </svg>
+            </label>
           </form>;
       }else{
         header=<h4 className="c-recipie__name">{name}</h4>;
@@ -35,8 +43,8 @@ let Recipie = ({recipie,dispatch}) => {
     return(
       <li className="c-recipie">
         {recipieHeader(recipie.name,recipie.editable)}
-        <button className="c-recipie__delete" onClick={recipie.onDeleteClick}>x</button>
-        <button className="c-recipie__edit" onClick={recipie.onEditClick}>Edit</button>
+        <button className="c-recipie__delete" onClick={recipie.onDeleteClick}></button>
+        <button className="c-recipie__edit" onClick={recipie.onEditClick}></button>
       </li>
     )
 }

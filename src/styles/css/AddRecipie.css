@@ -1,16 +1,25 @@
 .c-recipie__control__textbox {
-  padding-left: 10px;
+  padding: 5px 0 5px 10px;
   border-radius: 5px 0 0 5px;
   border: 0;
-  width: 70%;
-  font-size: 1.5em; }
+  width: 80%;
+  font-size: 1.5em;
+  color: rgba(0, 0, 0, 0.7); }
+  @media (min-width: 400px) {
+    .c-recipie__control__textbox {
+      width: 85%; } }
 
 .c-recipie__control__submit {
-  width: 30%;
+  width: 20%;
+  padding: 5px;
   border-radius: 0 5px 5px 0;
   font-size: 1.5em;
   background-color: slategrey;
-  border: 0; }
+  border: 0;
+  color: rgba(0, 0, 0, 0.7); }
   .c-recipie__control__submit:hover {
     cursor: pointer;
     color: white; }
+  @media (min-width: 400px) {
+    .c-recipie__control__submit {
+      width: 15%; } }
