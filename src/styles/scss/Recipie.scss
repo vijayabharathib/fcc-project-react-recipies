@@ -3,11 +3,12 @@
 .c-recipie {
   margin-bottom: 10px;
   border-radius: 5px;
-  background-color: slategrey;
+  background-color: transparentize($color-secondary-1-4,0);
   display: flex;
   align-items: center;
   justify-content: flex-start;
   padding: 5px;
+
   .c-recipie__name{
     font-size: 1.5em;
     padding: 5px;
@@ -16,6 +17,7 @@
     color: $color-white;
     color: transparentize($color-white,.2);
     flex: 99;
+    cursor: pointer;
   }
   .c-recipie__update--form{
     flex: 99;
@@ -37,10 +39,10 @@
   }
 
   .c-recipie__update--check {
-    height: 16px;
-    width: 16px;
+    height: 20px;
+    width: 20px;
     fill: transparentize($color-black,.2);
-    margin-left: -25px;
+    margin: 5px 0 0 -35px;
     &:hover{
       fill: green;
       fill: rgba(0,200,0,.7);
@@ -52,41 +54,26 @@
 
   .c-recipie__delete{
     font-size: 1.1em;
-    border-radius: 50%;
     border: 0;
-    background-color: rgba(0,0,0,.4);
-    color: rgba(0,0,0,.7);
-    margin-left: 10px;
-    width: 24px;
-    height: 24px;
-    &:hover{
-      background-color: rgba(255,255,255,.7);
-      color: white;
-      cursor: pointer;
-    }
-    mask-image: url("../../images/trash.svg");
-    mask-repeat: no-repeat;
-    mask-size: 16px 16px;
-    mask-position: 4px 4px;
-  }
-  .c-recipie__edit{
-    border-radius: 10px;
-    font-size: 1.1em;
-    border: 0;
-    background-color: rgba(0,0,0,.4);
-    color: rgba(0,0,0,.7);
     margin-left: 10px;
     width: 20px;
     height: 20px;
+    fill: $color-secondary-1-3;
     &:hover{
-      background-color: rgba(255,255,255,.7);
-      color: white;
+      fill: $color-secondary-1-1;
       cursor: pointer;
-      border: 1px solid white;
     }
-    mask-image: url("../../images/pencil.svg");
-    mask-repeat: no-repeat;
-    mask-size: 16px 16px;
-    mask-position: 2px 2px;
+  }
+  .c-recipie__edit{
+    font-size: 1.1em;
+    border: 0;
+    fill: $color-secondary-1-3;
+    margin: auto 15px;
+    width: 20px;
+    height: 20px;
+    &:hover{
+      cursor: pointer;
+      fill: $color-secondary-1-1;
+    }
   }
 }

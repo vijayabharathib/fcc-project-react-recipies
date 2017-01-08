@@ -1,7 +1,7 @@
 .c-recipie {
   margin-bottom: 10px;
   border-radius: 5px;
-  background-color: slategrey;
+  background-color: #3a4973;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -13,7 +13,8 @@
     display: inline-block;
     color: #fff;
     color: rgba(255, 255, 255, 0.8);
-    flex: 99; }
+    flex: 99;
+    cursor: pointer; }
   .c-recipie .c-recipie__update--form {
     flex: 99; }
   .c-recipie .c-recipie__name--editable {
@@ -29,10 +30,10 @@
     border: 0;
     display: none; }
   .c-recipie .c-recipie__update--check {
-    height: 16px;
-    width: 16px;
+    height: 20px;
+    width: 20px;
     fill: rgba(0, 0, 0, 0.8);
-    margin-left: -25px; }
+    margin: 5px 0 0 -35px; }
     .c-recipie .c-recipie__update--check:hover {
       fill: green;
       fill: rgba(0, 200, 0, 0.7);
@@ -40,36 +41,21 @@
       cursor: pointer; }
   .c-recipie .c-recipie__delete {
     font-size: 1.1em;
-    border-radius: 50%;
     border: 0;
-    background-color: rgba(0, 0, 0, 0.4);
-    color: rgba(0, 0, 0, 0.7);
-    margin-left: 10px;
-    width: 24px;
-    height: 24px;
-    mask-image: url("../../images/trash.svg");
-    mask-repeat: no-repeat;
-    mask-size: 16px 16px;
-    mask-position: 4px 4px; }
-    .c-recipie .c-recipie__delete:hover {
-      background-color: rgba(255, 255, 255, 0.7);
-      color: white;
-      cursor: pointer; }
-  .c-recipie .c-recipie__edit {
-    border-radius: 10px;
-    font-size: 1.1em;
-    border: 0;
-    background-color: rgba(0, 0, 0, 0.4);
-    color: rgba(0, 0, 0, 0.7);
     margin-left: 10px;
     width: 20px;
     height: 20px;
-    mask-image: url("../../images/pencil.svg");
-    mask-repeat: no-repeat;
-    mask-size: 16px 16px;
-    mask-position: 2px 2px; }
+    fill: #59678B; }
+    .c-recipie .c-recipie__delete:hover {
+      fill: #D9DCE4;
+      cursor: pointer; }
+  .c-recipie .c-recipie__edit {
+    font-size: 1.1em;
+    border: 0;
+    fill: #59678B;
+    margin: auto 15px;
+    width: 20px;
+    height: 20px; }
     .c-recipie .c-recipie__edit:hover {
-      background-color: rgba(255, 255, 255, 0.7);
-      color: white;
       cursor: pointer;
-      border: 1px solid white; }
+      fill: #D9DCE4; }

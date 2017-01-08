@@ -43,8 +43,20 @@ let Recipie = ({recipie,dispatch}) => {
     return(
       <li className="c-recipie">
         {recipieHeader(recipie.name,recipie.editable)}
-        <button className="c-recipie__delete" onClick={recipie.onDeleteClick}></button>
-        <button className="c-recipie__edit" onClick={recipie.onEditClick}></button>
+        <svg
+          className="c-recipie__delete"
+          onClick={recipie.onDeleteClick}
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 8 8">
+          <use xlinkHref="#trash"></use>
+        </svg>
+        <svg
+          className="c-recipie__edit"
+          onClick={recipie.onEditClick}
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 8 8">
+          <use xlinkHref="#pencil"></use>
+        </svg>
       </li>
     )
 }
