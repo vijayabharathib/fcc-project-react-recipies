@@ -3,7 +3,7 @@ import AddRecipie from './AddRecipie';
 import RecipieList from './RecipieList';
 const RecipieBox = () => {
   return(
-    <div className="container">
+    <div>
       <AddRecipie />
       <RecipieList />
     </div>

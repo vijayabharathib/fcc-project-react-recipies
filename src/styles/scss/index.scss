@@ -1,3 +1,5 @@
+@import "settings";
+
 *{
   box-sizing: border-box;
 }
@@ -8,6 +10,7 @@ html{
 
 body {
   background: slategrey;
+  background-image: url("../../images/background.png");
   margin-top: 40px;
   height: 100%;
 }
@@ -19,4 +22,11 @@ body {
   background-color: #ccc;
   background-color: rgba(255,255,255,.3);
   border-radius: 10px;
+  border: 15px solid $color-darkest;
+}
+
+.brand{
+  text-align: center;
+  color: $color-brand;
+  color: transparentize($color-brand, .2);
 }

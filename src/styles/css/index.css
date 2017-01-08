@@ -6,6 +6,7 @@ html {
 
 body {
   background: slategrey;
+  background-image: url("../../images/background.png");
   margin-top: 40px;
   height: 100%; }
 
@@ -15,4 +16,10 @@ body {
   padding: 10px;
   background-color: #ccc;
   background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 10px; }
+  border-radius: 10px;
+  border: 15px solid #592016; }
+
+.brand {
+  text-align: center;
+  color: #592016;
+  color: rgba(89, 32, 22, 0.8); }
