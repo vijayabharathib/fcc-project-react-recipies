@@ -28,3 +28,13 @@ export const updateRecipie=(id,name)=>{
     name
   }
 }
+
+let nextIngredient=0;
+export const addIngredient=(id,name) => {
+  return {
+    type: 'ADD_INGREDIENT',
+    name,
+    recipie_id: id,
+    ingredient_id: nextIngredient++
+  }
+}

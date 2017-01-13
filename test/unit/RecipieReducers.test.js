@@ -4,40 +4,41 @@ import {
   addRecipie,
   deleteRecipie,
   editRecipie,
-  updateRecipie
+  updateRecipie,
+  addIngredient
 } from '../../src/scripts/actions/ActionCreators';
 
-test("UT - reducers - should add name to state",(assert)=>{
-  assert.plan(1);
+test("UT - reducers - should add name to state",(t)=>{
+  t.plan(1);
   const expected="test object";
   const action1=addRecipie("test object");
   const recipie1=recipies([],action1);
   const actual=recipie1[0].name;
   const message="ADD_RECIPIE should add a new entry with provided name";
-  assert.deepEqual(actual,expected,message);
+  t.deepEqual(actual,expected,message);
 });
 
-test("UT - reducers - should return editable as false by default",(assert)=>{
-  assert.plan(1);
+test("UT - reducers - should return editable as false by default",(t)=>{
+  t.plan(1);
   const action1=addRecipie("test object");
   const recipie1=recipies([],action1);
   const actual=recipie1[0].editable;
   const expected=false;
   const message="ADD_RECIPIE should add a new entry with editable as false";
-  assert.deepEqual(actual,expected,message);
+  t.deepEqual(actual,expected,message);
 });
 
-test("UT - reducers - should return same state for unrecognized action",(assert)=>{
-  assert.plan(1);
+test("UT - reducers - should return same state for unrecognized action",(t)=>{
+  t.plan(1);
   const expected=recipies([],addRecipie("test object"));
   const actual=recipies(expected,{type:'UNKNOWN_ACTION'});
   const message="reducers should return same state for unrecognized action";
-  assert.deepEqual(actual,expected,message);
-  assert.end();
+  t.deepEqual(actual,expected,message);
+  t.end();
 });
 
-test("UT - reducers - should remove recipie from state based on id",(assert)=>{
-  assert.plan(1);
+test("UT - reducers - should remove recipie from state based on id",(t)=>{
+  t.plan(1);
   const action1=addRecipie("test object");
   const previousState=recipies([],action1);
   const action2=addRecipie("test object2");
@@ -46,12 +47,12 @@ test("UT - reducers - should remove recipie from state based on id",(assert)=>{
   const deleteAction=deleteRecipie(action2.id);
   const newState=recipies(nextState,deleteAction);
   const message="DELETE_RECIPIE should remove entry by ID";
-  assert.deepEqual(newState,previousState,message);
-  assert.end();
+  t.deepEqual(newState,previousState,message);
+  t.end();
 });
 
-test("UT - reducers - should return editable state for recipie based on id",(assert)=>{
-  assert.plan(1);
+test("UT - reducers - should return editable state for recipie based on id",(t)=>{
+  t.plan(1);
   let state=[];
   for(let i=0;i<3;i++){
     state=recipies(state,addRecipie("test recipie"+i));
@@ -59,13 +60,13 @@ test("UT - reducers - should return editable state for recipie based on id",(ass
   const editAction=editRecipie(state[1].id);
   const newState=recipies(state,editAction);
   const message="Edit_RECIPIE should return editable recipie in the state based on ID";
-  assert.equal(newState[1].editable,true,message);
-  // TODO: editable state should be returned and used in the above assertion +test
-  assert.end();
+  t.equal(newState[1].editable,true,message);
+  // TODO: editable state should be returned and used in the above tion +test
+  t.end();
 });
 
-test("UT - reducers - should return updated recipie in state based on id",(assert)=>{
-  assert.plan(1);
+test("UT - reducers - should return updated recipie in state based on id",(t)=>{
+  t.plan(1);
   let state=[{
     id: 1,
     name: "old name",
@@ -81,6 +82,52 @@ test("UT - reducers - should return updated recipie in state based on id",(asser
   const updateAction=updateRecipie(state[0].id,"new name");
   const newState=recipies(state,updateAction);
   const message="UPDATE_RECIPIE should return updated recipie name in the state based on ID";
-  assert.deepEqual(newState,expected,message);
-  assert.end();
+  t.deepEqual(newState,expected,message);
+  t.end();
+});
+
+test("UT - reducers - should return recipie with ingredient",(t)=>{
+  t.plan(2);
+  let state=[{
+    id: 1,
+    name: "recipie name",
+    collapsed: true,
+    editable: false,
+    ingredients: []
+  }];
+  let expected=[{
+    id: 1,
+    name: "recipie name",
+    ingredients: [{id: 1,name: "salt"}],
+    collapsed: true,
+    editable: false //editable should be false after update
+  }];
+  let addIngredientAction=addIngredient(state[0].id,"salt");
+  let newState=recipies(state,addIngredientAction);
+  let message="ADD_INGREDIENT should return updated recipie with ingredient";
+  t.deepEqual(newState,expected,message);
+  expected=[{
+    id: 1,
+    name: "recipie name",
+    ingredients: [{id: 1,name: "salt"},{id: 2,name: "water"}],
+    collapsed: true,
+    editable: false //editable should be false after update
+  }];
+
+  addIngredientAction=addIngredient(state[0].id,"water");
+  newState=recipies(state,addIngredientAction);
+  message="ADD_INGREDIENT should return updated recipie with two ingredients";
+  t.deepEqual(newState,expected,message);
+});
+
+test("UT - reducers - should add ingredient to right recipie",(t)=>{
+  t.plan(1);
+  let state=recipies([],addRecipie("recipie1"));
+  state=recipies(state,addRecipie("recipie2"));
+  state=recipies(state,addRecipie("recipie3"));
+  let expected="water";
+  let addIngredientAction=addIngredient(state[1].id,expected);
+  let newState=recipies(state,addIngredientAction);
+  let message="ADD_INGREDIENT should add ingredient to right recipie";
+  t.equal(newState[1].ingredients[0].name,expected,message);
 });
