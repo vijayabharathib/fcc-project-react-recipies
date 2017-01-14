@@ -1,16 +1,19 @@
 import React, {PropTypes} from 'react';
 import Recipie from './Recipie';
 import {connect} from 'react-redux';
-import {deleteRecipie, editRecipie} from '../actions/ActionCreators';
+import {deleteRecipie, editRecipie, toggleIngredients} from '../actions/ActionCreators';
 import '../../styles/css/RecipieList.css';
 
 let RecipieList =({recipies,transmit})=> {
     let recipieList=recipies.map(function(recipie){
       let onDeleteClick = () =>transmit.onDelete(recipie.id);
       let onEditClick = () => transmit.onEdit(recipie.id);
+      let toggleIngredients = () => transmit.toggleIngredients(recipie.id);
+
       let recipieObject=Object.assign({},recipie,{
         onDeleteClick,
-        onEditClick
+        onEditClick,
+        toggleIngredients
       });
       return (
         <Recipie key={recipie.id} recipie={recipieObject} />
@@ -38,7 +41,8 @@ RecipieList.propTypes = {
   ).isRequired,
   transmit: PropTypes.shape({
     onDelete: PropTypes.func.isRequired,
-    onEdit: PropTypes.func.isRequired
+    onEdit: PropTypes.func.isRequired,
+    toggleIngredients: PropTypes.func.isRequired
   }).isRequired
 }
 
@@ -56,6 +60,9 @@ const mapDispatchToProps= (dispatch) => {
       },
       onEdit: (id) => {
         dispatch(editRecipie(id));
+      },
+      toggleIngredients: (id) => {
+        dispatch(toggleIngredients(id));
       }
     }
   }

@@ -5,7 +5,8 @@ import {
   deleteRecipie,
   editRecipie,
   updateRecipie,
-  addIngredient} from '../../src/scripts/actions/ActionCreators';
+  addIngredient,
+  toggleIngredients} from '../../src/scripts/actions/ActionCreators';
 test ("UT - action creators - addRecipie should auto increment ID",(t)=>{
     t.plan(2);
     let prevID=addRecipie("recipie1").id; // 0 is first id
@@ -89,5 +90,17 @@ test ("UT - action creators - addIngredient",(t)=>{
     }
     const actual = addIngredient(r_id,name);
     let message="addIngredient should return action with ID, ADD_INGREDIENT type";
+    t.deepEqual(actual,expected,message);
+});
+
+test ("UT - action creators - toggleIngredient",(t)=>{
+    t.plan(1);
+    let r_id=777;
+    let expected={
+      recipie_id: r_id,
+      type: 'TOGGLE_INGREDIENT'
+    }
+    const actual = toggleIngredients(r_id);
+    let message="toggleIngredient should return action with ID, TOGGLE_INGREDIENT type";
     t.deepEqual(actual,expected,message);
 });

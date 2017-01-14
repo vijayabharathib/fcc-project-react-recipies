@@ -38,3 +38,10 @@ export const addIngredient=(id,name) => {
     ingredient_id: nextIngredient++
   }
 }
+
+export const toggleIngredients=(id) => {
+  return {
+    type: 'TOGGLE_INGREDIENT',
+    recipie_id: id,
+  }
+}

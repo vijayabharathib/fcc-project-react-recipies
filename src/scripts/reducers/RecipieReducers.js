@@ -72,6 +72,23 @@ const _addIngredient=(state,action) => {
   ];
 }
 
+const _toggleIngredient=(state,action) => {
+  let recipie;
+  let newState=Object.assign(state);
+  for(var i=0;i<newState.length;i++){
+    if(newState[i].id===action.recipie_id){
+      break;
+    }
+  }
+  recipie=newState[i];
+  recipie.collapsed=!recipie.collapsed;
+  return [
+    ...newState.slice(0,i),
+    recipie,
+    ...newState.slice(i+1)
+  ];
+}
+
 const recipies = (state=[],action) => {
   switch (action.type) {
     case 'ADD_RECIPIE':
@@ -85,6 +102,8 @@ const recipies = (state=[],action) => {
       return _editItem(state,action);
     case 'UPDATE_RECIPIE':
       return _updateItem(state,action);
+    case 'TOGGLE_INGREDIENT':
+      return _toggleIngredient(state,action);
     case 'ADD_INGREDIENT':
       return _addIngredient(state,action);
     default:

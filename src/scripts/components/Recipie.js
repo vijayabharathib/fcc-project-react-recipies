@@ -16,6 +16,12 @@ let Recipie = ({recipie,dispatch}) => {
 
     let recipieHeader=(recipie)=>{
       let header;
+      let ingredientList;
+      if(!recipie.collapsed){
+        ingredientList=<section>
+          <header><h3>Ingredients</h3></header>
+        </section>
+      }
       if(recipie.editable){
         header=<li className="c-recipie">
           <form className="c-recipie__update--form" onSubmit={updateItem}>
@@ -27,32 +33,37 @@ let Recipie = ({recipie,dispatch}) => {
               autoFocus="autofocus">
             </input>
             <label>
-            <button className="c-recipie__update" type="submit">Update</button>
-            <svg
-              className="c-recipie__update--check"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 8 8">
-              <use xlinkHref="#circle-check" ></use>
-            </svg>
+              <button className="c-recipie__update" type="submit">Update</button>
+              <svg
+                className="c-recipie__update--check"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 8 8">
+                <use xlinkHref="#circle-check" ></use>
+              </svg>
             </label>
-          </form></li>;
+          </form>
+          {ingredientList}
+        </li>;
       }else{
         header=<li className="c-recipie">
-          <h4 className="c-recipie__name">{recipie.name}</h4>
-          <svg
-                  className="c-recipie__delete"
-                  onClick={recipie.onDeleteClick}
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 8 8">
-                  <use xlinkHref="#trash"></use>
-          </svg>
-          <svg
-            className="c-recipie__edit"
-            onClick={recipie.onEditClick}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 8 8">
-            <use xlinkHref="#pencil"></use>
-          </svg>
+          <header>
+            <h2 className="c-recipie__name" onClick={recipie.toggleIngredients}>{recipie.name}</h2>
+            <svg
+                    className="c-recipie__delete"
+                    onClick={recipie.onDeleteClick}
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 8 8">
+                    <use xlinkHref="#trash"></use>
+            </svg>
+            <svg
+              className="c-recipie__edit"
+              onClick={recipie.onEditClick}
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 8 8">
+              <use xlinkHref="#pencil"></use>
+            </svg>
+          </header>
+          {ingredientList}
         </li>;
       }
       return header;
@@ -70,7 +81,8 @@ Recipie.propTypes = {
         collapsed: PropTypes.bool.isRequired,
         editable: PropTypes.bool.isRequired,
         onEditClick: PropTypes.func.isRequired,
-        onDeleteClick: PropTypes.func.isRequired
+        onDeleteClick: PropTypes.func.isRequired,
+        toggleIngredients: PropTypes.func.isRequired
       }
   ).isRequired
 }
