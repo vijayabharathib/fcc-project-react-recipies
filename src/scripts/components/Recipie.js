@@ -1,6 +1,8 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {updateRecipie} from '../actions/ActionCreators';
+import IngredientList from './IngredientList';
+
 import '../../styles/css/Recipie.css';
 
 let Recipie = ({recipie,dispatch}) => {
@@ -18,9 +20,7 @@ let Recipie = ({recipie,dispatch}) => {
       let header;
       let ingredientList;
       if(!recipie.collapsed){
-        ingredientList=<section>
-          <header><h3>Ingredients</h3></header>
-        </section>
+        ingredientList=<IngredientList></IngredientList>
       }
       if(recipie.editable){
         header=<li className="c-recipie">

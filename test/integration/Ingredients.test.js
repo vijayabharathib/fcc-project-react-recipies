@@ -120,16 +120,18 @@ test("IT - RecipieBox - edit button should render editable recipie",(t) => {
 });
 */
 test("IT - Ingredients - add ingredient button should display text input",(t) => {
-  t.plan(1);
+  t.plan(2);
   let store = createStore(recipies);
   const component=TestUtils.renderIntoDocument(<Provider store={store}><RecipieBox /></Provider>);
   component.props.store.dispatch({type: 'ADD_RECIPIE',id: 900,name: 'recipie'});
   let recipie=findByTag(component,"h2");
   TestUtils.Simulate.click(recipie);
-  const ingredientHeader=scryByTag(component,"h3");
-  const actual=ingredientHeader.length;
+  let actual=scryByTag(component,"h3").length;
   let expected=1;
   let message="One 'ingredient' header should be present";
   t.equal(actual,expected,message);
-
+  actual=scryByClass(component,"c-ingredient__add").length;
+  message="Ingredient header should have add button";
+  expected=1;
+  t.equal(actual,expected,message);
 });
