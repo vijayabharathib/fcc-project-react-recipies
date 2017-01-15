@@ -85,7 +85,7 @@ test ("UT - action creators - addIngredient",(t)=>{
     let expected={
       recipie_id: r_id,
       name,
-      ingredient_id: 0,
+      ingredient_id: 1,
       type: 'ADD_INGREDIENT'
     }
     const actual = addIngredient(r_id,name);

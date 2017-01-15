@@ -99,7 +99,7 @@ test("UT - reducers - should return recipie with ingredient",(t)=>{
   let expected=[{
     id: 1,
     name: "recipie name",
-    ingredients: [{id: 1,name: "salt"}],
+    ingredients: [{id: 2,name: "salt"}],
     collapsed: true,
     editable: false //editable should be false after update
   }];
@@ -110,7 +110,7 @@ test("UT - reducers - should return recipie with ingredient",(t)=>{
   expected=[{
     id: 1,
     name: "recipie name",
-    ingredients: [{id: 1,name: "salt"},{id: 2,name: "water"}],
+    ingredients: [{id: 2,name: "salt"},{id: 3,name: "water"}],
     collapsed: true,
     editable: false //editable should be false after update
   }];
