@@ -20,7 +20,7 @@ let Recipie = ({recipie,dispatch}) => {
       let header;
       let ingredientList;
       if(!recipie.collapsed){
-        ingredientList=<IngredientList></IngredientList>
+        ingredientList=<IngredientList recipie={recipie}></IngredientList>
       }
       if(recipie.editable){
         header=<li className="c-recipie">
