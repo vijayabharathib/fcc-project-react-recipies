@@ -1,10 +1,7 @@
 language: node_js
 node_js:
   - "node"
-cache:
-  directories:
-    - node_modules
-    
+
 after_success:
   - git config --global user.name "vijayabharathi"
   - git config --global user.email "vijayabharathib@users.noreply.github.com"
