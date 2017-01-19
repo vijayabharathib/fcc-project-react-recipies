@@ -1,11 +1,11 @@
 .c-recipie__control__textbox {
-  padding: 5px 0 5px 10px;
-  border-radius: 5px 0 0 5px;
-  border: 0;
   width: 80%;
-  font-size: 1.5em;
+  padding: 5px 0 5px 10px;
+  border: 0;
+  border-radius: 5px 0 0 5px;
+  background-color: #B8D7BB;
   color: #3A8544;
-  background-color: #B8D7BB; }
+  font-size: 1.5em; }
   .c-recipie__control__textbox:focus {
     background-color: #E0EDE2; }
   @media (min-width: 400px) {
@@ -15,14 +15,14 @@
 .c-recipie__control__submit {
   width: 20%;
   padding: 5px;
-  border-radius: 0 5px 5px 0;
-  font-size: 1.5em;
-  background-color: #3A8544;
   border: 0;
-  color: rgba(0, 0, 0, 0.7); }
+  border-radius: 0 5px 5px 0;
+  background-color: #3A8544;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 1.5em; }
   .c-recipie__control__submit:hover {
-    cursor: pointer;
-    color: white; }
+    color: #fff;
+    cursor: pointer; }
   @media (min-width: 400px) {
     .c-recipie__control__submit {
       width: 15%; } }
