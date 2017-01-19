@@ -46,7 +46,7 @@ let Recipie = ({recipie,dispatch}) => {
         </li>;
       }else{
         header=<li className="c-recipie">
-          <header>
+          <header className="c-recipie__header">
             <h2 className="c-recipie__name" onClick={recipie.toggleIngredients}>{recipie.name}</h2>
             <svg
                     className="c-recipie__delete"

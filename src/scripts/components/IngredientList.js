@@ -2,6 +2,9 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {addIngredient} from '../actions/ActionCreators';
 import Ingredient from './Ingredient';
+import '../../styles/css/IngredientList.css';
+
+
 let IngredientList =({recipie,dispatch})=> {
     let input;
     const add=(e)=>{

@@ -1,11 +1,15 @@
 .c-recipie {
-  margin-bottom: 10px;
+  background-color: #7E88A4;
+  background-color: rgba(126, 136, 164, 0.8);
   border-radius: 5px;
-  background-color: #3a4973;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 5px; }
+  margin-bottom: 10px; }
+  .c-recipie .c-recipie__header {
+    border-radius: 5px;
+    background-color: #3a4973;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px; }
   .c-recipie .c-recipie__name {
     font-size: 1.5em;
     padding: 5px;

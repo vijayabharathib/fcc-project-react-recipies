@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/css/Ingredient.css';
 
 let Ingredient = ({ingredient}) => {
   return(
