@@ -1,0 +1,11 @@
+@import "settings";
+
+.c-ingredient__item{
+  padding: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  background-color: transparentize($color-white, .8);
+  .c-ingredient__delete {
+    margin-left: auto;
+  }
+}

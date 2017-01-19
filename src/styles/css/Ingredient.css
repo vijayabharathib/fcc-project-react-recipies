@@ -1,0 +1,7 @@
+.c-ingredient__item {
+  padding: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.2); }
+  .c-ingredient__item .c-ingredient__delete {
+    margin-left: auto; }

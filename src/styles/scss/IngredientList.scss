@@ -1,0 +1,27 @@
+@import "settings";
+
+.o-ingredient__section {
+  padding: 5px;
+  .c-ingredient__header {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  .c-ingredient__title {
+    color: $color-white;
+    margin: 0 5px;
+  }
+  .c-ingredient__new__form{
+    display: flex;
+    margin-left: auto;
+    width: 60%;
+  }
+  .c-ingredient__add--editable{
+    width: 80%;
+  }
+
+  .c-ingredient__list{
+    list-style: none;
+    padding: 0;
+  }
+}

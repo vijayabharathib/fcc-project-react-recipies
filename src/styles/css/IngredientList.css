@@ -1,0 +1,17 @@
+.o-ingredient__section {
+  padding: 5px; }
+  .o-ingredient__section .c-ingredient__header {
+    display: flex;
+    margin-bottom: 10px; }
+  .o-ingredient__section .c-ingredient__title {
+    color: #fff;
+    margin: 0 5px; }
+  .o-ingredient__section .c-ingredient__new__form {
+    display: flex;
+    margin-left: auto;
+    width: 60%; }
+  .o-ingredient__section .c-ingredient__add--editable {
+    width: 80%; }
+  .o-ingredient__section .c-ingredient__list {
+    list-style: none;
+    padding: 0; }
