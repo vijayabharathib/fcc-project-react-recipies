@@ -2,24 +2,40 @@
 
 .o-ingredient__section {
   padding: 5px;
+
   .c-ingredient__header {
     display: flex;
-    margin-bottom: 10px;
+    margin: 10px auto;
   }
 
   .c-ingredient__title {
-    color: $color-white;
+    color: $color-secondary-1-4;
     margin: 0 5px;
   }
-  .c-ingredient__new__form{
+
+  .c-add__ingredient {
     display: flex;
     margin-left: auto;
-    width: 60%;
-  }
-  .c-ingredient__add--editable{
-    width: 80%;
   }
 
+  .c-ingredient__add--editable{
+    border: 0;
+    border-radius: 5px 0 0 5px;
+    padding: 2px;
+    width: 80%;
+    background-color: transparentize($color-secondary-1-1, .2);
+    font-size: 1.2em;
+    color: $color-secondary-1-4;
+  }
+  .c-ingredient__add {
+    border: 0;
+    border-radius: 0 5px 5px 0;
+    padding: 2px;
+    width: 20%;
+    background-color: transparentize($color-white, .2);
+    color: $color-secondary-2-4;
+    font-size: 1.2em;
+  }
   .c-ingredient__list{
     list-style: none;
     padding: 0;

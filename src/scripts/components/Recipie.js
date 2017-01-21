@@ -19,11 +19,14 @@ let Recipie = ({recipie,dispatch}) => {
     let recipieHeader=(recipie)=>{
       let header;
       let ingredientList;
+      let collapsedClass="";
       if(!recipie.collapsed){
-        ingredientList=<IngredientList recipie={recipie}></IngredientList>
+        ingredientList=<IngredientList recipie={recipie}></IngredientList>;
+      }else{
+        collapsedClass="c-recipie--collapsed";        
       }
       if(recipie.editable){
-        header=<li className="c-recipie">
+        header=<li className={"c-recipie " + collapsedClass}>
           <form className="c-recipie__update--form" onSubmit={updateItem}>
             <input
               className="c-recipie__name--editable"
@@ -45,7 +48,7 @@ let Recipie = ({recipie,dispatch}) => {
           {ingredientList}
         </li>;
       }else{
-        header=<li className="c-recipie">
+        header=<li className={"c-recipie " + collapsedClass}>
           <header className="c-recipie__header">
             <h2 className="c-recipie__name" onClick={recipie.toggleIngredients}>{recipie.name}</h2>
             <svg

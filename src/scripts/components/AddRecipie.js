@@ -20,6 +20,7 @@ let AddRecipie = ({dispatch}) => {
         type="text"
         className="c-recipie__control__textbox"
         ref={(node) => {input=node}}
+        placeholder="Add a recipie"
       />
     <button type="submit" className="c-recipie__control__submit">+</button>
       </form>

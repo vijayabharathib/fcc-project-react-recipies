@@ -1,11 +1,42 @@
-@import "settings";
+@import 'settings';
 
-.c-ingredient__item{
-  padding: 5px;
-  margin-bottom: 5px;
+.c-ingredient__item {
   display: flex;
-  background-color: transparentize($color-white, .8);
+
+  margin-bottom: 8px;
+  padding: 5px;
+  border-radius: 3px;
+  background-color: transparentize($color-white, .4);
+
+  .c-ingredient__name {
+    color: darken($color-secondary-1-4, 10%);
+  }
+
   .c-ingredient__delete {
     margin-left: auto;
+  }
+  .c-ingredient__delete{
+    font-size: 1.1em;
+    border: 0;
+    margin-left: auto;
+    width: 16px;
+    height: 16px;
+    fill: $color-secondary-1-2;
+    &:hover{
+      fill: $color-secondary-1-4;
+      cursor: pointer;
+    }
+  }
+  .c-ingredient__edit{
+    font-size: 1.1em;
+    border: 0;
+    fill: $color-secondary-1-2;
+    margin: auto 15px;
+    width: 16px;
+    height: 16px;
+    &:hover{
+      cursor: pointer;
+      fill: $color-secondary-1-4;
+    }
   }
 }

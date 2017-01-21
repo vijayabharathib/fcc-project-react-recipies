@@ -24,6 +24,7 @@ let IngredientList =({recipie,dispatch})=> {
       <section className="o-ingredient__section">
         <header className="c-ingredient__header">
           <h3 className="c-ingredient__title">Ingredients</h3>
+          <div className="c-add__ingredient">
           <form className="c-ingredient__new__form" onSubmit={add}>
             <input
               type="text"
@@ -31,7 +32,7 @@ let IngredientList =({recipie,dispatch})=> {
               ref={(node) => {input=node}}>
             </input>
             <button className="c-ingredient__add" type="submit">+</button>
-          </form>
+          </form></div>
         </header>
         <ul className="c-ingredient__list">
           {ingredients}
@@ -39,6 +40,15 @@ let IngredientList =({recipie,dispatch})=> {
       </section>
     )
 
+}
+
+IngredientList.propTypes = {
+  recipie: PropTypes.shape(
+      {
+        id: PropTypes.number.isRequired,
+        ingredients: PropTypes.array.isRequired
+      }
+  ).isRequired
 }
 
 IngredientList=connect()(IngredientList);

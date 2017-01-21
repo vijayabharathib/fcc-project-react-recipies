@@ -1,7 +1,30 @@
 .c-ingredient__item {
-  padding: 5px;
-  margin-bottom: 5px;
   display: flex;
-  background-color: rgba(255, 255, 255, 0.2); }
+  margin-bottom: 8px;
+  padding: 5px;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.6); }
+  .c-ingredient__item .c-ingredient__name {
+    color: #293351; }
   .c-ingredient__item .c-ingredient__delete {
     margin-left: auto; }
+  .c-ingredient__item .c-ingredient__delete {
+    font-size: 1.1em;
+    border: 0;
+    margin-left: auto;
+    width: 16px;
+    height: 16px;
+    fill: #ABB2C4; }
+    .c-ingredient__item .c-ingredient__delete:hover {
+      fill: #3A4973;
+      cursor: pointer; }
+  .c-ingredient__item .c-ingredient__edit {
+    font-size: 1.1em;
+    border: 0;
+    fill: #ABB2C4;
+    margin: auto 15px;
+    width: 16px;
+    height: 16px; }
+    .c-ingredient__item .c-ingredient__edit:hover {
+      cursor: pointer;
+      fill: #3A4973; }

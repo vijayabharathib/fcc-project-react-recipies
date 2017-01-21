@@ -2,14 +2,16 @@
   background-color: #7E88A4;
   background-color: rgba(126, 136, 164, 0.8);
   border-radius: 5px;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  position: relative; }
   .c-recipie .c-recipie__header {
     border-radius: 5px;
     background-color: #3a4973;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 5px; }
+    padding: 5px;
+    padding-left: 25px; }
   .c-recipie .c-recipie__name {
     font-size: 1.5em;
     padding: 5px;
@@ -19,6 +21,16 @@
     color: rgba(255, 255, 255, 0.8);
     flex: 99;
     cursor: pointer; }
+    .c-recipie .c-recipie__name:after {
+      content: '';
+      border: 8px solid transparent;
+      border-top: 8px solid #ABB2C4;
+      width: 0;
+      height: 0;
+      display: block;
+      margin-left: -25px;
+      margin-top: -16px;
+      position: absolute; }
   .c-recipie .c-recipie__update--form {
     flex: 99; }
   .c-recipie .c-recipie__name--editable {
@@ -62,3 +74,14 @@
     .c-recipie .c-recipie__edit:hover {
       cursor: pointer;
       fill: #D9DCE4; }
+
+.c-recipie--collapsed .c-recipie__name:after {
+  content: '';
+  border: 8px solid transparent;
+  border-left: 8px solid #59678B;
+  width: 0;
+  height: 0;
+  display: block;
+  margin-left: -20px;
+  margin-top: -20px;
+  position: absolute; }

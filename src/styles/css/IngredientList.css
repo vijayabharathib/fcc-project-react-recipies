@@ -2,16 +2,29 @@
   padding: 5px; }
   .o-ingredient__section .c-ingredient__header {
     display: flex;
-    margin-bottom: 10px; }
+    margin: 10px auto; }
   .o-ingredient__section .c-ingredient__title {
-    color: #fff;
+    color: #3A4973;
     margin: 0 5px; }
-  .o-ingredient__section .c-ingredient__new__form {
+  .o-ingredient__section .c-add__ingredient {
     display: flex;
-    margin-left: auto;
-    width: 60%; }
+    margin-left: auto; }
   .o-ingredient__section .c-ingredient__add--editable {
-    width: 80%; }
+    border: 0;
+    border-radius: 5px 0 0 5px;
+    padding: 2px;
+    width: 80%;
+    background-color: rgba(217, 220, 228, 0.8);
+    font-size: 1.2em;
+    color: #3A4973; }
+  .o-ingredient__section .c-ingredient__add {
+    border: 0;
+    border-radius: 0 5px 5px 0;
+    padding: 2px;
+    width: 20%;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #3A8544;
+    font-size: 1.2em; }
   .o-ingredient__section .c-ingredient__list {
     list-style: none;
     padding: 0; }
