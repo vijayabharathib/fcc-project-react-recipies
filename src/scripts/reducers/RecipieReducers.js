@@ -89,6 +89,25 @@ const _toggleIngredient=(state,action) => {
   ];
 }
 
+const _deleteIngredient=(state,action) => {
+  let recipie;
+  let newState=Object.assign(state);
+  for(var i=0;i<newState.length;i++){
+    if(newState[i].id===action.recipie_id){
+      break;
+    }
+  }
+  recipie=newState[i];
+  recipie.ingredients=recipie.ingredients.filter((ingredient)=>{
+    return ingredient.id!=action.ingredient_id;
+  });
+  return [
+    ...newState.slice(0,i),
+    recipie,
+    ...newState.slice(i+1)
+  ];
+}
+
 const recipies = (state=[],action) => {
   switch (action.type) {
     case 'ADD_RECIPIE':
@@ -106,6 +125,8 @@ const recipies = (state=[],action) => {
       return _toggleIngredient(state,action);
     case 'ADD_INGREDIENT':
       return _addIngredient(state,action);
+    case 'DELETE_INGREDIENT':
+      return _deleteIngredient(state,action);
     default:
       return state;
   }

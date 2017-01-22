@@ -6,7 +6,8 @@ import {
   editRecipie,
   updateRecipie,
   addIngredient,
-  toggleIngredients
+  toggleIngredients,
+  deleteIngredient
 } from '../../src/scripts/actions/ActionCreators';
 
 test("UT - reducers - should add name to state",(t)=>{
@@ -134,7 +135,7 @@ test("UT - reducers - should add ingredient to right recipie",(t)=>{
 });
 
 
-test("UT - reducers - should add ingredient to right recipie",(t)=>{
+test("UT - reducers - should toggle ingredient to the right recipie",(t)=>{
   t.plan(1);
   let state=recipies([],addRecipie("recipie1"));
   state=recipies(state,addRecipie("recipie2"));
@@ -144,4 +145,17 @@ test("UT - reducers - should add ingredient to right recipie",(t)=>{
   let newState=recipies(state,action);
   let message="TOGGLE_INGREDIENT should switch flag";
   t.equal(newState[1].collapsed,expected,message);
+});
+
+test("UT - reducers - should delete ingredient from recipie",(t)=>{
+  t.plan(1);
+  let state=recipies([],addRecipie("recipie1"));
+  state=recipies(state,addRecipie("recipie2"));
+  state=recipies(state,addRecipie("recipie3"));
+  state=recipies(state,addIngredient(state[1].id,"water"));
+  let beforeDelete=state[1].ingredients.length;
+  state=recipies(state,deleteIngredient(state[1].id,state[1].ingredients[0].id));
+  let afterDelete=state[1].ingredients.length;
+  let message="DELETE_INGREDIENT should remove ingredient from recipie";
+  t.equal(afterDelete,beforeDelete-1,message);
 });

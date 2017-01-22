@@ -45,3 +45,11 @@ export const toggleIngredients=(id) => {
     recipie_id: id,
   }
 }
+
+export const deleteIngredient=(r_id,i_id) => {
+  return {
+    type: 'DELETE_INGREDIENT',
+    recipie_id: r_id,
+    ingredient_id: i_id
+  }
+}
