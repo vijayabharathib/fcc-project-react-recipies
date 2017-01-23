@@ -7,7 +7,8 @@ import {
   updateRecipie,
   addIngredient,
   toggleIngredients,
-  deleteIngredient} from '../../src/scripts/actions/ActionCreators';
+  deleteIngredient,
+  flushStore} from '../../src/scripts/actions/ActionCreators';
 test ("UT - action creators - addRecipie should auto increment ID",(t)=>{
     t.plan(2);
     let prevID=addRecipie("recipie1").id; // 0 is first id
@@ -86,9 +87,10 @@ test ("UT - action creators - addIngredient",(t)=>{
     let expected={
       recipie_id: r_id,
       name,
-      ingredient_id: 1,
+      ingredient_id: 0,
       type: 'ADD_INGREDIENT'
     }
+    flushStore();
     const actual = addIngredient(r_id,name);
     let message="addIngredient should return action with ID, ADD_INGREDIENT type";
     t.deepEqual(actual,expected,message);

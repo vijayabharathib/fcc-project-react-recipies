@@ -7,7 +7,8 @@ import {
   updateRecipie,
   addIngredient,
   toggleIngredients,
-  deleteIngredient
+  deleteIngredient,
+  flushStore
 } from '../../src/scripts/actions/ActionCreators';
 
 test("UT - reducers - should add name to state",(t)=>{
@@ -90,6 +91,7 @@ test("UT - reducers - should return updated recipie in state based on id",(t)=>{
 
 test("UT - reducers - should return recipie with ingredient",(t)=>{
   t.plan(2);
+  flushStore();
   let state=[{
     id: 1,
     name: "recipie name",
@@ -100,7 +102,7 @@ test("UT - reducers - should return recipie with ingredient",(t)=>{
   let expected=[{
     id: 1,
     name: "recipie name",
-    ingredients: [{id: 2,name: "salt"}],
+    ingredients: [{id: 0,name: "salt"}],
     collapsed: true,
     editable: false //editable should be false after update
   }];
@@ -111,7 +113,7 @@ test("UT - reducers - should return recipie with ingredient",(t)=>{
   expected=[{
     id: 1,
     name: "recipie name",
-    ingredients: [{id: 2,name: "salt"},{id: 3,name: "water"}],
+    ingredients: [{id: 0,name: "salt"},{id: 1,name: "water"}],
     collapsed: true,
     editable: false //editable should be false after update
   }];

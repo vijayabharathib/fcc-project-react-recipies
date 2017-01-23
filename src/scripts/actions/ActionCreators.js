@@ -53,3 +53,11 @@ export const deleteIngredient=(r_id,i_id) => {
     ingredient_id: i_id
   }
 }
+
+export const flushStore=()=>{
+  nextRecipie=0;
+  nextIngredient=0;
+  return {
+    type: 'FLUSH_ALL'
+  }
+}

@@ -107,7 +107,9 @@ const _deleteIngredient=(state,action) => {
     ...newState.slice(i+1)
   ];
 }
-
+const _flushAll=(state)=>{
+  state=[];
+}
 const recipies = (state=[],action) => {
   switch (action.type) {
     case 'ADD_RECIPIE':
@@ -127,6 +129,8 @@ const recipies = (state=[],action) => {
       return _addIngredient(state,action);
     case 'DELETE_INGREDIENT':
       return _deleteIngredient(state,action);
+    case 'FLUSH_ALL':
+      return _flushAll(state);
     default:
       return state;
   }
