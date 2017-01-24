@@ -10,14 +10,13 @@
 
 
     .c-recipie__header{
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
     background-color: transparentize($color-secondary-1-4,0);
     display: flex;
     align-items: center;
     justify-content: flex-start;
     padding: 5px;
     padding-left: 25px;
-
   }
 
   .c-recipie__name{
@@ -111,5 +110,9 @@
       margin-top: -20px;
       position: absolute;
     }
+  }
+
+  .c-recipie__header {
+    border-radius: 5px;
   }
 }

@@ -99,7 +99,7 @@ const _deleteIngredient=(state,action) => {
   }
   recipie=newState[i];
   recipie.ingredients=recipie.ingredients.filter((ingredient)=>{
-    return ingredient.id!=action.ingredient_id;
+    return ingredient.id!==action.ingredient_id;
   });
   return [
     ...newState.slice(0,i),

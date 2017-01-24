@@ -5,7 +5,7 @@
   margin-bottom: 10px;
   position: relative; }
   .c-recipie .c-recipie__header {
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
     background-color: #3a4973;
     display: flex;
     align-items: center;
@@ -85,3 +85,6 @@
   margin-left: -20px;
   margin-top: -20px;
   position: absolute; }
+
+.c-recipie--collapsed .c-recipie__header {
+  border-radius: 5px; }

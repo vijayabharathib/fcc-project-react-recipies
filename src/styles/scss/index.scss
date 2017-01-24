@@ -38,4 +38,5 @@ body {
   text-align: center;
   color: $color-brand;
   color: transparentize($color-brand, .2);
+  text-shadow: 0 -1px 1px $color-primary-2;
 }

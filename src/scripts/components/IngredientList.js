@@ -15,8 +15,10 @@ let IngredientList =({recipie,dispatch})=> {
       input.value="";
     }
     let ingredients=recipie.ingredients.map((ingredient) => {
+      let onDeleteClick = () => dispatch(deleteIngredient(recipie.id,ingredient.id));
+      let ingredientObject=Object.assign({},ingredient,{onDeleteClick})
       return (
-        <Ingredient key={ingredient.id} ingredient={ingredient} />
+        <Ingredient key={ingredient.id} ingredient={ingredientObject} />
       )
     });
     return(
@@ -48,17 +50,6 @@ IngredientList.propTypes = {
         ingredients: PropTypes.array.isRequired
       }
   ).isRequired
-}
-
-const mapDispatchToProps= (dispatch) => {
-  return {
-    transmit: {
-      onDelete: (recipie_id,ingredient_id
-      ) => {
-        dispatch(deleteIngredient(recipie_id,ingredient_id));
-      }
-    }
-  }
 }
 
 IngredientList=connect()(IngredientList);
