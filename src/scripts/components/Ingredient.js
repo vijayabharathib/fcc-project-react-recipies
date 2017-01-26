@@ -17,7 +17,8 @@ let Ingredient = ({ingredient}) => {
         <input
           type="text"
           defaultValue={ingredient.name}
-          ref={(node)=>{input=node}} className="c-ingredient__name--editable">
+          ref={(node)=>{input=node}} className="c-ingredient__name--editable"
+          autoFocus>
         </input>
         <label>
           <button type="submit" style={{display: "none"}}></button>

@@ -6,6 +6,24 @@
   background-color: rgba(255, 255, 255, 0.6); }
   .c-ingredient__item .c-ingredient__name {
     color: #293351; }
+  .c-ingredient__item .c-ingredient__name--editable {
+    font-size: 1.5em;
+    border-radius: 5px;
+    border: 0;
+    width: 100%;
+    padding: 5px;
+    padding-left: 10px; }
+  .c-ingredient__item .c-ingredient__update--form {
+    flex: 99; }
+  .c-ingredient__item .c-ingredient__update--check {
+    height: 32px;
+    width: 32px;
+    fill: #3A4973;
+    margin-left: -35px;
+    margin-bottom: -8px; }
+    .c-ingredient__item .c-ingredient__update--check:hover {
+      fill: #3A8544;
+      cursor: pointer; }
   .c-ingredient__item .c-ingredient__delete {
     margin-left: auto; }
   .c-ingredient__item .c-ingredient__delete {

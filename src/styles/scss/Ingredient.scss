@@ -11,7 +11,28 @@
   .c-ingredient__name {
     color: darken($color-secondary-1-4, 10%);
   }
-
+  .c-ingredient__name--editable{
+    font-size: 1.5em;
+    border-radius: 5px;
+    border: 0;
+    width: 100%;
+    padding: 5px;
+    padding-left: 10px;
+  }
+  .c-ingredient__update--form{
+    flex: 99;
+  }
+  .c-ingredient__update--check {
+    height: 32px;
+    width: 32px;
+    fill: $color-secondary-1-4;
+    margin-left:-35px;
+    margin-bottom: -8px;
+    &:hover{
+      fill: $color-secondary-2-4;
+      cursor: pointer;
+    }
+  }
   .c-ingredient__delete {
     margin-left: auto;
   }
