@@ -5,58 +5,72 @@
 
   margin-bottom: 8px;
   padding: 5px;
+
   border-radius: 3px;
+
   background-color: transparentize($color-white, .4);
 
   .c-ingredient__name {
     color: darken($color-secondary-1-4, 10%);
   }
-  .c-ingredient__name--editable{
-    font-size: 1.5em;
-    border-radius: 5px;
-    border: 0;
+  .c-ingredient__name--editable {
     width: 100%;
     padding: 5px;
     padding-left: 10px;
+
+    border: 0;
+    border-radius: 5px;
+
+    font-size: 1.5em;
   }
-  .c-ingredient__update--form{
+  .c-ingredient__update--form {
     flex: 99;
   }
   .c-ingredient__update--check {
-    height: 32px;
     width: 32px;
-    fill: $color-secondary-1-4;
-    margin-left:-35px;
+    height: 32px;
     margin-bottom: -8px;
-    &:hover{
-      fill: $color-secondary-2-4;
+    margin-left: -35px;
+
+    fill: $color-secondary-1-4;
+    &:hover {
       cursor: pointer;
+
+      fill: $color-secondary-2-4;
     }
   }
   .c-ingredient__delete {
     margin-left: auto;
   }
-  .c-ingredient__delete{
-    font-size: 1.1em;
-    border: 0;
-    margin-left: auto;
+  .c-ingredient__delete {
     width: 16px;
     height: 16px;
+    margin-left: auto;
+
+    border: 0;
+
+    font-size: 1.1em;
+
     fill: $color-secondary-1-2;
-    &:hover{
-      fill: $color-secondary-1-4;
+    &:hover {
       cursor: pointer;
+
+      fill: $color-secondary-1-4;
     }
   }
-  .c-ingredient__edit{
-    font-size: 1.1em;
-    border: 0;
-    fill: $color-secondary-1-2;
-    margin: auto 15px;
+  .c-ingredient__edit {
     width: 16px;
     height: 16px;
-    &:hover{
+    margin: auto 15px;
+
+    border: 0;
+
+    font-size: 1.1em;
+
+    fill: $color-secondary-1-2;
+    &:hover {
       cursor: pointer;
+
       fill: $color-secondary-1-4;
     }
   }

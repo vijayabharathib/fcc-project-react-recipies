@@ -7,42 +7,42 @@
   .c-ingredient__item .c-ingredient__name {
     color: #293351; }
   .c-ingredient__item .c-ingredient__name--editable {
-    font-size: 1.5em;
-    border-radius: 5px;
-    border: 0;
     width: 100%;
     padding: 5px;
-    padding-left: 10px; }
+    padding-left: 10px;
+    border: 0;
+    border-radius: 5px;
+    font-size: 1.5em; }
   .c-ingredient__item .c-ingredient__update--form {
     flex: 99; }
   .c-ingredient__item .c-ingredient__update--check {
-    height: 32px;
     width: 32px;
-    fill: #3A4973;
+    height: 32px;
+    margin-bottom: -8px;
     margin-left: -35px;
-    margin-bottom: -8px; }
+    fill: #3A4973; }
     .c-ingredient__item .c-ingredient__update--check:hover {
-      fill: #3A8544;
-      cursor: pointer; }
+      cursor: pointer;
+      fill: #3A8544; }
   .c-ingredient__item .c-ingredient__delete {
     margin-left: auto; }
   .c-ingredient__item .c-ingredient__delete {
-    font-size: 1.1em;
-    border: 0;
-    margin-left: auto;
     width: 16px;
     height: 16px;
+    margin-left: auto;
+    border: 0;
+    font-size: 1.1em;
     fill: #ABB2C4; }
     .c-ingredient__item .c-ingredient__delete:hover {
-      fill: #3A4973;
-      cursor: pointer; }
+      cursor: pointer;
+      fill: #3A4973; }
   .c-ingredient__item .c-ingredient__edit {
-    font-size: 1.1em;
-    border: 0;
-    fill: #ABB2C4;
-    margin: auto 15px;
     width: 16px;
-    height: 16px; }
+    height: 16px;
+    margin: auto 15px;
+    border: 0;
+    font-size: 1.1em;
+    fill: #ABB2C4; }
     .c-ingredient__item .c-ingredient__edit:hover {
       cursor: pointer;
       fill: #3A4973; }
