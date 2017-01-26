@@ -8,6 +8,8 @@ import {
   addIngredient,
   toggleIngredients,
   deleteIngredient,
+  editIngredient,
+  updateIngredient,
   flushStore} from '../../src/scripts/actions/ActionCreators';
 test ("UT - action creators - addRecipie should auto increment ID",(t)=>{
     t.plan(2);
@@ -119,5 +121,34 @@ test ("UT - action creators - delete ingredient",(t)=>{
     }
     const actual = deleteIngredient(r_id,i_id);
     let message="deleteIngredient should return action with ID, DELETE_INGREDIENT type";
+    t.deepEqual(actual,expected,message);
+});
+
+test ("UT - action creators - editable ingredient",(t)=>{
+    t.plan(1);
+    let r_id=777;
+    let i_id=888;
+    let expected={
+      recipie_id: r_id,
+      ingredient_id: i_id,
+      type: 'EDIT_INGREDIENT'
+    }
+    const actual = editIngredient(r_id,i_id);
+    let message="editIngredient should return action with ID, EDIT_INGREDIENT type";
+    t.deepEqual(actual,expected,message);
+});
+
+test ("UT - action creators - update ingredient",(t)=>{
+    t.plan(1);
+    let r_id=777;
+    let i_id=888;
+    let expected={
+      recipie_id: r_id,
+      ingredient_id: i_id,
+      type: 'UPDATE_INGREDIENT',
+      name: 'honey'
+    }
+    const actual = updateIngredient(r_id,i_id,'honey');
+    let message="updateIngredient should return action with ID, UPDATE_INGREDIENT type";
     t.deepEqual(actual,expected,message);
 });

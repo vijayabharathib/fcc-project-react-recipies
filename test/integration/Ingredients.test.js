@@ -64,7 +64,7 @@ test("IT - Ingredients - add ingredient button should display text input", (t) =
 });
 
 
-test("IT - Ingredients - deletee ingredient should remove item", (t) => {
+test("IT - Ingredients - delete ingredient should remove item", (t) => {
     t.plan(1);
     //create a redux store
     let store = createStore(recipies);
@@ -93,4 +93,71 @@ test("IT - Ingredients - deletee ingredient should remove item", (t) => {
     let afterDelete=ingredients.length;
     let message="One ingredient should be deleted from dom";
     t.equal(afterDelete, beforeDelete-1,message);
+});
+
+test("IT - Ingredients - editable ingredient should render input box", (t) => {
+    t.plan(1);
+    //create a redux store
+    let store = createStore(recipies);
+    //create root app
+    flushStore();
+    const component = TestUtils.renderIntoDocument(
+        <Provider store={store}><RecipieBox/></Provider>
+    );
+
+    let action;
+    //add recipies and ingredients
+    for(let i=0;i<=2;i++){
+      action=addRecipie("recipie" + i);
+      component.props.store.dispatch(action);
+      component.props.store.dispatch(addIngredient(action.id,"salt"));
+      component.props.store.dispatch(addIngredient(action.id,"water"));
+      component.props.store.dispatch(addIngredient(action.id,"flour"));
+    }
+
+    let recipie = scryByTag(component, "h2")[1];
+    TestUtils.Simulate.click(recipie); //click on the reccicpie header
+    let ingredients = scryByClass(component, "c-ingredient__edit");
+    let initialEditableCount=scryByClass(component,"c-ingredient__name--editable").length;
+    let beforeDelete=ingredients.length;
+    TestUtils.Simulate.click(ingredients[1]);
+    let newEditableCount=scryByClass(component,"c-ingredient__name--editable").length;
+    let message="One ingredient should be editable";
+    t.equal(newEditableCount, initialEditableCount+1,message);
+});
+
+
+test("IT - Ingredients - update ingredient should render new name", (t) => {
+    t.plan(1);
+    //create a redux store
+    let store = createStore(recipies);
+    //create root app
+    flushStore();
+    const component = TestUtils.renderIntoDocument(
+        <Provider store={store}><RecipieBox/></Provider>
+    );
+
+    let action;
+    //add recipies and ingredients
+    for(let i=0;i<=2;i++){
+      action=addRecipie("recipie" + i);
+      component.props.store.dispatch(action);
+      component.props.store.dispatch(addIngredient(action.id,"salt"));
+      component.props.store.dispatch(addIngredient(action.id,"water"));
+      component.props.store.dispatch(addIngredient(action.id,"flour"));
+    }
+
+    let recipie = scryByTag(component, "h2")[1];
+    TestUtils.Simulate.click(recipie); //click on the reccicpie header
+    let ingredients = scryByClass(component, "c-ingredient__edit");
+    TestUtils.Simulate.click(ingredients[1]);
+    let input=findByClass(component,"c-ingredient__name--editable");
+    let expected="new water";
+    input.value=expected;
+    const form=findByClass(component,"c-ingredient__update--form");
+    TestUtils.Simulate.change(input);
+    TestUtils.Simulate.submit(form);
+    let actual=component.props.store.getState()[1].ingredients[1].name;
+    let message="Update ingredient should rename ingredient";
+    t.equal(actual, expected,message);
 });

@@ -8,9 +8,10 @@ import {
   addIngredient,
   toggleIngredients,
   deleteIngredient,
-  flushStore
+  updateIngredient,
+  flushStore,
+  editIngredient
 } from '../../src/scripts/actions/ActionCreators';
-
 test("UT - reducers - should add name to state",(t)=>{
   t.plan(1);
   const expected="test object";
@@ -102,7 +103,7 @@ test("UT - reducers - should return recipie with ingredient",(t)=>{
   let expected=[{
     id: 1,
     name: "recipie name",
-    ingredients: [{id: 0,name: "salt"}],
+    ingredients: [{id: 0,name: "salt",editable: false}],
     collapsed: true,
     editable: false //editable should be false after update
   }];
@@ -113,7 +114,7 @@ test("UT - reducers - should return recipie with ingredient",(t)=>{
   expected=[{
     id: 1,
     name: "recipie name",
-    ingredients: [{id: 0,name: "salt"},{id: 1,name: "water"}],
+    ingredients: [{id: 0,name: "salt",editable: false},{id: 1,name: "water",editable: false}],
     collapsed: true,
     editable: false //editable should be false after update
   }];
@@ -160,4 +161,37 @@ test("UT - reducers - should delete ingredient from recipie",(t)=>{
   let afterDelete=state[1].ingredients.length;
   let message="DELETE_INGREDIENT should remove ingredient from recipie";
   t.equal(afterDelete,beforeDelete-1,message);
+});
+
+test("UT - reducers - should make ingredient editable",(t)=>{
+  t.plan(1);
+  let state=recipies([],addRecipie("recipie1"));
+  state=recipies(state,addRecipie("recipie2"));
+  state=recipies(state,addRecipie("recipie3"));
+  state=recipies(state,addIngredient(state[1].id,"water"));
+  let initialEditableState=state[1].ingredients[0].editable;
+  state=recipies(state,editIngredient(state[1].id,state[1].ingredients[0].id));
+  let newEditableState=state[1].ingredients[0].editable;
+  let message="EDIT_INGREDIENT should make ingredient editable";
+  t.equal(initialEditableState,!newEditableState,message);
+});
+
+test("UT - reducers - should update ingredient ",(t)=>{
+  t.plan(2);
+  let state=recipies([],addRecipie("recipie1"));
+  state=recipies(state,addRecipie("recipie2"));
+  state=recipies(state,addRecipie("recipie3"));
+  state=recipies(state,addIngredient(state[1].id,"water"));
+  let initialName=state[1].ingredients[0].name;
+  let expected="salt";
+  state=recipies(state,editIngredient(state[1].id,state[1].ingredients[0].id));
+  state=recipies(state,updateIngredient(state[1].id,state[1].ingredients[0].id,expected));
+  let actual=state[1].ingredients[0].name;
+  let message="UPDATE_INGREDIENT should rename ingredient";
+  t.equal(actual,expected,message);
+  expected=false;
+  actual=state[1].ingredients[0].editable;
+  message="UPDATE_INGREDIENT should result in non-editable ingredient";
+  t.equal(actual,expected,message);
+
 });

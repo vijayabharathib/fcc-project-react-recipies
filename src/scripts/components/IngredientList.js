@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {addIngredient,deleteIngredient} from '../actions/ActionCreators';
+import {addIngredient,deleteIngredient,editIngredient,updateIngredient} from '../actions/ActionCreators';
 import Ingredient from './Ingredient';
 import '../../styles/css/IngredientList.css';
 
@@ -16,7 +16,13 @@ let IngredientList =({recipie,dispatch})=> {
     }
     let ingredients=recipie.ingredients.map((ingredient) => {
       let onDeleteClick = () => dispatch(deleteIngredient(recipie.id,ingredient.id));
-      let ingredientObject=Object.assign({},ingredient,{onDeleteClick})
+      let onEditClick = () => dispatch(editIngredient(recipie.id,ingredient.id));
+      let onUpdateClick =(text) => dispatch(updateIngredient(recipie.id,ingredient.id,text));
+      let ingredientObject=Object.assign({},ingredient,{
+        onDeleteClick,
+        onEditClick,
+        onUpdateClick
+      });
       return (
         <Ingredient key={ingredient.id} ingredient={ingredientObject} />
       )

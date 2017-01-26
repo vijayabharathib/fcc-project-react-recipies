@@ -40,11 +40,6 @@
     width: 100%;
     padding: 5px;
     padding-left: 10px; }
-  .c-recipie .c-recipie__update {
-    font-size: 1.5em;
-    border-radius: 0 5px 5px 0;
-    border: 0;
-    display: none; }
   .c-recipie .c-recipie__update--check {
     height: 32px;
     width: 32px;

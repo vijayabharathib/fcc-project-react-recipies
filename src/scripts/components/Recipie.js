@@ -23,7 +23,7 @@ let Recipie = ({recipie,dispatch}) => {
       if(!recipie.collapsed){
         ingredientList=<IngredientList recipie={recipie}></IngredientList>;
       }else{
-        collapsedClass="c-recipie--collapsed";        
+        collapsedClass="c-recipie--collapsed";
       }
       if(recipie.editable){
         header=<li className={"c-recipie " + collapsedClass}>
@@ -36,7 +36,7 @@ let Recipie = ({recipie,dispatch}) => {
               autoFocus="autofocus">
             </input>
             <label>
-              <button className="c-recipie__update" type="submit">Update</button>
+              <button style={{display: "none"}} type="submit"></button>
               <svg
                 className="c-recipie__update--check"
                 xmlns="http://www.w3.org/2000/svg"

@@ -54,6 +54,24 @@ export const deleteIngredient=(r_id,i_id) => {
   }
 }
 
+export const editIngredient=(r_id,i_id) => {
+  return {
+    type: 'EDIT_INGREDIENT',
+    recipie_id: r_id,
+    ingredient_id: i_id
+  }
+}
+
+
+export const updateIngredient=(r_id,i_id,name) => {
+  return {
+    type: 'UPDATE_INGREDIENT',
+    recipie_id: r_id,
+    ingredient_id: i_id,
+    name: name
+  }
+}
+
 export const flushStore=()=>{
   nextRecipie=0;
   nextIngredient=0;

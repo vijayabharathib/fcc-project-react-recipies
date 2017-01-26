@@ -9,7 +9,7 @@
   .c-recipie__control__textbox:focus {
     background-color: #E0EDE2; }
   .c-recipie__control__textbox::-webkit-input-placeholder {
-    color: #60A068; }
+    color: #E0EDE2; }
   @media (min-width: 400px) {
     .c-recipie__control__textbox {
       width: 85%; } }

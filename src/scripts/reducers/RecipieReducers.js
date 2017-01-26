@@ -64,7 +64,7 @@ const _addIngredient=(state,action) => {
   }
   recipie=newState[i];
   recipie.ingredients=(recipie.ingredients.length>0 ? recipie.ingredients : []);
-  recipie.ingredients.push({id: action.ingredient_id,name: action.name});
+  recipie.ingredients.push({id: action.ingredient_id,name: action.name, editable: false});
   return [
     ...newState.slice(0,i),
     recipie,
@@ -107,6 +107,52 @@ const _deleteIngredient=(state,action) => {
     ...newState.slice(i+1)
   ];
 }
+
+const _editIngredient=(state,action) => {
+  let recipie;
+  let newState=Object.assign(state);
+  for(var i=0;i<newState.length;i++){
+    if(newState[i].id===action.recipie_id){
+      break;
+    }
+  }
+  recipie=newState[i];
+  recipie.ingredients=recipie.ingredients.map((ingredient)=>{
+    if(ingredient.id===action.ingredient_id){
+      ingredient.editable=!ingredient.editable;
+    }
+    return ingredient;
+  });
+  return [
+    ...newState.slice(0,i),
+    recipie,
+    ...newState.slice(i+1)
+  ];
+}
+
+const _updateIngredient=(state,action) => {
+  let recipie;
+  let newState=Object.assign(state);
+  for(var i=0;i<newState.length;i++){
+    if(newState[i].id===action.recipie_id){
+      break;
+    }
+  }
+  recipie=newState[i];
+  recipie.ingredients=recipie.ingredients.map((ingredient)=>{
+    if(ingredient.id===action.ingredient_id){
+      ingredient.name=action.name;
+      ingredient.editable=false;
+    }
+    return ingredient;
+  });
+  return [
+    ...newState.slice(0,i),
+    recipie,
+    ...newState.slice(i+1)
+  ];
+}
+
 const _flushAll=(state)=>{
   state=[];
 }
@@ -129,6 +175,10 @@ const recipies = (state=[],action) => {
       return _addIngredient(state,action);
     case 'DELETE_INGREDIENT':
       return _deleteIngredient(state,action);
+    case 'EDIT_INGREDIENT':
+      return _editIngredient(state,action);
+    case 'UPDATE_INGREDIENT':
+      return _updateIngredient(state,action);
     case 'FLUSH_ALL':
       return _flushAll(state);
     default:
