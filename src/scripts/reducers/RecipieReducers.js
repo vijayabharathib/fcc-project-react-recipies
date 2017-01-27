@@ -1,57 +1,46 @@
-const _recipie = (state = {}, action) => {
-  switch (action.type) {
-    case 'ADD_RECIPIE':
-      return {
-        id: action.id,
-        name: action.name,
-        collapsed: true,
-        editable: false,
-        ingredients: []
-      }
-    default:
-      return state;
-  }
+const _newRecipie = (action) => {
+    return {
+      id: action.id,
+      name: action.name,
+      collapsed: true,
+      editable: false,
+      ingredients: []
+    }
 }
 
-const _deleteItem=(state,action) => {
+const _deleteRecipie=(state,action) => {
   return state.filter(recipie => recipie.id!==action.id);
 }
 
-const _editItem=(state,action)=>{
+//used by _editRecipie & _updateRecipie
+const _amendRecipieParts=(state,id,partial)=>{
   let newState=Object.assign(state);
-  let newRecipie;
-  for(var i=0;i<newState.length;i++){
-    if(newState[i].id===action.id){
-      newRecipie=Object.assign({},newState[i],{
-        editable: !newState[i].editable
-      });
-      break;
+  return newState.map(recipie => {
+    if(recipie.id===id) { //find the right recipie
+      return Object.assign({},recipie,partial); //overwrite parts supplied
+    } else {
+      return recipie;
     }
-  }
-  return [
-    ...newState.slice(0,i),
-    newRecipie,
-    ...newState.slice(i+1)
-  ];
+  });
 }
 
-const _updateItem=(state,action)=>{
-  let newState=Object.assign(state);
-  let newRecipie;
-  for(var i=0;i<newState.length;i++){
-    if(newState[i].id===action.id){
-      newRecipie=Object.assign({},newState[i],{
-        name: action.name,
-        editable: false
-      });
-      break;
-    }
-  }
-  return [
-    ...newState.slice(0,i),
-    newRecipie,
-    ...newState.slice(i+1)
-  ];
+//make the recipie editable (GUI STATE)
+const _editRecipie=(state,action)=>{
+  //change only the editable flag to make it editable
+  let partial={
+    editable: true
+  };
+  return _amendRecipieParts(state,action.id,partial);
+}
+
+//update recipie (to rename)
+const _updateRecipie=(state,action)=>{
+  //just change the name and make it non-editable
+  let partial={
+    name: action.name,
+    editable: false
+  };
+  return _amendRecipieParts(state,action.id,partial);
 }
 
 const _addIngredient=(state,action) => {
@@ -160,15 +149,15 @@ const recipies = (state=[],action) => {
   switch (action.type) {
     case 'ADD_RECIPIE':
       return [
-        _recipie(undefined,action),
+        _newRecipie(action),
         ...state
       ];
     case 'DELETE_RECIPIE':
-      return _deleteItem(state,action);
+      return _deleteRecipie(state,action);
     case 'EDIT_RECIPIE':
-      return _editItem(state,action);
+      return _editRecipie(state,action);
     case 'UPDATE_RECIPIE':
-      return _updateItem(state,action);
+      return _updateRecipie(state,action);
     case 'TOGGLE_INGREDIENT':
       return _toggleIngredient(state,action);
     case 'ADD_INGREDIENT':
