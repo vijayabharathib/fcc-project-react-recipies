@@ -13,14 +13,13 @@ const _deleteRecipie=(state,action) => {
 }
 
 //used by _editRecipie & _updateRecipie
-const _amendRecipieParts=(state,id,partial)=>{
-  let newState=Object.assign(state);
+const _amendRecipieParts=(state,id,propertiesToUpdate)=>{
+  let condense=Object.assign; //take a copy of Object.assign function
+  let newState=condense(state);
   return newState.map(recipie => {
-    if(recipie.id===id) { //find the right recipie
-      return Object.assign({},recipie,partial); //overwrite parts supplied
-    } else {
-      return recipie;
-    }
+    //if id matches, then merge required properties with recipie,
+    //if not, return the recipie intact
+    return (recipie.id===id ? condense(recipie,propertiesToUpdate) : recipie);
   });
 }
 
@@ -43,108 +42,81 @@ const _updateRecipie=(state,action)=>{
   return _amendRecipieParts(state,action.id,partial);
 }
 
+const _findRecipie=(state,id)=>{
+  let list=state.filter(recipie => {
+    return recipie.id===id;
+  });
+  return (list.length===1 ? list[0] : undefined);
+}
+
+//this function takes a recipie
+//and replaces the recipie with the same id in the state
+const _mergeRecipie=(state,recipie)=>{
+  //if recipie id in the state matches required recipie,
+  //return the new recipie,
+  //if not return the old recipie intact
+  return state.map((item)=>{
+    return (item.id===recipie.id ? recipie : item);
+  });
+}
+
 const _addIngredient=(state,action) => {
-  let recipie;
   let newState=Object.assign(state);
-  for(var i=0;i<newState.length;i++){
-    if(newState[i].id===action.recipie_id){
-      break;
-    }
-  }
-  recipie=newState[i];
+  let recipie=_findRecipie(newState,action.recipie_id);
   recipie.ingredients=(recipie.ingredients.length>0 ? recipie.ingredients : []);
   recipie.ingredients.push({id: action.ingredient_id,name: action.name, editable: false});
-  return [
-    ...newState.slice(0,i),
-    recipie,
-    ...newState.slice(i+1)
-  ];
+  return _mergeRecipie(newState,recipie);
 }
 
 const _toggleIngredient=(state,action) => {
-  let recipie;
   let newState=Object.assign(state);
-  for(var i=0;i<newState.length;i++){
-    if(newState[i].id===action.recipie_id){
-      break;
-    }
-  }
-  recipie=newState[i];
+  let recipie=_findRecipie(newState,action.recipie_id);
   recipie.collapsed=!recipie.collapsed;
-  return [
-    ...newState.slice(0,i),
-    recipie,
-    ...newState.slice(i+1)
-  ];
+  return _mergeRecipie(newState,recipie);
 }
 
 const _deleteIngredient=(state,action) => {
-  let recipie;
   let newState=Object.assign(state);
-  for(var i=0;i<newState.length;i++){
-    if(newState[i].id===action.recipie_id){
-      break;
-    }
-  }
-  recipie=newState[i];
+  let recipie=_findRecipie(newState,action.recipie_id);
   recipie.ingredients=recipie.ingredients.filter((ingredient)=>{
     return ingredient.id!==action.ingredient_id;
   });
-  return [
-    ...newState.slice(0,i),
-    recipie,
-    ...newState.slice(i+1)
-  ];
+  return _mergeRecipie(newState,recipie);
+}
+
+//used by _editIngredient & _updateIngredient functions
+const _amendIngredientParts=(ingredients,id,propertiesToUpdate)=>{
+  return ingredients.map((ingredient)=>{
+    return (ingredient.id===id ? Object.assign(ingredient,propertiesToUpdate): ingredient);
+  });
 }
 
 const _editIngredient=(state,action) => {
-  let recipie;
   let newState=Object.assign(state);
-  for(var i=0;i<newState.length;i++){
-    if(newState[i].id===action.recipie_id){
-      break;
-    }
-  }
-  recipie=newState[i];
-  recipie.ingredients=recipie.ingredients.map((ingredient)=>{
-    if(ingredient.id===action.ingredient_id){
-      ingredient.editable=!ingredient.editable;
-    }
-    return ingredient;
-  });
-  return [
-    ...newState.slice(0,i),
-    recipie,
-    ...newState.slice(i+1)
-  ];
+  let recipie=_findRecipie(newState,action.recipie_id);
+
+  let propertiesToUpdate={
+    editable: true
+  };
+  recipie.ingredients=_amendIngredientParts(recipie.ingredients,action.ingredient_id,propertiesToUpdate);
+  return _mergeRecipie(newState,recipie);
 }
 
 const _updateIngredient=(state,action) => {
-  let recipie;
   let newState=Object.assign(state);
-  for(var i=0;i<newState.length;i++){
-    if(newState[i].id===action.recipie_id){
-      break;
-    }
-  }
-  recipie=newState[i];
-  recipie.ingredients=recipie.ingredients.map((ingredient)=>{
-    if(ingredient.id===action.ingredient_id){
-      ingredient.name=action.name;
-      ingredient.editable=false;
-    }
-    return ingredient;
-  });
-  return [
-    ...newState.slice(0,i),
-    recipie,
-    ...newState.slice(i+1)
-  ];
+  let recipie=_findRecipie(newState,action.recipie_id);
+  let propertiesToUpdate={
+    name: action.name,
+    editable: false
+  };
+  recipie.ingredients=_amendIngredientParts(recipie.ingredients,action.ingredient_id,propertiesToUpdate);
+  return _mergeRecipie(newState,recipie);
 }
 
 const _flushAll=(state)=>{
   state=[];
 }
+
 const recipies = (state=[],action) => {
   switch (action.type) {
     case 'ADD_RECIPIE':
