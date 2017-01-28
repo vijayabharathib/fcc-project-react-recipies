@@ -24,9 +24,16 @@ let IngredientList =(props)=> {
       );
 
       if(ingredient.editable){
-        return <EditableIngredient key={ingredient.id} ingredient={ingredientObject} />
+        return <EditableIngredient key={ingredient.id} name={ingredient.name} onUpdateClick={onUpdateClick} />
       }else{
-        return (<Ingredient key={ingredient.id} ingredient={ingredientObject} />);
+        return (<Ingredient
+          key={ingredient.id}
+          ingredient={ingredientObject}
+          name={ingredient.name}
+          onDeleteClick={onDeleteClick}
+          onEditClick={onEditClick}
+          />
+        );
       }
     });
     return(

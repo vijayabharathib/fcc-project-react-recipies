@@ -2,12 +2,11 @@ import React from 'react';
 import '../../styles/css/Ingredient.css';
 
 let EditableIngredient = (props) => {
-  let ingredient=props.ingredient;
   let input;
   const updateItem=(e)=>{
     e.preventDefault();
     if(input.value.trim()){
-      ingredient.onUpdateClick(input.value);
+      props.onUpdateClick(input.value);
     }
   }
 
@@ -15,7 +14,7 @@ let EditableIngredient = (props) => {
       <form className="c-ingredient__update--form" onSubmit={updateItem}>
         <input
           type="text"
-          defaultValue={ingredient.name}
+          defaultValue={props.name}
           ref={(node)=>{input=node}} className="c-ingredient__name--editable"
           autoFocus>
         </input>
