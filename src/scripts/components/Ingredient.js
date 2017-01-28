@@ -6,10 +6,9 @@ let Ingredient = ({ingredient}) => {
   let input;
   const updateItem=(e)=>{
     e.preventDefault();
-    if(!input.value.trim()){
-      return;
+    if(input.value.trim()){
+      ingredient.onUpdateClick(input.value);
     }
-    ingredient.onUpdateClick(input.value);
   }
   if(ingredient.editable){
     element= (<li className="c-ingredient__item">

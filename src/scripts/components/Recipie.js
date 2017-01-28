@@ -10,7 +10,9 @@ let Recipie = ({recipie,dispatch}) => {
     let input;
     const updateItem=(e)=>{
       e.preventDefault();
-      input.value.trim() ? dispatch(updateRecipie(recipie.id,input.value)) : '';
+      if(input.value.trim()){
+        dispatch(updateRecipie(recipie.id,input.value));
+      }
     }
     let onDeleteClick = () => dispatch(deleteRecipie(recipie.id));
     let onEditClick = () => dispatch(editRecipie(recipie.id));
