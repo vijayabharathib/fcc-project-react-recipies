@@ -6,7 +6,6 @@ import IngredientList from './IngredientList';
 import '../../styles/css/Recipie.css';
 
 let Recipie = ({recipie,dispatch}) => {
-
     let input;
     const updateItem=(e)=>{
       e.preventDefault();

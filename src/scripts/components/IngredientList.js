@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {addIngredient,deleteIngredient,editIngredient,updateIngredient} from '../actions/ActionCreators';
 import Ingredient from './Ingredient';
+import EditableIngredient from './EditableIngredient';
 import '../../styles/css/IngredientList.css';
 
 let IngredientList =({recipie,dispatch})=> {
@@ -17,14 +18,15 @@ let IngredientList =({recipie,dispatch})=> {
       let onDeleteClick = () => dispatch(deleteIngredient(recipie.id,ingredient.id));
       let onEditClick = () => dispatch(editIngredient(recipie.id,ingredient.id));
       let onUpdateClick =(text) => dispatch(updateIngredient(recipie.id,ingredient.id,text));
-      let ingredientObject=Object.assign({},ingredient,{
-        onDeleteClick,
-        onEditClick,
-        onUpdateClick
-      });
-      return (
-        <Ingredient key={ingredient.id} ingredient={ingredientObject} />
-      )
+      let ingredientObject=Object.assign(
+        {},ingredient,{onDeleteClick,onEditClick,onUpdateClick}
+      );
+
+      if(ingredient.editable){
+        return <EditableIngredient key={ingredient.id} ingredient={ingredientObject} />
+      }else{
+        return (<Ingredient key={ingredient.id} ingredient={ingredientObject} />);
+      }
     });
     return(
       <section className="o-ingredient__section">
