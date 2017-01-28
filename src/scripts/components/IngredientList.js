@@ -8,11 +8,10 @@ let IngredientList =({recipie,dispatch})=> {
     let input;
     const add=(e)=>{
       e.preventDefault();
-      if(!input.value.trim()){
-        return;
+      if(input.value.trim()){
+        dispatch(addIngredient(recipie.id,input.value));
+        input.value="";
       }
-      dispatch(addIngredient(recipie.id,input.value));
-      input.value="";
     }
     let ingredients=recipie.ingredients.map((ingredient) => {
       let onDeleteClick = () => dispatch(deleteIngredient(recipie.id,ingredient.id));

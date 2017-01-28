@@ -68,7 +68,7 @@ export const updateIngredient=(r_id,i_id,name) => {
     type: 'UPDATE_INGREDIENT',
     recipie_id: r_id,
     ingredient_id: i_id,
-    name: name
+    name
   }
 }
 
