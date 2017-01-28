@@ -15,11 +15,11 @@ const _deleteRecipie=(state,action) => {
 //used by _editRecipie & _updateRecipie
 const _amendRecipieParts=(state,id,propertiesToUpdate)=>{
   let condense=Object.assign; //take a copy of Object.assign function
-  let newState=condense(state);
+  let newState=state.filter(()=>true);//condense(state);
   return newState.map(recipie => {
     //if id matches, then merge required properties with recipie,
     //if not, return the recipie intact
-    return (recipie.id===id ? condense(recipie,propertiesToUpdate) : recipie);
+    return (recipie.id===id ? condense({},recipie,propertiesToUpdate) : recipie);
   });
 }
 
@@ -46,7 +46,7 @@ const _findRecipie=(state,id)=>{
   let list=state.filter(recipie => {
     return recipie.id===id;
   });
-  return (list.length===1 ? list[0] : undefined);
+  return (list.length===1 ? Object.assign({},list[0]) : undefined);
 }
 
 //this function takes a recipie
@@ -69,7 +69,7 @@ const _addIngredient=(state,action) => {
 }
 
 const _toggleIngredient=(state,action) => {
-  let newState=Object.assign(state);
+  let newState=state.filter(()=>true);//Object.assign(state);
   let recipie=_findRecipie(newState,action.recipie_id);
   recipie.collapsed=!recipie.collapsed;
   return _mergeRecipie(newState,recipie);
@@ -113,10 +113,6 @@ const _updateIngredient=(state,action) => {
   return _mergeRecipie(newState,recipie);
 }
 
-const _flushAll=(state)=>{
-  state=[];
-}
-
 const recipies = (state=[],action) => {
   switch (action.type) {
     case 'ADD_RECIPIE':
@@ -140,8 +136,6 @@ const recipies = (state=[],action) => {
       return _editIngredient(state,action);
     case 'UPDATE_INGREDIENT':
       return _updateIngredient(state,action);
-    case 'FLUSH_ALL':
-      return _flushAll(state);
     default:
       return state;
   }

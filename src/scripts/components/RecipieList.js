@@ -6,16 +6,8 @@ import '../../styles/css/RecipieList.css';
 
 let RecipieList =({recipies,dispatch})=> {
     let recipieList=recipies.map(function(recipie){
-      let onDeleteClick = () => dispatch(deleteRecipie(recipie.id));
-      let onEditClick = () => dispatch(editRecipie(recipie.id));
-      let expandRecipie = () => dispatch(toggleIngredients(recipie.id));
-      let recipieObject=Object.assign({},recipie,{
-        onDeleteClick,
-        onEditClick,
-        expandRecipie
-      });
       return (
-        <Recipie key={recipie.id} recipie={recipieObject} />
+        <Recipie key={recipie.id} recipie={recipie} />
       )
     });
 

@@ -75,7 +75,4 @@ export const updateIngredient=(r_id,i_id,name) => {
 export const flushStore=()=>{
   nextRecipie=0;
   nextIngredient=0;
-  return {
-    type: 'FLUSH_ALL'
-  }
 }

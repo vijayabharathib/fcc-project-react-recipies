@@ -93,36 +93,30 @@ test("UT - reducers - should return updated recipie in state based on id",(t)=>{
 test("UT - reducers - should return recipie with ingredient",(t)=>{
   t.plan(2);
   flushStore();
-  let state=[{
-    id: 1,
-    name: "recipie name",
-    collapsed: true,
-    editable: false,
-    ingredients: []
-  }];
   let expected=[{
-    id: 1,
-    name: "recipie name",
+    id: 0,
+    name: "burger",
     ingredients: [{id: 0,name: "salt",editable: false}],
     collapsed: true,
     editable: false //editable should be false after update
   }];
+  let state=recipies([],addRecipie("burger"));
   let addIngredientAction=addIngredient(state[0].id,"salt");
-  let newState=recipies(state,addIngredientAction);
+  state=recipies(state,addIngredientAction);
   let message="ADD_INGREDIENT should return updated recipie with ingredient";
-  t.deepEqual(newState,expected,message);
+  t.deepEqual(state,expected,message);
   expected=[{
-    id: 1,
-    name: "recipie name",
+    id: 0,
+    name: "burger",
     ingredients: [{id: 0,name: "salt",editable: false},{id: 1,name: "water",editable: false}],
     collapsed: true,
     editable: false //editable should be false after update
   }];
 
   addIngredientAction=addIngredient(state[0].id,"water");
-  newState=recipies(state,addIngredientAction);
+  state=recipies(state,addIngredientAction);
   message="ADD_INGREDIENT should return updated recipie with two ingredients";
-  t.deepEqual(newState,expected,message);
+  t.deepEqual(state,expected,message);
 });
 
 test("UT - reducers - should add ingredient to right recipie",(t)=>{

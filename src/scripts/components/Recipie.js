@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {updateRecipie} from '../actions/ActionCreators';
+import {updateRecipie,deleteRecipie, editRecipie, toggleIngredients} from '../actions/ActionCreators';
 import IngredientList from './IngredientList';
 
 import '../../styles/css/Recipie.css';
@@ -10,11 +10,11 @@ let Recipie = ({recipie,dispatch}) => {
     let input;
     const updateItem=(e)=>{
       e.preventDefault();
-      if(!input.value.trim()){
-        return;
-      }
-      dispatch(updateRecipie(recipie.id,input.value));
+      input.value.trim() ? dispatch(updateRecipie(recipie.id,input.value)) : '';
     }
+    let onDeleteClick = () => dispatch(deleteRecipie(recipie.id));
+    let onEditClick = () => dispatch(editRecipie(recipie.id));
+    let onExpandClick = () => dispatch(toggleIngredients(recipie.id));
 
     let recipieHeader=(recipie)=>{
       let header;
@@ -50,17 +50,17 @@ let Recipie = ({recipie,dispatch}) => {
       }else{
         header=<li className={"c-recipie " + collapsedClass}>
           <header className="c-recipie__header">
-            <h2 className="c-recipie__name" onClick={recipie.expandRecipie}>{recipie.name}</h2>
+            <h2 className="c-recipie__name" onClick={onExpandClick}>{recipie.name}</h2>
             <svg
                     className="c-recipie__delete"
-                    onClick={recipie.onDeleteClick}
+                    onClick={onDeleteClick}
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 8 8">
                     <use xlinkHref="#trash"></use>
             </svg>
             <svg
               className="c-recipie__edit"
-              onClick={recipie.onEditClick}
+              onClick={onEditClick}
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 8 8">
               <use xlinkHref="#pencil"></use>
@@ -82,10 +82,7 @@ Recipie.propTypes = {
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         collapsed: PropTypes.bool.isRequired,
-        editable: PropTypes.bool.isRequired,
-        onEditClick: PropTypes.func.isRequired,
-        onDeleteClick: PropTypes.func.isRequired,
-        expandRecipie: PropTypes.func.isRequired
+        editable: PropTypes.bool.isRequired
       }
   ).isRequired
 }
