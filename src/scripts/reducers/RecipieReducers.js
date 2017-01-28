@@ -64,7 +64,9 @@ const _addIngredient=(state,action) => {
   let newState=Object.assign(state);
   let recipie=_findRecipie(newState,action.recipie_id);
   recipie.ingredients=(recipie.ingredients.length>0 ? recipie.ingredients : []);
-  recipie.ingredients.push({id: action.ingredient_id,name: action.name, editable: false});
+  let newIngredients=recipie.ingredients.filter(()=>true);
+  newIngredients.push({id: action.ingredient_id,name: action.name, editable: false});
+  recipie.ingredients=newIngredients;
   return _mergeRecipie(newState,recipie);
 }
 

@@ -13,7 +13,7 @@ let RecipieContainer = (props) => {
     let ingredientList;
     let recipieComponent;
     if(!recipie.collapsed){
-      ingredientList=<IngredientList recipie={recipie}></IngredientList>;
+      ingredientList=<IngredientList recipie_id={recipie.id} ingredients={recipie.ingredients} />;
     }
     if(recipie.editable){
       recipieComponent= (

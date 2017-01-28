@@ -5,19 +5,20 @@ import Ingredient from './Ingredient';
 import EditableIngredient from './EditableIngredient';
 import '../../styles/css/IngredientList.css';
 
-let IngredientList =({recipie,dispatch})=> {
+let IngredientList =(props)=> {
+    let dispatch=props.dispatch;
     let input;
     const add=(e)=>{
       e.preventDefault();
       if(input.value.trim()){
-        dispatch(addIngredient(recipie.id,input.value));
+        dispatch(addIngredient(props.recipie_id,input.value));
         input.value="";
       }
     }
-    let ingredients=recipie.ingredients.map((ingredient) => {
-      let onDeleteClick = () => dispatch(deleteIngredient(recipie.id,ingredient.id));
-      let onEditClick = () => dispatch(editIngredient(recipie.id,ingredient.id));
-      let onUpdateClick =(text) => dispatch(updateIngredient(recipie.id,ingredient.id,text));
+    let ingredientsList=props.ingredients.map((ingredient) => {
+      let onDeleteClick = () => dispatch(deleteIngredient(props.recipie_id,ingredient.id));
+      let onEditClick = () => dispatch(editIngredient(props.recipie_id,ingredient.id));
+      let onUpdateClick =(text) => dispatch(updateIngredient(props.recipie_id,ingredient.id,text));
       let ingredientObject=Object.assign(
         {},ingredient,{onDeleteClick,onEditClick,onUpdateClick}
       );
@@ -43,7 +44,7 @@ let IngredientList =({recipie,dispatch})=> {
           </form></div>
         </header>
         <ul className="c-ingredient__list">
-          {ingredients}
+          {ingredientsList}
         </ul>
       </section>
     )
@@ -51,12 +52,7 @@ let IngredientList =({recipie,dispatch})=> {
 }
 
 IngredientList.propTypes = {
-  recipie: PropTypes.shape(
-      {
-        id: PropTypes.number.isRequired,
-        ingredients: PropTypes.array.isRequired
-      }
-  ).isRequired
+  ingredients: PropTypes.array.isRequired
 }
 
 IngredientList=connect()(IngredientList);

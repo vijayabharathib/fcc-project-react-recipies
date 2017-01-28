@@ -19,7 +19,6 @@ let Ingredient = (props) => {
         viewBox="0 0 8 8">
         <use xlinkHref="#pencil"></use>
       </svg>
-      {props.children}
     </li>);
 }
 

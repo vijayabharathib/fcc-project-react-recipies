@@ -39,14 +39,9 @@ let EditableRecipie = (props) => {
 }
 
 EditableRecipie.propTypes = {
-  recipie: PropTypes.shape(
-      {
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        collapsed: PropTypes.bool.isRequired,
-        editable: PropTypes.bool.isRequired
-      }
-  ).isRequired
+    name: PropTypes.string.isRequired,
+    collapsed: PropTypes.bool.isRequired,
+    onUpdateClick: PropTypes.func.isRequired
 }
 
 export default EditableRecipie;

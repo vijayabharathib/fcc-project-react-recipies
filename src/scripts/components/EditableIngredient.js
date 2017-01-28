@@ -1,7 +1,8 @@
 import React from 'react';
 import '../../styles/css/Ingredient.css';
 
-let EditableIngredient = ({ingredient}) => {
+let EditableIngredient = (props) => {
+  let ingredient=props.ingredient;
   let input;
   const updateItem=(e)=>{
     e.preventDefault();
@@ -9,7 +10,7 @@ let EditableIngredient = ({ingredient}) => {
       ingredient.onUpdateClick(input.value);
     }
   }
-  
+
   return(<li className="c-ingredient__item">
       <form className="c-ingredient__update--form" onSubmit={updateItem}>
         <input
