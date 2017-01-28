@@ -4,8 +4,12 @@ import EditableRecipie from './EditableRecipie';
 import Recipie from './Recipie';
 import IngredientList from './IngredientList';
 import '../../styles/css/Recipie.css';
-
-let RecipieContainer = ({recipie,dispatch}) => {
+import {updateRecipie} from '../actions/ActionCreators';
+import {deleteRecipie, editRecipie, toggleIngredients} from '../actions/ActionCreators';
+let RecipieContainer = (props) => {
+    let recipie=props.recipie;
+    let dispatch=props.dispatch;
+    let onUpdateClick=(text)=>{dispatch(updateRecipie(recipie.id,text))}
     let ingredientList;
     let recipieComponent;
     if(!recipie.collapsed){
@@ -13,14 +17,27 @@ let RecipieContainer = ({recipie,dispatch}) => {
     }
     if(recipie.editable){
       recipieComponent= (
-        <EditableRecipie recipie={recipie}>
-          {ingredientList}
+        <EditableRecipie
+          collapsed={recipie.collapsed}
+          name={recipie.name}
+          onUpdateClick={onUpdateClick} >
+
+            {ingredientList}
         </EditableRecipie>
       );
     }else{
+      let onDeleteClick = () => dispatch(deleteRecipie(recipie.id));
+      let onEditClick = () => dispatch(editRecipie(recipie.id));
+      let onExpandClick = () => dispatch(toggleIngredients(recipie.id));
       recipieComponent= (
-        <Recipie recipie={recipie}>
-          {ingredientList}
+        <Recipie
+            collapsed={recipie.collapsed}
+            name={recipie.name}
+            onDeleteClick={onDeleteClick}
+            onEditClick={onEditClick}
+            onExpandClick={onExpandClick}>
+
+              {ingredientList}
         </Recipie>
       );
     }

@@ -1,22 +1,16 @@
 import React, {PropTypes} from 'react';
-import {connect} from 'react-redux';
-import {updateRecipie} from '../actions/ActionCreators';
-
-import '../../styles/css/Recipie.css';
 
 let EditableRecipie = (props) => {
-    let recipie=props.recipie;
-    let dispatch=props.dispatch;
     let input;
     const updateItem=(e)=>{
       e.preventDefault();
       if(input.value.trim()){
-        dispatch(updateRecipie(recipie.id,input.value));
+        props.onUpdateClick(input.value);
       }
     }
 
     let collapsedClass="";
-    collapsedClass=(recipie.collapsed ? "c-recipie--collapsed" : "");
+    collapsedClass=(props.collapsed ? "c-recipie--collapsed" : "");
 
     return (
       <li className={"c-recipie " + collapsedClass}>
@@ -24,7 +18,7 @@ let EditableRecipie = (props) => {
           <input
             className="c-recipie__name--editable"
             type="text"
-            defaultValue={recipie.name}
+            defaultValue={props.name}
             ref={(node) => {input=node}}
             autoFocus="autofocus">
           </input>
@@ -54,7 +48,5 @@ EditableRecipie.propTypes = {
       }
   ).isRequired
 }
-
-EditableRecipie=connect()(EditableRecipie);
 
 export default EditableRecipie;
