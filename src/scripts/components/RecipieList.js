@@ -1,13 +1,13 @@
 import React from 'react';
-import Recipie from './Recipie';
+import RecipieContainer from './RecipieContainer';
 import {connect} from 'react-redux';
 import '../../styles/css/RecipieList.css';
 
 let RecipieList =({recipies,dispatch})=> {
     let recipieList=recipies.map(function(recipie){
       return (
-        <Recipie key={recipie.id} recipie={recipie} />
-      )
+        <RecipieContainer key={recipie.id} recipie={recipie} />
+      );
     });
 
     return(

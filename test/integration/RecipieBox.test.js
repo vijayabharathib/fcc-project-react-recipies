@@ -1,29 +1,24 @@
+import jsdom from 'jsdom';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import test from 'tape';
-
 import TestUtils from 'react-addons-test-utils';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import recipies from '../../src/scripts/reducers/RecipieReducers';
+import RecipieBox from '../../src/scripts/components/RecipieBox';
 import {
   findRenderedDOMComponentWithClass as findByClass,
   findRenderedDOMComponentWithTag as findByTag,
   scryRenderedDOMComponentsWithTag as scryByTag,
   scryRenderedDOMComponentsWithClass as scryByClass
 } from 'react-addons-test-utils';
-import jsdom from 'jsdom';
-//require('ignore-styles').register('.css');
-
-import {Provider} from 'react-redux';
-import {createStore} from 'redux';
-import recipies from '../../src/scripts/reducers/RecipieReducers';
-import Recipie from '../../src/scripts/components/Recipie';
-import RecipieBox from '../../src/scripts/components/RecipieBox';
-//import register from 'ignore-styles';
-//register(['.css', '.scss']);
 
 //there is no docucment/browser/window
 //so, warm it up with jsdom empty document
 global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
-global.window=document.defaultView;
+global.window = document.defaultView;
+
 
 test("IT - RecipieBox - should add Recipie on form submit",(t) => {
   t.plan(3);
