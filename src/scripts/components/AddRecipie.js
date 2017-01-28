@@ -7,11 +7,10 @@ let AddRecipie = ({dispatch}) => {
   let input ;
   const addItem=(e) =>{
     e.preventDefault();
-    if(!input.value.trim()){
-      return;
+    if(input.value.trim()){
+      dispatch(addRecipie(input.value));
+      input.value='';
     }
-    dispatch(addRecipie(input.value));
-    input.value='';
   }
   return (
     <div className="o-recipie__control" >

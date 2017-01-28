@@ -50,7 +50,7 @@ let Recipie = ({recipie,dispatch}) => {
       }else{
         header=<li className={"c-recipie " + collapsedClass}>
           <header className="c-recipie__header">
-            <h2 className="c-recipie__name" onClick={recipie.toggleIngredients}>{recipie.name}</h2>
+            <h2 className="c-recipie__name" onClick={recipie.expandRecipie}>{recipie.name}</h2>
             <svg
                     className="c-recipie__delete"
                     onClick={recipie.onDeleteClick}
@@ -85,7 +85,7 @@ Recipie.propTypes = {
         editable: PropTypes.bool.isRequired,
         onEditClick: PropTypes.func.isRequired,
         onDeleteClick: PropTypes.func.isRequired,
-        toggleIngredients: PropTypes.func.isRequired
+        expandRecipie: PropTypes.func.isRequired
       }
   ).isRequired
 }

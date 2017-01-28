@@ -4,16 +4,15 @@ import {connect} from 'react-redux';
 import {deleteRecipie, editRecipie, toggleIngredients} from '../actions/ActionCreators';
 import '../../styles/css/RecipieList.css';
 
-let RecipieList =({recipies,transmit})=> {
+let RecipieList =({recipies,dispatch})=> {
     let recipieList=recipies.map(function(recipie){
-      let onDeleteClick = () =>transmit.onDelete(recipie.id);
-      let onEditClick = () => transmit.onEdit(recipie.id);
-      let toggleIngredients = () => transmit.toggleIngredients(recipie.id);
-
+      let onDeleteClick = () => dispatch(deleteRecipie(recipie.id));
+      let onEditClick = () => dispatch(editRecipie(recipie.id));
+      let expandRecipie = () => dispatch(toggleIngredients(recipie.id));
       let recipieObject=Object.assign({},recipie,{
         onDeleteClick,
         onEditClick,
-        toggleIngredients
+        expandRecipie
       });
       return (
         <Recipie key={recipie.id} recipie={recipieObject} />
@@ -38,12 +37,7 @@ RecipieList.propTypes = {
         editable: PropTypes.bool.isRequired
       }
     ).isRequired
-  ).isRequired,
-  transmit: PropTypes.shape({
-    onDelete: PropTypes.func.isRequired,
-    onEdit: PropTypes.func.isRequired,
-    toggleIngredients: PropTypes.func.isRequired
-  }).isRequired
+  ).isRequired
 }
 
 const mapStateToProps= (state) => {
@@ -54,23 +48,10 @@ const mapStateToProps= (state) => {
 
 const mapDispatchToProps= (dispatch) => {
   return {
-    transmit: {
-      onDelete: (id) => {
-        dispatch(deleteRecipie(id));
-      },
-      onEdit: (id) => {
-        dispatch(editRecipie(id));
-      },
-      toggleIngredients: (id) => {
-        dispatch(toggleIngredients(id));
-      }
-    }
+    dispatch: dispatch
   }
 }
 
-RecipieList=connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(RecipieList);
+RecipieList=connect(mapStateToProps,mapDispatchToProps)(RecipieList);
 
 export default RecipieList;
