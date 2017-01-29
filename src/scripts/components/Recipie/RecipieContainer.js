@@ -2,10 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import EditableRecipie from './EditableRecipie';
 import Recipie from './Recipie';
-import IngredientList from './IngredientList';
-import '../../styles/css/Recipie.css';
-import {updateRecipie} from '../actions/ActionCreators';
-import {deleteRecipie, editRecipie, toggleIngredients} from '../actions/ActionCreators';
+import IngredientList from '../Ingredient/IngredientList';
+import '../../../styles/css/Recipie.css';
+import {updateRecipie,deleteRecipie, editRecipie, toggleIngredients} from '../../actions/ActionCreators';
 let RecipieContainer = (props) => {
     let recipie=props.recipie;
     let dispatch=props.dispatch;

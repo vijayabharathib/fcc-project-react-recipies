@@ -11,3 +11,5 @@ This project is part of the free code camp 'data visualization certificate'.
 - [x] Travis-CI for integration and deployment to github pages
 - [x] Coveralls for test coverage
 - [x] automatic Unit and integration tests in dev (npm-watch)
+- [x] Container and Presentational components
+- [ ] Local storage

@@ -1,9 +1,9 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {addIngredient,deleteIngredient,editIngredient,updateIngredient} from '../actions/ActionCreators';
+import {addIngredient,deleteIngredient,editIngredient,updateIngredient} from '../../actions/ActionCreators';
 import Ingredient from './Ingredient';
 import EditableIngredient from './EditableIngredient';
-import '../../styles/css/IngredientList.css';
+import '../../../styles/css/IngredientList.css';
 
 let IngredientList =(props)=> {
     let dispatch=props.dispatch;

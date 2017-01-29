@@ -14,8 +14,7 @@ import jsdom from 'jsdom';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import recipies from '../../src/scripts/reducers/RecipieReducers';
-import Recipie from '../../src/scripts/components/Recipie';
-import RecipieBox from '../../src/scripts/components/RecipieBox';
+import App from '../../src/scripts/components/App';
 
 //there is no docucment/browser/window
 //so, warm it up with jsdom empty document
@@ -28,7 +27,7 @@ test("IT - Ingredients - add ingredient button should display text input", (t) =
     let store = createStore(recipies);
     //create root app
     const component = TestUtils.renderIntoDocument(
-        <Provider store={store}><RecipieBox/></Provider>
+        <Provider store={store}><App /></Provider>
     );
     //add a recipie
     component.props.store.dispatch({type: 'ADD_RECIPIE', id: 900, name: 'recipie'});
@@ -71,7 +70,7 @@ test("IT - Ingredients - delete ingredient should remove item", (t) => {
     //create root app
     flushStore();
     const component = TestUtils.renderIntoDocument(
-        <Provider store={store}><RecipieBox/></Provider>
+        <Provider store={store}><App /></Provider>
     );
 
     let action;
@@ -102,7 +101,7 @@ test("IT - Ingredients - editable ingredient should render input box", (t) => {
     //create root app
     flushStore();
     const component = TestUtils.renderIntoDocument(
-        <Provider store={store}><RecipieBox/></Provider>
+        <Provider store={store}><App /></Provider>
     );
 
     let action;
@@ -134,7 +133,7 @@ test("IT - Ingredients - update ingredient should render new name", (t) => {
     //create root app
     flushStore();
     const component = TestUtils.renderIntoDocument(
-        <Provider store={store}><RecipieBox/></Provider>
+        <Provider store={store}><App /></Provider>
     );
 
     let action;

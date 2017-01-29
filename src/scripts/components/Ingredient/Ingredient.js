@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import '../../styles/css/Ingredient.css';
+import '../../../styles/css/Ingredient.css';
 
 let Ingredient = (props) => {
   return (<li className="c-ingredient__item">

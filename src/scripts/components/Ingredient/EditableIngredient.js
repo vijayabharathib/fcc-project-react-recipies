@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/css/Ingredient.css';
+import '../../../styles/css/Ingredient.css';
 
 let EditableIngredient = (props) => {
   let input;
