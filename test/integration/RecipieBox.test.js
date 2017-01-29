@@ -5,7 +5,7 @@ import test from 'tape';
 import TestUtils from 'react-addons-test-utils';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import recipies from '../../src/scripts/reducers/RecipieReducers';
+import reducer from '../../src/scripts/reducers/IndexReducers';
 import App from '../../src/scripts/components/App';
 import {
   findRenderedDOMComponentWithClass as findByClass,
@@ -22,7 +22,7 @@ global.window = document.defaultView;
 
 test("IT - RecipieBox - should add Recipie on form submit",(t) => {
   t.plan(3);
-  let store = createStore(recipies);
+  let store = createStore(reducer);
   const component=TestUtils.renderIntoDocument(
     <Provider store={store}><App /></Provider>
   );
@@ -58,7 +58,7 @@ test("IT - RecipieBox - should add Recipie on form submit",(t) => {
 
 test("IT - RecipieBox - delete button should remove recipie",(t) => {
   t.plan(2);
-  let store = createStore(recipies);
+  let store = createStore(reducer);
   const component=TestUtils.renderIntoDocument(<Provider store={store}><App /></Provider>);
   component.props.store.dispatch({type: 'ADD_RECIPIE',id: 999,name: 'recipie2'});
   component.props.store.dispatch({type: 'ADD_RECIPIE',id: 1000,name: 'recipie3'});
@@ -84,7 +84,7 @@ test("IT - RecipieBox - delete button should remove recipie",(t) => {
 
 test("IT - RecipieBox - edit button should render editable recipie",(t) => {
   t.plan(3);
-  let store = createStore(recipies);
+  let store = createStore(reducer);
   const component=TestUtils.renderIntoDocument(<Provider store={store}><App /></Provider>);
   component.props.store.dispatch({type: 'ADD_RECIPIE',id: 888,name: 'recipie2'});
   component.props.store.dispatch({type: 'ADD_RECIPIE',id: 889,name: 'recipie3'});
@@ -119,7 +119,7 @@ test("IT - RecipieBox - edit button should render editable recipie",(t) => {
 
 test("IT - RecipieBox - update button should render new recipie",(t) => {
   t.plan(2);
-  let store = createStore(recipies);
+  let store = createStore(reducer);
   const component=TestUtils.renderIntoDocument(<Provider store={store}><App /></Provider>);
   component.props.store.dispatch({type: 'ADD_RECIPIE',id: 899,name: 'recipie1'});
   component.props.store.dispatch({type: 'ADD_RECIPIE',id: 900,name: 'recipie2'});

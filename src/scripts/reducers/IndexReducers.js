@@ -1,8 +1,11 @@
-import {combineReducers} from 'redux';
-import recipies from './RecipieReducers';
+import recipieReducers from './RecipieReducers';
+import ingredientReducers from './IngredientReducers';
 
-const recipieList=combineReducers({
-  recipies
-});
+const reducer=(state=[],action)=>{
+  let newState=state.filter(()=>true);
+  newState=recipieReducers(newState,action);
+  newState=ingredientReducers(newState,action);
+  return newState;
+}
 
-export default recipieList;
+export default reducer;

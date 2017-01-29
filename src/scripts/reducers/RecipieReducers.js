@@ -60,15 +60,6 @@ const _mergeRecipie=(state,recipie)=>{
   });
 }
 
-const _addIngredient=(state,action) => {
-  let newState=Object.assign(state);
-  let recipie=_findRecipie(newState,action.recipie_id);
-  recipie.ingredients=(recipie.ingredients.length>0 ? recipie.ingredients : []);
-  let newIngredients=recipie.ingredients.filter(()=>true);
-  newIngredients.push({id: action.ingredient_id,name: action.name, editable: false});
-  recipie.ingredients=newIngredients;
-  return _mergeRecipie(newState,recipie);
-}
 
 const _toggleIngredient=(state,action) => {
   let newState=state.filter(()=>true);//Object.assign(state);
@@ -77,45 +68,8 @@ const _toggleIngredient=(state,action) => {
   return _mergeRecipie(newState,recipie);
 }
 
-const _deleteIngredient=(state,action) => {
-  let newState=Object.assign(state);
-  let recipie=_findRecipie(newState,action.recipie_id);
-  recipie.ingredients=recipie.ingredients.filter((ingredient)=>{
-    return ingredient.id!==action.ingredient_id;
-  });
-  return _mergeRecipie(newState,recipie);
-}
 
-//used by _editIngredient & _updateIngredient functions
-const _amendIngredientParts=(ingredients,id,propertiesToUpdate)=>{
-  return ingredients.map((ingredient)=>{
-    return (ingredient.id===id ? Object.assign(ingredient,propertiesToUpdate): ingredient);
-  });
-}
-
-const _editIngredient=(state,action) => {
-  let newState=Object.assign(state);
-  let recipie=_findRecipie(newState,action.recipie_id);
-
-  let propertiesToUpdate={
-    editable: true
-  };
-  recipie.ingredients=_amendIngredientParts(recipie.ingredients,action.ingredient_id,propertiesToUpdate);
-  return _mergeRecipie(newState,recipie);
-}
-
-const _updateIngredient=(state,action) => {
-  let newState=Object.assign(state);
-  let recipie=_findRecipie(newState,action.recipie_id);
-  let propertiesToUpdate={
-    name: action.name,
-    editable: false
-  };
-  recipie.ingredients=_amendIngredientParts(recipie.ingredients,action.ingredient_id,propertiesToUpdate);
-  return _mergeRecipie(newState,recipie);
-}
-
-const recipies = (state=[],action) => {
+const recipieReducers = (state=[],action) => {
   switch (action.type) {
     case 'ADD_RECIPIE':
       return [
@@ -130,17 +84,9 @@ const recipies = (state=[],action) => {
       return _updateRecipie(state,action);
     case 'TOGGLE_INGREDIENT':
       return _toggleIngredient(state,action);
-    case 'ADD_INGREDIENT':
-      return _addIngredient(state,action);
-    case 'DELETE_INGREDIENT':
-      return _deleteIngredient(state,action);
-    case 'EDIT_INGREDIENT':
-      return _editIngredient(state,action);
-    case 'UPDATE_INGREDIENT':
-      return _updateIngredient(state,action);
     default:
       return state;
   }
 }
 
-export default recipies;
+export default recipieReducers;

@@ -13,7 +13,7 @@ import jsdom from 'jsdom';
 
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import recipies from '../../src/scripts/reducers/RecipieReducers';
+import reducer from '../../src/scripts/reducers/IndexReducers';
 import App from '../../src/scripts/components/App';
 
 //there is no docucment/browser/window
@@ -24,7 +24,7 @@ global.window = document.defaultView;
 test("IT - Ingredients - add ingredient button should display text input", (t) => {
     t.plan(4);
     //create a redux store
-    let store = createStore(recipies);
+    let store = createStore(reducer);
     //create root app
     const component = TestUtils.renderIntoDocument(
         <Provider store={store}><App /></Provider>
@@ -66,7 +66,7 @@ test("IT - Ingredients - add ingredient button should display text input", (t) =
 test("IT - Ingredients - delete ingredient should remove item", (t) => {
     t.plan(1);
     //create a redux store
-    let store = createStore(recipies);
+    let store = createStore(reducer);
     //create root app
     flushStore();
     const component = TestUtils.renderIntoDocument(
@@ -97,7 +97,7 @@ test("IT - Ingredients - delete ingredient should remove item", (t) => {
 test("IT - Ingredients - editable ingredient should render input box", (t) => {
     t.plan(1);
     //create a redux store
-    let store = createStore(recipies);
+    let store = createStore(reducer);
     //create root app
     flushStore();
     const component = TestUtils.renderIntoDocument(
@@ -129,7 +129,7 @@ test("IT - Ingredients - editable ingredient should render input box", (t) => {
 test("IT - Ingredients - update ingredient should render new name", (t) => {
     t.plan(1);
     //create a redux store
-    let store = createStore(recipies);
+    let store = createStore(reducer);
     //create root app
     flushStore();
     const component = TestUtils.renderIntoDocument(

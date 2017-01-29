@@ -1,5 +1,4 @@
 import test from 'tape';
-import recipies from '../../src/scripts/reducers/RecipieReducers';
 import {
   addRecipie,
   deleteRecipie,
