@@ -1,9 +1,10 @@
-let nextRecipie=0;
+import {v4} from 'node-uuid';
+
 export const addRecipie=(name) => {
   return {
     type: 'ADD_RECIPIE',
     name,
-    id: nextRecipie++
+    id: v4()
   }
 }
 
@@ -29,13 +30,12 @@ export const updateRecipie=(id,name)=>{
   }
 }
 
-let nextIngredient=0;
 export const addIngredient=(id,name) => {
   return {
     type: 'ADD_INGREDIENT',
     name,
     recipie_id: id,
-    ingredient_id: nextIngredient++
+    ingredient_id: v4()
   }
 }
 
@@ -70,9 +70,4 @@ export const updateIngredient=(r_id,i_id,name) => {
     ingredient_id: i_id,
     name
   }
-}
-
-export const flushStore=()=>{
-  nextRecipie=0;
-  nextIngredient=0;
 }

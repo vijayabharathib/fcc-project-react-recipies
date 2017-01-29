@@ -10,17 +10,13 @@ import {
   editIngredient,
   updateIngredient,
   flushStore} from '../../src/scripts/actions/ActionCreators';
-test ("UT - action creators - addRecipie should auto increment ID",(t)=>{
-    t.plan(2);
+test ("UT - action creators - addRecipie should give unique ID",(t)=>{
+    t.plan(1);
     let prevID=addRecipie("recipie1").id; // 0 is first id
     let nextID=addRecipie("recipie2").id; //1 is next id
-    let message="Add recipie should start with ID 0 and increment by 1";
-    t.equal(nextID,prevID+1,message);
-    prevID=nextID;
-    nextID=addRecipie("recipie3").id //should be 2;
-    message="addRecipie should increment id from 1 to 2";
-    t.equal(nextID,prevID+1,message);
-    t.end();
+    let message="Add recipie should give unique id";
+    t.notEqual(nextID,prevID,message);
+
 });
 
 test ("UT - action creators - addRecipie should return ADD_RECIPIE",(t)=>{
@@ -91,8 +87,8 @@ test ("UT - action creators - addIngredient",(t)=>{
       ingredient_id: 0,
       type: 'ADD_INGREDIENT'
     }
-    flushStore();
     const actual = addIngredient(r_id,name);
+    expected.ingredient_id=actual.ingredient_id; //to update uuid
     let message="addIngredient should return action with ID, ADD_INGREDIENT type";
     t.deepEqual(actual,expected,message);
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import test from 'tape';
-import {addRecipie,addIngredient,flushStore} from '../../src/scripts/actions/ActionCreators';
+import {addRecipie,addIngredient} from '../../src/scripts/actions/ActionCreators';
 import TestUtils from 'react-addons-test-utils';
 import {
   findRenderedDOMComponentWithClass as findByClass,
@@ -68,7 +68,6 @@ test("IT - Ingredients - delete ingredient should remove item", (t) => {
     //create a redux store
     let store = createStore(reducer);
     //create root app
-    flushStore();
     const component = TestUtils.renderIntoDocument(
         <Provider store={store}><App /></Provider>
     );
@@ -99,7 +98,6 @@ test("IT - Ingredients - editable ingredient should render input box", (t) => {
     //create a redux store
     let store = createStore(reducer);
     //create root app
-    flushStore();
     const component = TestUtils.renderIntoDocument(
         <Provider store={store}><App /></Provider>
     );
@@ -131,7 +129,6 @@ test("IT - Ingredients - update ingredient should render new name", (t) => {
     //create a redux store
     let store = createStore(reducer);
     //create root app
-    flushStore();
     const component = TestUtils.renderIntoDocument(
         <Provider store={store}><App /></Provider>
     );
