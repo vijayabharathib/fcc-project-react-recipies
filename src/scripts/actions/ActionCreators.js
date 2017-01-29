@@ -41,7 +41,7 @@ export const addIngredient=(id,name) => {
 
 export const toggleIngredients=(id) => {
   return {
-    type: 'TOGGLE_INGREDIENT',
+    type: 'EXPAND_RECIPIE',
     recipie_id: id,
   }
 }

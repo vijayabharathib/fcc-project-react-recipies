@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import EditableRecipie from './EditableRecipie';
 import Recipie from './Recipie';
-import IngredientList from '../Ingredient/IngredientList';
+import IngredientsContainer from '../Ingredient/IngredientsContainer';
 import '../../../styles/css/Recipie.css';
 import {updateRecipie,deleteRecipie, editRecipie, toggleIngredients} from '../../actions/ActionCreators';
 let RecipieContainer = (props) => {
@@ -12,7 +12,7 @@ let RecipieContainer = (props) => {
     let ingredientList;
     let recipieComponent;
     if(!recipie.collapsed){
-      ingredientList=<IngredientList recipie_id={recipie.id} ingredients={recipie.ingredients} />;
+      ingredientList=<IngredientsContainer recipie_id={recipie.id} ingredients={recipie.ingredients} />;
     }
     if(recipie.editable){
       recipieComponent= (

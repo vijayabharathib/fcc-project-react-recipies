@@ -3,18 +3,17 @@ import {connect} from 'react-redux';
 import {addIngredient,deleteIngredient,editIngredient,updateIngredient} from '../../actions/ActionCreators';
 import Ingredient from './Ingredient';
 import EditableIngredient from './EditableIngredient';
+import IngredientsList from './IngredientsList';
+import AddIngredient from './AddIngredient';
 import '../../../styles/css/IngredientList.css';
 
-let IngredientList =(props)=> {
+//container component with CRUD functions
+let IngredientsContainer =(props)=> {
     let dispatch=props.dispatch;
-    let input;
-    const add=(e)=>{
-      e.preventDefault();
-      if(input.value.trim()){
-        dispatch(addIngredient(props.recipie_id,input.value));
-        input.value="";
-      }
+    let onAddIngredient = (text) => {
+      dispatch(addIngredient(props.recipie_id,text));
     }
+
     let ingredientsList=props.ingredients.map((ingredient) => {
       let onDeleteClick = () => dispatch(deleteIngredient(props.recipie_id,ingredient.id));
       let onEditClick = () => dispatch(editIngredient(props.recipie_id,ingredient.id));
@@ -36,32 +35,19 @@ let IngredientList =(props)=> {
         );
       }
     });
-    return(
-      <section className="o-ingredient__section">
-        <header className="c-ingredient__header">
-          <h3 className="c-ingredient__title">Ingredients</h3>
-          <div className="c-add__ingredient">
-          <form className="c-ingredient__new__form" onSubmit={add}>
-            <input
-              type="text"
-              className="c-ingredient__add--editable"
-              ref={(node) => {input=node}}>
-            </input>
-            <button className="c-ingredient__add" type="submit">+</button>
-          </form></div>
-        </header>
-        <ul className="c-ingredient__list">
-          {ingredientsList}
-        </ul>
-      </section>
-    )
+    return (
+      <IngredientsList>
+        <AddIngredient onAddIngredient={onAddIngredient} />
+        {ingredientsList}
+      </IngredientsList>
+    );
 
 }
 
-IngredientList.propTypes = {
+IngredientsContainer.propTypes = {
   ingredients: PropTypes.array.isRequired
 }
 
-IngredientList=connect()(IngredientList);
+IngredientsContainer=connect()(IngredientsContainer);
 
-export default IngredientList;
+export default IngredientsContainer;

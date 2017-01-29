@@ -140,7 +140,7 @@ test("UT - reducers - should toggle ingredient to the right recipie",(t)=>{
   let expected=!state[1].collapsed; //
   let action=toggleIngredients(state[1].id);
   let newState=reducer(state,action);
-  let message="TOGGLE_INGREDIENT should switch flag";
+  let message="EXPAND_RECIPIE should switch flag";
   t.equal(newState[1].collapsed,expected,message);
 });
 

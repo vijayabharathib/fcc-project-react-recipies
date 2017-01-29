@@ -102,10 +102,10 @@ test ("UT - action creators - toggleIngredient",(t)=>{
     let r_id=777;
     let expected={
       recipie_id: r_id,
-      type: 'TOGGLE_INGREDIENT'
+      type: 'EXPAND_RECIPIE'
     }
     const actual = toggleIngredients(r_id);
-    let message="toggleIngredient should return action with ID, TOGGLE_INGREDIENT type";
+    let message="toggleIngredient should return action with ID, EXPAND_RECIPIE type";
     t.deepEqual(actual,expected,message);
 });
 

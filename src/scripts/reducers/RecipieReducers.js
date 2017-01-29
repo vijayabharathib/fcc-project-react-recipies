@@ -61,7 +61,7 @@ const _mergeRecipie=(state,recipie)=>{
 }
 
 
-const _toggleIngredient=(state,action) => {
+const _expandRecipie=(state,action) => {
   let newState=state.filter(()=>true);//Object.assign(state);
   let recipie=_findRecipie(newState,action.recipie_id);
   recipie.collapsed=!recipie.collapsed;
@@ -82,8 +82,8 @@ const recipieReducers = (state=[],action) => {
       return _editRecipie(state,action);
     case 'UPDATE_RECIPIE':
       return _updateRecipie(state,action);
-    case 'TOGGLE_INGREDIENT':
-      return _toggleIngredient(state,action);
+    case 'EXPAND_RECIPIE':
+      return _expandRecipie(state,action);
     default:
       return state;
   }

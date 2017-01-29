@@ -1,13 +1,3 @@
-//used by _editRecipie & _updateRecipie
-const _amendRecipieParts=(state,id,propertiesToUpdate)=>{
-  let condense=Object.assign; //take a copy of Object.assign function
-  let newState=state.filter(()=>true);//condense(state);
-  return newState.map(recipie => {
-    //if id matches, then merge required properties with recipie,
-    //if not, return the recipie intact
-    return (recipie.id===id ? condense({},recipie,propertiesToUpdate) : recipie);
-  });
-}
 
 const _findRecipie=(state,id)=>{
   let list=state.filter(recipie => {
