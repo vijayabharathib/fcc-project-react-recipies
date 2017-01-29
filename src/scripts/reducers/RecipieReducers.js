@@ -14,12 +14,10 @@ const _deleteRecipie=(state,action) => {
 
 //used by _editRecipie & _updateRecipie
 const _amendRecipieParts=(state,id,propertiesToUpdate)=>{
-  let condense=Object.assign; //take a copy of Object.assign function
-  let newState=state.filter(()=>true);//condense(state);
-  return newState.map(recipie => {
+  return state.map(recipie => {
     //if id matches, then merge required properties with recipie,
     //if not, return the recipie intact
-    return (recipie.id===id ? condense({},recipie,propertiesToUpdate) : recipie);
+    return (recipie.id===id ? Object.assign({},recipie,propertiesToUpdate) : recipie);
   });
 }
 
@@ -62,10 +60,9 @@ const _mergeRecipie=(state,recipie)=>{
 
 
 const _expandRecipie=(state,action) => {
-  let newState=state.filter(()=>true);//Object.assign(state);
-  let recipie=_findRecipie(newState,action.recipie_id);
+  let recipie=_findRecipie(state,action.recipie_id);
   recipie.collapsed=!recipie.collapsed;
-  return _mergeRecipie(newState,recipie);
+  return _mergeRecipie(state,recipie);
 }
 
 

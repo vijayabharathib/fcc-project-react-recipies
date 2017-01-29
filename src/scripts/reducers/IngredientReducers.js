@@ -18,23 +18,21 @@ const _mergeRecipie=(state,recipie)=>{
 }
 
 const _addIngredient=(state,action) => {
-  let newState=Object.assign(state);
-  let recipie=_findRecipie(newState,action.recipie_id);
+  let recipie=_findRecipie(state,action.recipie_id);
   recipie.ingredients=(recipie.ingredients.length>0 ? recipie.ingredients : []);
   let newIngredients=recipie.ingredients.filter(()=>true);
   newIngredients.push({id: action.ingredient_id,name: action.name, editable: false});
   recipie.ingredients=newIngredients;
-  return _mergeRecipie(newState,recipie);
+  return _mergeRecipie(state,recipie);
 }
 
 
 const _deleteIngredient=(state,action) => {
-  let newState=Object.assign(state);
-  let recipie=_findRecipie(newState,action.recipie_id);
+  let recipie=_findRecipie(state,action.recipie_id);
   recipie.ingredients=recipie.ingredients.filter((ingredient)=>{
     return ingredient.id!==action.ingredient_id;
   });
-  return _mergeRecipie(newState,recipie);
+  return _mergeRecipie(state,recipie);
 }
 
 //used by _editIngredient & _updateIngredient functions
@@ -45,25 +43,23 @@ const _amendIngredientParts=(ingredients,id,propertiesToUpdate)=>{
 }
 
 const _editIngredient=(state,action) => {
-  let newState=Object.assign(state);
-  let recipie=_findRecipie(newState,action.recipie_id);
+  let recipie=_findRecipie(state,action.recipie_id);
 
   let propertiesToUpdate={
     editable: true
   };
   recipie.ingredients=_amendIngredientParts(recipie.ingredients,action.ingredient_id,propertiesToUpdate);
-  return _mergeRecipie(newState,recipie);
+  return _mergeRecipie(state,recipie);
 }
 
 const _updateIngredient=(state,action) => {
-  let newState=Object.assign(state);
-  let recipie=_findRecipie(newState,action.recipie_id);
+  let recipie=_findRecipie(state,action.recipie_id);
   let propertiesToUpdate={
     name: action.name,
     editable: false
   };
   recipie.ingredients=_amendIngredientParts(recipie.ingredients,action.ingredient_id,propertiesToUpdate);
-  return _mergeRecipie(newState,recipie);
+  return _mergeRecipie(state,recipie);
 }
 
 const reduceIngredients = (state=[],action) => {

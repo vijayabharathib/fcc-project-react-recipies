@@ -9,7 +9,6 @@ import {loadState,saveState} from './scripts/reducers/PersistState';
 
 let persistedState=loadState();
 let store = createStore(reducer,persistedState,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-console.log(store.getState());
 store.subscribe(()=>{
   saveState(store.getState());
 });
