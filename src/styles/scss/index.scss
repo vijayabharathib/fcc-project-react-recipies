@@ -22,6 +22,7 @@ body {
 }
 .container{
   margin: 0 auto;
+  min-height: 32em;
   max-width: 40em;
   padding: 5px;
   background-color: transparentize($color-primary-1,.6);
@@ -35,8 +36,10 @@ body {
 }
 
 .brand{
+  font-size: 3em;
+  margin: 10px auto;
   text-align: center;
-  color: $color-brand;
-  color: transparentize($color-brand, .2);
-  text-shadow: 0 -1px 1px $color-primary-2;
+  color: $color-white;
+  text-shadow: 0 -1px 1px $color-primary-4,
+    -1px -2px 1px $color-primary-4;
 }

@@ -18,6 +18,7 @@ body {
 
 .container {
   margin: 0 auto;
+  min-height: 32em;
   max-width: 40em;
   padding: 5px;
   background-color: rgba(255, 248, 241, 0.4);
@@ -30,7 +31,8 @@ body {
       box-shadow: -8px 12px 8px 8px rgba(0, 0, 0, 0.7); } }
 
 .brand {
+  font-size: 3em;
+  margin: 10px auto;
   text-align: center;
-  color: #592016;
-  color: rgba(89, 32, 22, 0.8);
-  text-shadow: 0 -1px 1px #FFECDA; }
+  color: #fff;
+  text-shadow: 0 -1px 1px #AB794B, -1px -2px 1px #AB794B; }
