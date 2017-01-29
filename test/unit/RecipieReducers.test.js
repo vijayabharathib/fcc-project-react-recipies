@@ -98,12 +98,13 @@ test("UT - reducers - should return recipie with ingredient",(t)=>{
   expected[0].id=addIngredientAction.ingredient_id;
   let message="ADD_INGREDIENT should return updated recipie with ingredient";
   t.deepEqual(state[0].ingredients,expected,message);
-  expected=[expected,{id: 1,name: "water",editable: false}];
 
+  expected=[expected[0],{id: 1,name: "water",editable: false}];
   addIngredientAction=addIngredient(state[0].id,"water");
+  expected[1].id=addIngredientAction.ingredient_id;
   state=reducer(state,addIngredientAction);
   message="ADD_INGREDIENT should return updated recipie with two ingredients";
-  t.deepEqual(state.ingredients,expected,message);
+  t.deepEqual(state[0].ingredients,expected,message);
 });
 
 test("UT - reducers - should add ingredient to right recipie",(t)=>{
