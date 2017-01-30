@@ -74,10 +74,41 @@ package.json
 
 It is also possible to set up an npm script using `concurrently` npm package to run both of them in a single script. But the output from `concurrently` is kind of clumsy with both js compilation messages and sass compilations. Imagine another watch for tests sending results to the same terminal window. That's a lot of output text to make sense from.
 
+---
+
+## Test create-react-app with TAPE and JSDOM
+
+`extend-tape` and `tape-jsx-equals`  were not used. They are still part of the development dependencies as there are usecases for them in the test when they are refactored.
+
+`babel-cli`, `babel-preset-es2015` and `babel-preset-react` are part of the create-react-app(???).
+
+`tape --require ignore-styles` will enable that the css import statements within component files are ignored during test.
+
+Piping the tape test output through `faucet` makes it neat and colorful.
+
+Run `npm test` on a terminal and nice and colorful test results should be ready.
+
+```
+{
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "faucet": "0.0.1",
+    "ignore-styles": "^5.0.1",
+    "react-addons-test-utils": "^15.4.1",
+    "tape": "^4.6.3"
+  },
+  "scripts": {
+    "test": "babel-node node_modules/.bin/tape --require ignore-styles test/**/*.test.js | faucet"
+  }
+}
+
+```
+
+---
 ## More details around these later
 ```
-## Test create-react-app with TAPE  and JSDOM
-
 ## Watch JS & test files and run tests on change
 
 ## Continuous integration using [Travis-CI][travis]
