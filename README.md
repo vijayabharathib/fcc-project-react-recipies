@@ -78,16 +78,23 @@ It is also possible to set up an npm script using `concurrently` npm package to 
 
 ## Test create-react-app with TAPE and JSDOM
 
-`extend-tape` and `tape-jsx-equals`  were not used. They are still part of the development dependencies as there are usecases for them in the test when they are refactored.
+#### ES5
+`babel-cli`, `babel-preset-es2015` and `babel-preset-react` allow us to use ES5 syntax in our tests. `.babelrc` file at the root of the project has the following presets defined:
+```
+{
+  "presets": ["es2015","react"]
+}
+```
+This allows the npm script to use babel-node to initiate the tape tests from.
 
-`babel-cli`, `babel-preset-es2015` and `babel-preset-react` are part of the create-react-app(???).
-
+#### TAPE
 `tape --require ignore-styles` will enable that the css import statements within component files are ignored during test.
 
 Piping the tape test output through `faucet` makes it neat and colorful.
 
 Run `npm test` on a terminal and nice and colorful test results should be ready.
 
+Here is the portion of package.json that lists the necessary packages and scripts.
 ```
 {
   "devDependencies": {
@@ -105,15 +112,35 @@ Run `npm test` on a terminal and nice and colorful test results should be ready.
 }
 
 ```
+`extend-tape` and `tape-jsx-equals`  were not used. They are still part of the development dependencies in the project's package.json. They are retained as there are usecases for them in the tests when they are refactored.
+
+For example, some of the tests cannot use deepEqual to compare state as the id is dynamically generated using `uuid`. However, extend-tape can be used to re-wire deepEqual to ignore just the ID and compare rest of the state.
+```javascript
+import test from 'tape';
+import reducer from '../../src/scripts/reducers/IndexReducers';
+import { addRecipie }from '../../src/scripts/actions/ActionCreators';
+test("UnitTest- reducers - recipie should be non-editable by default",(t)=>{
+  t.plan(1);
+  const action1=addRecipie("test object");
+  const recipie1=reducer([],action1);
+  const actual=recipie1[0].editable;
+  const expected=false;
+  const message="ADD_RECIPIE should add a new entry with editable as false";
+  t.deepEqual(actual,expected,message);
+});
+```
 
 ---
 ## More details around these later
 ```
 ## Watch JS & test files and run tests on change
 
+## Coverage info via [Coveralls][coveralls]
+
 ## Continuous integration using [Travis-CI][travis]
 
-## Coverage info via [Coveralls][coveralls]
+## concurrently
+
 ```
 ## References
 A free 30-video tutorial on egghead.io by the creator of redux himself: [Getting Started With Redux][redux-getting-started]. I have watched it several times while refactoring. Nearly half of the story is on how to build redux itself giving a sense of the underlying engine. Need to watch till the end to see the full power of the library.
