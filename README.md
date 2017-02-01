@@ -17,8 +17,31 @@ This project is part of the free code camp 'data visualization certificate'. Use
 - [x] Coveralls for test coverage
 - [x] Separation of concerns (Container and Presentational components)
 
+```
+Disclaimer: Here is a documentation of the workflow as I learn to get comfortable with react development. May not be the industry best practice. If there is a better way, file an issue in this repo.
+```
+
 ## Development
 
+#### Project Structure
+```
+root
+  --> public
+  --> src
+      --> images
+      --> scripts
+          --> actions
+          --> reducers
+          --> components
+      --> styles
+          --> scss
+          --> css
+  --> test
+      --> integration
+      --> unit
+
+```
+#### Commandline scripts
 Workflow | Command
 -------|--------
 Install node dependencies | `npm install`
@@ -26,6 +49,7 @@ Start the dev server | `npm start`
 Start watch on tests and sass files | `npm run watch -s`
 Get a report on test and coverage | `npm run report`
 Deploy to gh-pages | `npm run deploy`
+
 ## Create-React-App
 The create-react-app npm package serves as a springboard to get started. Find the package in github @ https://github.com/facebookincubator/create-react-app.
 
@@ -46,8 +70,7 @@ Here is the package.json that will handle the workflow. The key within the watch
 ```
 package.json
 ```
-
-```
+```json
 {
   "devDependencies": {
     "node-sass": "^4.1.1",
@@ -78,9 +101,9 @@ It is also possible to set up an npm script using `concurrently` npm package to 
 
 ## Test create-react-app with TAPE and JSDOM
 
-#### ES5
+#### ES6
 `babel-cli`, `babel-preset-es2015` and `babel-preset-react` allow us to use ES5 syntax in our tests. `.babelrc` file at the root of the project has the following presets defined:
-```
+```json
 {
   "presets": ["es2015","react"]
 }
@@ -95,7 +118,7 @@ Piping the tape test output through `faucet` makes it neat and colorful.
 Run `npm test` on a terminal and nice and colorful test results should be ready.
 
 Here is the portion of package.json that lists the necessary packages and scripts.
-```
+```json
 {
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -112,28 +135,56 @@ Here is the portion of package.json that lists the necessary packages and script
 }
 
 ```
-`extend-tape` and `tape-jsx-equals`  were not used. They are still part of the development dependencies in the project's package.json. They are retained as there are usecases for them in the tests when they are refactored.
+But what's with that node_modules/.bin/tape? Well, `npm run <command>` will add `node_modules/bin/tape` to the path. However, `babel-node` jumps on that advantage, while tape had to speak its absolute path.
 
-For example, some of the tests cannot use deepEqual to compare state as the id is dynamically generated using `uuid`. However, extend-tape can be used to re-wire deepEqual to ignore just the ID and compare rest of the state.
+After all that configuration, this test must be running and resulting from `npm test`
+
 ```javascript
 import test from 'tape';
 import reducer from '../../src/scripts/reducers/IndexReducers';
 import { addRecipie }from '../../src/scripts/actions/ActionCreators';
 test("UnitTest- reducers - recipie should be non-editable by default",(t)=>{
   t.plan(1);
-  const action1=addRecipie("test object");
-  const recipie1=reducer([],action1);
+  const recipie1=reducer([],addRecipie("test object"));
   const actual=recipie1[0].editable;
   const expected=false;
-  const message="ADD_RECIPIE should add a new entry with editable as false";
-  t.deepEqual(actual,expected,message);
+  const message="new entry should be non-editable";
+  t.equal(actual,expected,message);
 });
 ```
+#### Refactor
+`extend-tape` and `tape-jsx-equals`  were not used, but still part of the development dependencies in the project's package.json. They are retained as it is possible to refactor the tests using these packages.
 
+For example, some of the tests cannot use deepEqual to compare state as the id is dynamically generated using `uuid`. However, extend-tape can be used to re-wire deepEqual to ignore just the ID and compare rest of the state.
+
+---
+## Watch for change & run tests
+Setions on Setting up testing and Watching for sass style files already brought in many of the packages required for this job. So, it's going to be easier.
+
+The `watch` section already had provision for `style` script. Adding a watch for `test` script can be done by including a single line: `"test": "{src,test}/**/*.js"`
+
+That just says, run `npm test` when files with .js extension are changed within src or test folders (and their sub-folders).
+
+```
+package.json
+```
+```json
+{
+  "watch": {
+    "test": "{src,test}/**/*.js",
+    "style": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "scss",
+      "quiet": true
+    }
+  }
+}
+```
 ---
 ## More details around these later
 ```
-## Watch JS & test files and run tests on change
 
 ## Coverage info via [Coveralls][coveralls]
 
