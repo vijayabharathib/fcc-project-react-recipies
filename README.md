@@ -1,6 +1,6 @@
 # Recipie Box project in react
 
-[![Build Status](https://travis-ci.org/vijayabharathib/fcc-project-react-recipies.svg?branch=master)][travis] [![Coverage Status](https://coveralls.io/repos/github/vijayabharathib/fcc-project-react-recipies/badge.svg?branch=master)][coveralls]
+[![Build Status](https://travis-ci.org/vijayabharathib/fcc-project-react-recipies.svg?branch=master)][link-travis] [![Coverage Status][badge-svg-coveralls]][link-coveralls]
 
 The project is hosted on github pages: https://vijayabharathib.github.io/fcc-project-react-recipies/
 
@@ -183,12 +183,30 @@ package.json
 }
 ```
 ---
+## Code Coverage Report (nyc)
+All we need is an extra [nyc][link-nyc] package in the existing configuration to get this nice code coverage information.
+    "report": "nyc npm run local-test && nyc report --reporter=lcov",
+![react nyc coverage report][image-nyc-coverage]
+
+---
+
+## Badge of honor on coveralls
+You can get nice badge on the repository via coveralls [![Coverage Status][badge-svg-coveralls]][link-coveralls]
+![coveralls code coverage by file][image-coverall-by-file]
+
+![coveralls-by-commits](https://cloud.githubusercontent.com/assets/15519267/22578155/9d43605a-e9ec-11e6-8d57-3b10d77e082a.png)
+
+---
+
+## Continuous integration using [Travis-CI][link-travis]
+
+![travis ci build status][image-travis-build]
+
+---
+
 ## More details around these later
 ```
 
-## Coverage info via [Coveralls][coveralls]
-
-## Continuous integration using [Travis-CI][travis]
 
 ## concurrently
 
@@ -198,6 +216,14 @@ A free 30-video tutorial on egghead.io by the creator of redux himself: [Getting
 
 
 [back-reference-section]: http://just-for-named-references
-[travis]: https://travis-ci.org/vijayabharathib/fcc-project-react-recipies
-[coveralls]: https://coveralls.io/github/vijayabharathib/fcc-project-react-recipies?branch=master
+[link-travis]: https://travis-ci.org/vijayabharathib/fcc-project-react-recipies
+[link-coveralls]: https://coveralls.io/github/vijayabharathib/fcc-project-react-recipies?branch=master
+[link-nyc]:
 [redux-getting-started]: https://egghead.io/courses/getting-started-with-redux
+[image-nyc-coverage]:https://cloud.githubusercontent.com/assets/15519267/22577800/41056d44-e9ea-11e6-8a80-1a0ac316a4f9.png
+[image-coverall-by-file]:https://cloud.githubusercontent.com/assets/15519267/22578088/0dd1a756-e9ec-11e6-88ab-b95021038b2f.png
+[coveralls-by-commits]:https://cloud.githubusercontent.com/assets/15519267/22578155/9d43605a-e9ec-11e6-8d57-3b10d77e082a.png
+[image-travis-build]:https://cloud.githubusercontent.com/assets/15519267/22578352/23264c18-e9ee-11e6-8619-45c7092e3691.png
+
+[badge-svg-coveralls]:https://coveralls.io/repos/github/vijayabharathib/fcc-project-react-recipies/badge.svg?branch=master
+[badge-svg-travis]:https://travis-ci.org/vijayabharathib/fcc-project-react-recipies.svg?branch=master
