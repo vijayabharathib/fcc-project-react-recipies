@@ -50,8 +50,10 @@ Start watch on tests and sass files | `npm run watch -s`
 Get a report on test and coverage | `npm run report`
 Deploy to gh-pages | `npm run deploy`
 
-## Create-React-App
+#### Create-React-App
 The create-react-app npm package serves as a springboard to get started. Find the package in github @ https://github.com/facebookincubator/create-react-app.
+
+---
 
 ## Get SASS working with create-react-app
 
@@ -152,7 +154,7 @@ test("UnitTest- reducers - recipie should be non-editable by default",(t)=>{
   t.equal(actual,expected,message);
 });
 ```
-#### Refactor
+#### Reserved Refactors
 `extend-tape` and `tape-jsx-equals`  were not used, but still part of the development dependencies in the project's package.json. They are retained as it is possible to refactor the tests using these packages.
 
 For example, some of the tests cannot use deepEqual to compare state as the id is dynamically generated using `uuid`. However, extend-tape can be used to re-wire deepEqual to ignore just the ID and compare rest of the state.
@@ -184,17 +186,37 @@ package.json
 ```
 ---
 ## Code Coverage Report (nyc)
-All we need is an extra [nyc][link-nyc] package in the existing configuration to get this nice code coverage information.
-    "report": "nyc npm run local-test && nyc report --reporter=lcov",
-![react nyc coverage report][image-nyc-coverage]
+Since npm script for test was configured in an earlier section, all we need is an extra [nyc][link-nyc] package in the existing configuration to get code coverage information.
+```
+package.json (just the missing pieces)
+```
+```json
+"devDependencies":{
+  "nyc": "^10.0.0"
+},
+"script": {
+  "report": "nyc npm run test && nyc report --reporter=lcov"
+}
+```
+That script runs npm test via nyc to arrive at the code coverage sample below.![react nyc coverage report][image-nyc-coverage]
 
 ---
 
 ## Badge of honor on coveralls
-You can get nice badge on the repository via coveralls [![Coverage Status][badge-svg-coveralls]][link-coveralls]
+You can get nice badge on the repository via coveralls like this one: [![Coverage Status][badge-svg-coveralls]][link-coveralls]
+
+Coveralls gives code coverge for files that went through test.
 ![coveralls code coverage by file][image-coverall-by-file]
 
+It is also possible to look at coverage changes for each of the commits.
 ![coveralls-by-commits](https://cloud.githubusercontent.com/assets/15519267/22578155/9d43605a-e9ec-11e6-8d57-3b10d77e082a.png)
+
+The configuration is again very simple at local terminal while a sign up to the coveralls service is required.
+
+packagejson just needs a script that pipes output from previous section to coveralls package.
+
+"coveralls":"npm run report | coveralls"
+
 
 ---
 
@@ -204,13 +226,6 @@ You can get nice badge on the repository via coveralls [![Coverage Status][badge
 
 ---
 
-## More details around these later
-```
-
-
-## concurrently
-
-```
 ## References
 A free 30-video tutorial on egghead.io by the creator of redux himself: [Getting Started With Redux][redux-getting-started]. I have watched it several times while refactoring. Nearly half of the story is on how to build redux itself giving a sense of the underlying engine. Need to watch till the end to see the full power of the library.
 
@@ -218,7 +233,7 @@ A free 30-video tutorial on egghead.io by the creator of redux himself: [Getting
 [back-reference-section]: http://just-for-named-references
 [link-travis]: https://travis-ci.org/vijayabharathib/fcc-project-react-recipies
 [link-coveralls]: https://coveralls.io/github/vijayabharathib/fcc-project-react-recipies?branch=master
-[link-nyc]:
+[link-nyc]:https://github.com/istanbuljs/nyc
 [redux-getting-started]: https://egghead.io/courses/getting-started-with-redux
 [image-nyc-coverage]:https://cloud.githubusercontent.com/assets/15519267/22577800/41056d44-e9ea-11e6-8a80-1a0ac316a4f9.png
 [image-coverall-by-file]:https://cloud.githubusercontent.com/assets/15519267/22578088/0dd1a756-e9ec-11e6-88ab-b95021038b2f.png
